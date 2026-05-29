@@ -7,22 +7,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <style>
-:root{--earth:#1a3a2a;--earth-mid:#2d5a3d;--earth-light:#4a8c62;--sand:#f5f0e8;--sand-dark:#e8e0cc;--rust:#c4622d;--rust-light:#e88a60;--sky:#2c5f8a;--sky-light:#5b9bc8;--ink:#1c1c1e;--ink-mid:#3d3d3f;--ink-light:#6b6b70;--white:#fdfcf9;--accent:#d4a853;--accent-light:#f0d080;}
+:root{--earth:#1a3a2a;--earth-mid:#2d5a3d;--earth-light:#4a8c62;--sand:#f5f0e8;--sand-dark:#e8e0cc;--rust:#c4622d;--rust-light:#e88a60;--sky:#2c5f8a;--ink:#1c1c1e;--ink-mid:#3d3d3f;--ink-light:#6b6b70;--white:#fdfcf9;--accent:#d4a853;--accent-light:#f0d080;}
 *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
-body{font-family:'IBM Plex Sans',sans-serif;background:var(--sand);color:var(--ink);line-height:1.7;overflow-x:hidden;}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--sand);color:var(--ink);line-height:1.75;overflow-x:hidden;}
 nav{position:sticky;top:0;z-index:1000;background:var(--earth);display:flex;align-items:center;justify-content:space-between;padding:0.75rem 2rem;box-shadow:0 2px 12px rgba(0,0,0,0.25);}
 .nav-brand{font-family:'Playfair Display',serif;color:var(--accent-light);font-size:1rem;letter-spacing:0.04em;}
 .nav-links{display:flex;gap:0.25rem;list-style:none;}
 .nav-links a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.8rem;padding:0.35rem 0.75rem;border-radius:4px;transition:all 0.2s;}
 .nav-links a:hover{background:rgba(255,255,255,0.12);color:white;}
-.hero{background:var(--earth);min-height:92vh;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;position:relative;}
+.hero{background:var(--earth);min-height:92vh;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;}
 .hero-text{padding:5rem 4rem 4rem;display:flex;flex-direction:column;justify-content:center;z-index:2;}
 .hero-eyebrow{font-size:0.78rem;letter-spacing:0.2em;color:var(--accent);text-transform:uppercase;margin-bottom:1.25rem;font-weight:500;}
 .hero h1{font-family:'Playfair Display',serif;font-size:3.8rem;line-height:1.1;color:var(--white);margin-bottom:1.5rem;}
 .hero h1 em{color:var(--accent-light);font-style:italic;}
-.hero-desc{font-size:1.05rem;color:rgba(255,255,255,0.7);max-width:460px;margin-bottom:2.5rem;font-weight:300;line-height:1.8;}
+.hero-desc{font-size:1.1rem;color:rgba(255,255,255,0.72);max-width:480px;margin-bottom:2.5rem;font-weight:300;line-height:1.85;}
 .hero-cta{display:flex;gap:1rem;flex-wrap:wrap;}
-.btn-primary{background:var(--accent);color:var(--earth);border:none;padding:0.85rem 2rem;border-radius:4px;font-size:0.9rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all 0.2s;font-family:'IBM Plex Sans',sans-serif;}
+.btn-primary{background:var(--accent);color:var(--earth);border:none;padding:0.85rem 2rem;border-radius:4px;font-size:0.9rem;font-weight:600;cursor:pointer;text-decoration:none;transition:background 0.2s;font-family:'IBM Plex Sans',sans-serif;}
 .btn-primary:hover{background:var(--accent-light);}
 .btn-ghost{background:transparent;color:rgba(255,255,255,0.8);border:1px solid rgba(255,255,255,0.3);padding:0.85rem 2rem;border-radius:4px;font-size:0.9rem;cursor:pointer;text-decoration:none;transition:all 0.2s;font-family:'IBM Plex Sans',sans-serif;}
 .btn-ghost:hover{border-color:rgba(255,255,255,0.7);color:white;}
@@ -35,36 +35,28 @@ section{padding:5rem 2rem;}
 .container{max-width:1100px;margin:0 auto;}
 .section-eyebrow{font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--earth-light);font-weight:600;margin-bottom:0.75rem;}
 .section-title{font-family:'Playfair Display',serif;font-size:2.5rem;line-height:1.2;color:var(--ink);margin-bottom:1rem;}
-.section-intro{font-size:1.05rem;color:var(--ink-light);max-width:680px;margin-bottom:3rem;font-weight:300;line-height:1.8;}
-
-/* PHOTO BANNER */
+.section-intro{font-size:1.08rem;color:var(--ink-light);max-width:720px;margin-bottom:3rem;font-weight:300;line-height:1.85;}
 .photo-banner{display:grid;grid-template-columns:repeat(4,1fr);height:260px;overflow:hidden;}
 .photo-banner-item{position:relative;overflow:hidden;}
 .photo-banner-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s;filter:brightness(0.82);}
 .photo-banner-item:hover img{transform:scale(1.05);filter:brightness(0.95);}
 .photo-banner-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.72));padding:1.5rem 1rem 0.75rem;font-size:0.75rem;color:rgba(255,255,255,0.85);letter-spacing:0.05em;}
-/* img-placeholder shown while img loads or fails */
-.img-ph{background:linear-gradient(135deg,var(--earth-mid),var(--earth));display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:rgba(255,255,255,0.3);}
-
-/* INTRO */
 .intro-section{background:var(--white);}
 .intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
-.intro-pull-quote{font-family:'Playfair Display',serif;font-size:1.6rem;line-height:1.5;color:var(--earth);border-left:3px solid var(--accent);padding-left:1.5rem;margin:2rem 0;font-style:italic;}
-.intro-body p{margin-bottom:1rem;color:var(--ink-mid);}
+.intro-pull-quote{font-family:'Playfair Display',serif;font-size:1.6rem;line-height:1.55;color:var(--earth);border-left:3px solid var(--accent);padding-left:1.5rem;margin:2rem 0;font-style:italic;}
+.intro-body p{margin-bottom:1.1rem;color:var(--ink-mid);font-size:1rem;line-height:1.8;}
 .img-float-right{float:right;margin:0 0 1.5rem 2rem;border-radius:6px;overflow:hidden;width:280px;box-shadow:0 4px 20px rgba(0,0,0,0.15);}
 .img-float-right img{width:100%;height:190px;object-fit:cover;display:block;}
 .img-caption{font-size:0.75rem;color:var(--ink-light);padding:0.5rem 0.75rem;background:var(--sand-dark);font-style:italic;}
 .clearfix::after{content:'';display:table;clear:both;}
 .img-pullout{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:10px;overflow:hidden;margin:3rem 0;box-shadow:0 6px 30px rgba(0,0,0,0.12);}
-.img-pullout-photo{position:relative;min-height:280px;}
-.img-pullout-photo img{width:100%;height:100%;min-height:280px;object-fit:cover;display:block;}
+.img-pullout-photo{position:relative;min-height:300px;}
+.img-pullout-photo img{width:100%;height:100%;min-height:300px;object-fit:cover;display:block;}
 .img-pullout-photo-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,58,42,0.5),transparent);}
-.img-pullout-text{background:var(--earth);padding:2.5rem;display:flex;flex-direction:column;justify-content:center;}
-.img-pullout-text h3{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--accent-light);margin-bottom:1rem;}
-.img-pullout-text p{color:rgba(255,255,255,0.75);font-size:0.95rem;line-height:1.8;}
+.img-pullout-text{background:var(--earth);padding:2.75rem;display:flex;flex-direction:column;justify-content:center;}
+.img-pullout-text h3{font-family:'Playfair Display',serif;font-size:1.65rem;color:var(--accent-light);margin-bottom:1rem;}
+.img-pullout-text p{color:rgba(255,255,255,0.78);font-size:0.97rem;line-height:1.85;}
 .photo-credit{font-size:0.72rem;color:rgba(255,255,255,0.35);margin-top:1.25rem;}
-
-/* FIVE THEMES */
 .themes-section{background:var(--sand);}
 .themes-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--sand-dark);border:1px solid var(--sand-dark);border-radius:8px;overflow:hidden;margin-bottom:3rem;}
 .theme-card{background:var(--white);padding:2rem 1.5rem;cursor:pointer;transition:all 0.3s;position:relative;overflow:hidden;}
@@ -73,51 +65,46 @@ section{padding:5rem 2rem;}
 .theme-card:hover,.theme-card.active{background:var(--sand);}
 .theme-icon{font-size:2rem;margin-bottom:1rem;display:block;}
 .theme-name{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--ink);margin-bottom:0.5rem;}
-.theme-brief{font-size:0.82rem;color:var(--ink-light);line-height:1.5;}
+.theme-brief{font-size:0.83rem;color:var(--ink-light);line-height:1.55;}
 .theme-detail{background:var(--earth);border-radius:8px;padding:2.5rem 3rem;display:none;color:white;}
 .theme-detail.visible{display:block;}
 .theme-detail h3{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--accent-light);margin-bottom:1rem;}
 .theme-detail-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;margin-top:1.5rem;}
-.theme-detail p{color:rgba(255,255,255,0.8);line-height:1.8;}
-.example-box{background:rgba(255,255,255,0.08);border-radius:6px;padding:1.25rem 1.5rem;}
+.theme-detail p{color:rgba(255,255,255,0.82);line-height:1.85;}
+.theme-detail h4{font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.7rem;}
+.example-box{background:rgba(255,255,255,0.09);border-radius:6px;padding:1.35rem 1.5rem;}
 .example-box h4{font-size:0.78rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;}
-.example-box p{color:rgba(255,255,255,0.75);font-size:0.9rem;}
+.example-box p{color:rgba(255,255,255,0.78);font-size:0.92rem;line-height:1.8;}
 .theme-photo-box{border-radius:6px;overflow:hidden;background:rgba(0,0,0,0.3);}
-.theme-photo-box img{width:100%;height:160px;object-fit:cover;display:block;}
-.theme-photo-box .tp-caption{font-size:0.72rem;color:rgba(255,255,255,0.4);padding:0.4rem 0.6rem;background:rgba(0,0,0,0.3);}
-
-/* LEAFLET SECTION */
+.theme-photo-box img{width:100%;height:165px;object-fit:cover;display:block;}
+.theme-photo-box .tp-caption{font-size:0.73rem;color:rgba(255,255,255,0.42);padding:0.45rem 0.65rem;background:rgba(0,0,0,0.3);line-height:1.45;}
 .leaflet-section{background:var(--earth);color:white;padding:5rem 2rem;}
 .leaflet-section .section-title{color:white;}
 .leaflet-section .section-intro{color:rgba(255,255,255,0.65);}
 .leaflet-section .section-eyebrow{color:var(--accent);}
 .leaflet-maps-grid{display:grid;grid-template-columns:1fr;gap:3rem;}
 .lmap-block{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;overflow:hidden;}
-.lmap-header{padding:1.25rem 1.75rem;border-bottom:1px solid rgba(255,255,255,0.08);}
-.lmap-header h3{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--accent-light);margin-bottom:0.4rem;}
-.lmap-header p{font-size:0.88rem;color:rgba(255,255,255,0.6);line-height:1.6;}
+.lmap-header{padding:1.35rem 1.75rem;border-bottom:1px solid rgba(255,255,255,0.08);}
+.lmap-header h3{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--accent-light);margin-bottom:0.5rem;}
+.lmap-header p{font-size:0.9rem;color:rgba(255,255,255,0.62);line-height:1.7;}
 .lmap-controls{display:flex;gap:0.5rem;flex-wrap:wrap;padding:0.85rem 1.75rem;border-bottom:1px solid rgba(255,255,255,0.06);background:rgba(0,0,0,0.15);}
-.lmap-btn{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.75);border:1px solid rgba(255,255,255,0.15);padding:0.35rem 1rem;border-radius:100px;font-size:0.8rem;cursor:pointer;transition:all 0.2s;font-family:'IBM Plex Sans',sans-serif;}
+.lmap-btn{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.75);border:1px solid rgba(255,255,255,0.15);padding:0.38rem 1rem;border-radius:100px;font-size:0.82rem;cursor:pointer;transition:all 0.2s;font-family:'IBM Plex Sans',sans-serif;}
 .lmap-btn:hover,.lmap-btn.active{background:var(--accent);color:var(--earth);border-color:var(--accent);font-weight:600;}
 .lmap-canvas{height:460px;width:100%;}
 .lmap-footer{padding:0.75rem 1.75rem;font-size:0.75rem;color:rgba(255,255,255,0.35);font-style:italic;border-top:1px solid rgba(255,255,255,0.06);}
-.lmap-status{padding:0.5rem 1.75rem;font-size:0.78rem;min-height:2rem;color:rgba(255,255,255,0.5);}
-.lmap-status.ok{color:rgba(74,200,120,0.8);}
-.lmap-status.err{color:rgba(240,120,80,0.8);}
-
-/* KEY CONCEPTS */
+.lmap-status{padding:0.5rem 1.75rem;font-size:0.8rem;min-height:2.2rem;color:rgba(255,255,255,0.5);}
+.lmap-status.ok{color:rgba(110,220,150,0.9);}
+.lmap-status.err{color:rgba(240,130,90,0.9);}
 .concepts-section{background:var(--sand);}
 .concepts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
 .concept-card{background:var(--white);border-radius:8px;overflow:hidden;transition:transform 0.2s;}
 .concept-card:hover{transform:translateY(-3px);}
 .concept-img{height:180px;overflow:hidden;}
 .concept-img svg{width:100%;height:100%;}
-.concept-body{padding:1.5rem;}
-.concept-tag{display:inline-block;background:var(--earth);color:var(--accent-light);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.25rem 0.75rem;border-radius:100px;margin-bottom:0.75rem;}
-.concept-card h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--ink);margin-bottom:0.5rem;}
-.concept-card p{font-size:0.9rem;color:var(--ink-light);line-height:1.7;}
-
-/* SCALE EXPLORER */
+.concept-body{padding:1.6rem;}
+.concept-tag{display:inline-block;background:var(--earth);color:var(--accent-light);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.25rem 0.75rem;border-radius:100px;margin-bottom:0.8rem;}
+.concept-card h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--ink);margin-bottom:0.55rem;}
+.concept-card p{font-size:0.92rem;color:var(--ink-light);line-height:1.75;}
 .scale-section{background:var(--white);}
 .scale-explorer{background:var(--sand);border-radius:12px;padding:2.5rem;}
 .scale-slider-wrap{margin:1.5rem 0 2rem;display:flex;align-items:center;gap:1rem;}
@@ -126,59 +113,53 @@ section{padding:5rem 2rem;}
 #scaleLabel{font-family:'Playfair Display',serif;font-size:1rem;color:var(--earth);min-width:140px;text-align:right;font-weight:600;}
 .scale-display{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;}
 .scale-map-canvas{background:var(--earth);border-radius:8px;height:280px;overflow:hidden;}
-.scale-info h3{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--ink);margin-bottom:0.5rem;}
+.scale-info h3{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--ink);margin-bottom:0.55rem;}
 .scale-level-tag{display:inline-block;background:var(--earth-light);color:white;font-size:0.72rem;padding:0.25rem 0.75rem;border-radius:100px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1rem;}
-.scale-info p{font-size:0.95rem;color:var(--ink-mid);margin-bottom:1rem;line-height:1.8;}
+.scale-info p{font-size:0.97rem;color:var(--ink-mid);margin-bottom:1rem;line-height:1.85;}
 .scale-examples{list-style:none;}
-.scale-examples li{font-size:0.88rem;color:var(--ink-mid);padding:0.4rem 0;border-bottom:1px solid var(--sand-dark);display:flex;align-items:baseline;gap:0.5rem;}
+.scale-examples li{font-size:0.9rem;color:var(--ink-mid);padding:0.45rem 0;border-bottom:1px solid var(--sand-dark);display:flex;align-items:baseline;gap:0.5rem;}
 .scale-examples li::before{content:'→';color:var(--rust);font-size:0.8rem;flex-shrink:0;}
-
-/* QUIZ */
 .quiz-section{background:var(--earth);color:white;}
 .quiz-section .section-title{color:white;}
 .quiz-section .section-eyebrow{color:var(--accent);}
 .quiz-section .section-intro{color:rgba(255,255,255,0.65);}
-.quiz-card{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:2rem 2.5rem;max-width:720px;}
-.quiz-q{font-family:'Playfair Display',serif;font-size:1.3rem;color:white;margin-bottom:1.5rem;line-height:1.5;}
+.quiz-card{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:2.25rem 2.5rem;max-width:760px;}
+.quiz-q{font-family:'Playfair Display',serif;font-size:1.3rem;color:white;margin-bottom:1.5rem;line-height:1.55;}
 .quiz-options{display:flex;flex-direction:column;gap:0.75rem;margin-bottom:1.5rem;}
-.quiz-opt{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.85);padding:0.9rem 1.25rem;border-radius:6px;cursor:pointer;transition:all 0.2s;font-family:'IBM Plex Sans',sans-serif;font-size:0.92rem;text-align:left;}
+.quiz-opt{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.87);padding:0.95rem 1.25rem;border-radius:6px;cursor:pointer;transition:all 0.2s;font-family:'IBM Plex Sans',sans-serif;font-size:0.93rem;text-align:left;line-height:1.5;}
 .quiz-opt:hover{background:rgba(255,255,255,0.1);}
 .quiz-opt.correct{background:rgba(74,140,98,0.3);border-color:var(--earth-light);color:white;}
 .quiz-opt.wrong{background:rgba(196,98,45,0.3);border-color:var(--rust-light);color:white;}
-.quiz-feedback{display:none;padding:1rem 1.25rem;background:rgba(255,255,255,0.05);border-radius:6px;border-left:3px solid var(--accent);font-size:0.92rem;color:rgba(255,255,255,0.75);line-height:1.7;}
+.quiz-feedback{display:none;padding:1.1rem 1.35rem;background:rgba(255,255,255,0.05);border-radius:6px;border-left:3px solid var(--accent);font-size:0.93rem;color:rgba(255,255,255,0.78);line-height:1.8;}
 .quiz-feedback.visible{display:block;}
 .quiz-nav{display:flex;justify-content:space-between;align-items:center;margin-top:1.5rem;}
-.quiz-progress{font-size:0.8rem;color:rgba(255,255,255,0.45);}
-
-/* TERMS */
+.quiz-progress{font-size:0.82rem;color:rgba(255,255,255,0.45);}
 .terms-section{background:var(--sand);}
-.terms-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;}
-.term-card{background:var(--white);border-radius:8px;padding:1.25rem 1.5rem;border-left:3px solid var(--earth-light);transition:border-color 0.2s;cursor:pointer;}
-.term-card:hover{border-left-color:var(--accent);}
-.term-word{font-family:'IBM Plex Mono',monospace;font-size:0.9rem;color:var(--earth-mid);font-weight:600;margin-bottom:0.5rem;}
-.term-def{font-size:0.88rem;color:var(--ink-mid);line-height:1.65;}
-.term-example{font-size:0.8rem;color:var(--ink-light);margin-top:0.5rem;display:none;font-style:italic;}
+.terms-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem;}
+.term-card{background:var(--white);border-radius:8px;padding:1.35rem 1.6rem;border-left:3px solid var(--earth-light);transition:border-color 0.2s,box-shadow 0.2s;cursor:pointer;}
+.term-card:hover{border-left-color:var(--accent);box-shadow:0 2px 12px rgba(0,0,0,0.08);}
+.term-word{font-family:'IBM Plex Mono',monospace;font-size:0.92rem;color:var(--earth-mid);font-weight:600;margin-bottom:0.55rem;}
+.term-def{font-size:0.9rem;color:var(--ink-mid);line-height:1.7;}
+.term-example{font-size:0.83rem;color:var(--ink-light);margin-top:0.6rem;display:none;font-style:italic;border-top:1px solid var(--sand-dark);padding-top:0.6rem;line-height:1.65;}
 .term-card.open .term-example{display:block;}
-
-/* Leaflet overrides */
+.term-toggle{font-size:0.73rem;color:var(--earth-light);margin-top:0.4rem;letter-spacing:0.04em;}
+.term-card.open .term-toggle{color:var(--accent);}
 .leaflet-container{background:#1a3040!important;}
-.leaflet-popup-content-wrapper{background:var(--earth);color:white;border-radius:6px;border:1px solid rgba(255,255,255,0.15);}
+.leaflet-popup-content-wrapper{background:var(--earth);color:white;border-radius:6px;border:1px solid rgba(255,255,255,0.15);box-shadow:0 4px 20px rgba(0,0,0,0.4);}
 .leaflet-popup-tip{background:var(--earth);}
-.leaflet-popup-content{font-family:'IBM Plex Sans',sans-serif;font-size:0.88rem;line-height:1.6;margin:10px 14px;}
-.leaflet-popup-content strong{color:var(--accent-light);display:block;margin-bottom:2px;}
+.leaflet-popup-content{font-family:'IBM Plex Sans',sans-serif;font-size:0.88rem;line-height:1.65;margin:10px 14px;}
+.leaflet-popup-content strong{color:var(--accent-light);display:block;margin-bottom:3px;font-size:0.95rem;}
 .leaflet-control-zoom a{background:var(--earth-mid)!important;color:white!important;border-color:rgba(255,255,255,0.2)!important;}
 .leaflet-control-attribution{background:rgba(0,0,0,0.5)!important;color:rgba(255,255,255,0.4)!important;font-size:9px!important;}
 .leaflet-control-attribution a{color:rgba(255,255,255,0.5)!important;}
-
-footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:2.5rem;text-align:center;font-size:0.82rem;line-height:2;}
+footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:2.5rem;text-align:center;font-size:0.83rem;line-height:2.1;}
 footer strong{color:rgba(255,255,255,0.8);}
 @media(max-width:900px){
   .hero{grid-template-columns:1fr;}.hero-map{display:none;}.hero h1{font-size:2.6rem;}
   .intro-grid,.img-pullout,.scale-display{grid-template-columns:1fr;gap:2rem;}
   .themes-grid{grid-template-columns:repeat(2,1fr);}
   .theme-detail-grid{grid-template-columns:1fr;}
-  .concepts-grid{grid-template-columns:1fr 1fr;}
-  .terms-grid{grid-template-columns:1fr;}
+  .concepts-grid,.terms-grid{grid-template-columns:1fr 1fr;}
   .nav-links{display:none;}section{padding:3rem 1.25rem;}
   .hero-text{padding:3rem 1.5rem;}.photo-banner{grid-template-columns:1fr 1fr;}
   .img-float-right{float:none;width:100%;margin:1rem 0;}
@@ -186,7 +167,6 @@ footer strong{color:rgba(255,255,255,0.8);}
 </style>
 </head>
 <body>
-
 <nav>
   <span class="nav-brand">AP Human Geography — Chapter 1</span>
   <ul class="nav-links">
@@ -205,7 +185,7 @@ footer strong{color:rgba(255,255,255,0.8);}
   <div class="hero-text">
     <p class="hero-eyebrow">AP Human Geography · Chapter One</p>
     <h1>The Art of <em>Geographic Thinking</em></h1>
-    <p class="hero-desc">Geography is more than maps and place names. It is a way of asking — and answering — questions about <em>where</em>, <em>why there</em>, and <em>so what?</em></p>
+    <p class="hero-desc">Geography is more than maps and place names — it is a disciplined way of asking and answering questions about <em>where</em>, <em>why there</em>, and <em>so what?</em> Every pattern on Earth's surface has a story waiting to be read spatially.</p>
     <div class="hero-cta">
       <a href="#intro" class="btn-primary">Begin Reading ↓</a>
       <a href="#leaflet-maps" class="btn-ghost">Explore Live Maps</a>
@@ -220,29 +200,26 @@ footer strong{color:rgba(255,255,255,0.8);}
         <line x1="100" y1="0" x2="100" y2="600"/><line x1="200" y1="0" x2="200" y2="600"/><line x1="300" y1="0" x2="300" y2="600"/><line x1="400" y1="0" x2="400" y2="600"/><line x1="500" y1="0" x2="500" y2="600"/><line x1="600" y1="0" x2="600" y2="600"/>
       </g>
       <line x1="0" y1="300" x2="700" y2="300" stroke="rgba(212,168,83,0.25)" stroke-width="1.5"/>
-      <path d="M70,80 Q90,60 130,65 Q170,70 200,90 Q230,110 220,150 Q210,190 190,220 Q170,250 140,260 Q110,270 90,250 Q60,230 50,200 Q40,160 55,130 Q60,100 70,80Z" fill="#2d5a3d" opacity="0.9"/>
-      <path d="M170,250 Q180,270 175,290 Q165,310 155,295 Q150,280 160,265Z" fill="#2d5a3d" opacity="0.9"/>
+      <path d="M70,80 Q90,60 130,65 Q170,70 200,90 Q230,110 220,150 Q210,190 190,220 Q170,250 140,260 Q110,270 90,250 Q60,230 50,200 Q40,160 55,130Z" fill="#2d5a3d" opacity="0.9"/>
       <path d="M160,310 Q195,295 230,310 Q265,325 275,365 Q285,405 270,450 Q255,495 230,520 Q205,535 180,520 Q155,500 145,460 Q135,420 140,380 Q145,340 160,310Z" fill="#2d5a3d" opacity="0.9"/>
       <path d="M290,80 Q320,70 355,75 Q380,80 385,100 Q390,120 375,135 Q360,150 340,148 Q315,145 300,130 Q285,115 290,80Z" fill="#2d5a3d" opacity="0.9"/>
-      <path d="M295,160 Q330,145 365,155 Q395,165 405,200 Q415,240 410,285 Q405,330 385,370 Q365,410 340,425 Q315,435 295,415 Q270,390 265,350 Q260,305 265,265 Q270,215 285,190 Q290,170 295,160Z" fill="#2d5a3d" opacity="0.9"/>
-      <path d="M385,70 Q430,55 490,60 Q545,65 580,80 Q615,95 620,120 Q625,145 610,165 Q590,185 565,190 Q535,195 505,185 Q480,175 460,185 Q440,195 420,185 Q400,170 390,150 Q378,130 380,105 Q382,85 385,70Z" fill="#2d5a3d" opacity="0.9"/>
+      <path d="M295,160 Q330,145 365,155 Q395,165 405,200 Q415,240 410,285 Q405,330 385,370 Q365,410 340,425 Q315,435 295,415 Q270,390 265,350 Q260,305 265,265 Q270,215 285,190Z" fill="#2d5a3d" opacity="0.9"/>
+      <path d="M385,70 Q430,55 490,60 Q545,65 580,80 Q615,95 620,120 Q625,145 610,165 Q590,185 565,190 Q535,195 505,185 Q480,175 460,185 Q440,195 420,185 Q400,170 390,150 Q378,130 380,105Z" fill="#2d5a3d" opacity="0.9"/>
       <path d="M450,190 Q480,185 510,195 Q535,205 540,230 Q545,255 525,268 Q505,278 485,268 Q462,255 455,235 Q448,215 450,190Z" fill="#2d5a3d" opacity="0.9"/>
       <path d="M520,350 Q555,335 590,345 Q620,355 625,385 Q628,415 610,435 Q590,452 565,448 Q538,440 525,418 Q512,392 520,350Z" fill="#2d5a3d" opacity="0.9"/>
       <path d="M100,570 Q300,545 500,550 Q600,555 640,570 Q620,595 400,600 Q150,600 100,570Z" fill="rgba(200,220,255,0.4)"/>
       <g fill="var(--accent)" opacity="0.9">
         <circle cx="80" cy="160" r="3.5"/><circle cx="330" cy="105" r="3.5"/><circle cx="475" cy="185" r="3"/><circle cx="185" cy="380" r="3"/><circle cx="365" cy="195" r="3"/>
       </g>
-      <g font-family="'IBM Plex Sans',sans-serif">
-        <text x="130" y="175" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.3)" letter-spacing="0.1em">NORTH AMERICA</text>
-        <text x="200" y="430" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.3)" letter-spacing="0.1em">SOUTH AMERICA</text>
-        <text x="335" y="110" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.3)" letter-spacing="0.1em">EUROPE</text>
-        <text x="340" y="295" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.3)" letter-spacing="0.1em">AFRICA</text>
-        <text x="500" y="125" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.3)" letter-spacing="0.1em">ASIA</text>
-        <text x="570" y="405" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.3)" letter-spacing="0.08em">AUSTRALIA</text>
-        <text x="650" y="297" font-size="7.5" fill="rgba(212,168,83,0.5)">Equator</text>
-      </g>
-      <circle cx="330" cy="105" r="5" fill="none" stroke="var(--accent)" stroke-width="1" opacity="0.4"><animate attributeName="r" from="5" to="20" dur="2.5s" repeatCount="indefinite"/><animate attributeName="opacity" from="0.5" to="0" dur="2.5s" repeatCount="indefinite"/></circle>
-      <circle cx="475" cy="185" r="5" fill="none" stroke="var(--accent)" stroke-width="1" opacity="0.4"><animate attributeName="r" from="5" to="20" dur="2.5s" begin="0.8s" repeatCount="indefinite"/><animate attributeName="opacity" from="0.5" to="0" dur="2.5s" begin="0.8s" repeatCount="indefinite"/></circle>
+      <text x="130" y="175" font-family="IBM Plex Sans" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.28)" letter-spacing="0.1em">NORTH AMERICA</text>
+      <text x="200" y="430" font-family="IBM Plex Sans" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.28)" letter-spacing="0.1em">SOUTH AMERICA</text>
+      <text x="335" y="112" font-family="IBM Plex Sans" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.28)" letter-spacing="0.08em">EUROPE</text>
+      <text x="340" y="295" font-family="IBM Plex Sans" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.28)" letter-spacing="0.1em">AFRICA</text>
+      <text x="500" y="125" font-family="IBM Plex Sans" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.28)" letter-spacing="0.1em">ASIA</text>
+      <text x="570" y="408" font-family="IBM Plex Sans" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.28)" letter-spacing="0.07em">AUSTRALIA</text>
+      <text x="650" y="297" font-family="IBM Plex Sans" font-size="7.5" fill="rgba(212,168,83,0.5)">Equator</text>
+      <circle cx="330" cy="105" r="5" fill="none" stroke="var(--accent)" stroke-width="1" opacity="0.4"><animate attributeName="r" from="5" to="22" dur="2.8s" repeatCount="indefinite"/><animate attributeName="opacity" from="0.5" to="0" dur="2.8s" repeatCount="indefinite"/></circle>
+      <circle cx="475" cy="185" r="5" fill="none" stroke="var(--accent)" stroke-width="1" opacity="0.4"><animate attributeName="r" from="5" to="22" dur="2.8s" begin="0.9s" repeatCount="indefinite"/><animate attributeName="opacity" from="0.5" to="0" dur="2.8s" begin="0.9s" repeatCount="indefinite"/></circle>
     </svg>
     <div class="hero-stats">
       <div class="stat-item"><span class="stat-num">7</span><span class="stat-label">Continents</span></div>
@@ -252,24 +229,22 @@ footer strong{color:rgba(255,255,255,0.8);}
   </div>
 </section>
 
-<!-- PHOTO BANNER — 4 verified Unsplash IDs -->
+<!-- PHOTO BANNER -->
 <div class="photo-banner">
   <div class="photo-banner-item">
-    <!-- Earth from space — NASA Visible Earth, Unsplash ID confirmed real -->
-    <img src="https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?w=600&q=75&fit=crop" alt="Earth from space" loading="lazy" onerror="this.parentNode.classList.add('img-ph');this.parentNode.innerHTML='🌍<div class=\'photo-banner-caption\'>Earth from orbit</div>'">
+    <img src="https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?w=600&q=75&fit=crop" alt="Earth from space" loading="lazy" onerror="this.style.display='none'">
     <div class="photo-banner-caption">Earth from orbit — geography's ultimate scale</div>
   </div>
   <div class="photo-banner-item">
-    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=75&fit=crop" alt="Mountain peaks and valleys" loading="lazy" onerror="this.parentNode.classList.add('img-ph');this.parentNode.innerHTML='🏔<div class=\'photo-banner-caption\'>Physical landscape</div>'">
+    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=75&fit=crop" alt="Mountain peaks and valleys" loading="lazy" onerror="this.style.display='none'">
     <div class="photo-banner-caption">Physical landscape shapes human settlement</div>
   </div>
   <div class="photo-banner-item">
-    <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=75&fit=crop" alt="Dense urban city skyline" loading="lazy" onerror="this.parentNode.classList.add('img-ph');this.parentNode.innerHTML='🏙<div class=\'photo-banner-caption\'>Urban density</div>'">
+    <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=75&fit=crop" alt="Dense urban skyline" loading="lazy" onerror="this.style.display='none'">
     <div class="photo-banner-caption">Urban density — human geography made visible</div>
   </div>
   <div class="photo-banner-item">
-    <!-- Aerial farmland — confirmed working Unsplash photo of fields from above -->
-    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&q=75&fit=crop" alt="Agricultural fields from above" loading="lazy" onerror="this.parentNode.classList.add('img-ph');this.parentNode.innerHTML='🌾<div class=\'photo-banner-caption\'>Agricultural patterns</div>'">
+    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&q=75&fit=crop" alt="Agricultural fields from above" loading="lazy" onerror="this.style.display='none'">
     <div class="photo-banner-caption">Agricultural patterns reveal land use decisions</div>
   </div>
 </div>
@@ -282,37 +257,37 @@ footer strong{color:rgba(255,255,255,0.8);}
         <p class="section-eyebrow">What Is Geography?</p>
         <h2 class="section-title">More Than Memorizing Places</h2>
         <div class="img-float-right">
-          <!-- Cartographer/map reading — confirmed Unsplash ID -->
           <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5ce?w=560&q=80&fit=crop" alt="Cartographer studying a map" loading="lazy" onerror="this.style.display='none'">
-          <div class="img-caption">Cartographers have long asked: how do we represent our 3D world on a flat surface? Unsplash</div>
+          <div class="img-caption">Cartographers have long wrestled with a fundamental geographic problem: how do we represent a three-dimensional world on a flat surface? Every map is a choice, and every choice distorts. Unsplash</div>
         </div>
         <div class="intro-body">
-          <p>Most people think of geography as something you do with a map — find the capital, locate the river, label the country. But <strong>human geography</strong> asks deeper questions: <em>Why</em> do people live where they do? How does location shape culture, economy, and power?</p>
-          <p>Geography comes from the Greek words <em>geo</em> (Earth) and <em>graphia</em> (writing or description). At its core, geography is about describing and explaining the world's surface — both the physical landscape and the human systems layered on top of it.</p>
-          <p>Human geographers are not just map readers; they are <strong>spatial analysts</strong>. They ask questions that connect place, people, and pattern.</p>
+          <p>Most people think of geography as something you do with a map — find the capital, locate the river, label the country. But <strong>human geography</strong> asks far deeper questions: <em>Why</em> do people live where they do? How does location shape culture, economy, and power? Why do some places grow while others shrink?</p>
+          <p>Geography comes from the Greek words <em>geo</em> (Earth) and <em>graphia</em> (writing or description). At its core, geography is about describing and explaining the world's surface — both the physical landscape and the complex human systems that have been layered on top of it over millennia.</p>
+          <p>Human geographers are not just map readers; they are <strong>spatial analysts and storytellers</strong>. They ask questions that connect place, people, power, and pattern — and they use maps as tools for both inquiry and argument.</p>
+          <p>The questions geography asks are fundamentally different from those of other disciplines. While history asks <em>when?</em> and <em>why then?</em>, geography asks <em>where?</em> and <em>why there?</em> That spatial lens reveals patterns that no other discipline can fully capture.</p>
         </div>
       </div>
       <div>
         <div class="intro-pull-quote">"Geography is the study of Earth as the home of people."<br><span style="font-size:0.9rem;font-weight:400;color:var(--ink-light)">— Yi-Fu Tuan, geographer</span></div>
         <div class="intro-body">
-          <p>The discipline rests on a core geographic question: <strong>Why are things located where they are, and what difference does it make?</strong></p>
-          <p>When geographers see a pattern — a cluster of factories, a sprawling city, a shrinking rural town — they ask: What forces created this? What physical, cultural, economic, or political factors are at work? How does this pattern connect to patterns elsewhere?</p>
-          <p>Thinking geographically means seeing the world as an interconnected set of <em>places</em>, <em>regions</em>, and <em>flows</em> that are always shifting and reshaping each other.</p>
+          <p>The discipline rests on a deceptively simple but profound geographic question: <strong>Why are things located where they are, and what difference does that location make?</strong></p>
+          <p>When geographers see a pattern — a cluster of factories along a river, a sprawling suburb at the edge of a city, a shrinking rural town in the agricultural heartland — they ask: What forces created this arrangement? What physical, cultural, economic, or political factors are at work? And crucially, how does this pattern connect to patterns elsewhere?</p>
+          <p>Thinking geographically means developing a habit of seeing the world as an interconnected set of <em>places</em>, <em>regions</em>, and <em>flows</em> that are always shifting and reshaping each other in response to human decisions and natural processes.</p>
+          <p>This chapter introduces the conceptual toolkit that geographers use to make sense of those patterns. These ideas — location, place, region, scale, diffusion — will appear throughout every unit of this course and every serious discussion of the world's human landscape.</p>
         </div>
       </div>
     </div>
 
     <div class="img-pullout">
       <div class="img-pullout-photo">
-        <!-- Dutch windmills/polders — confirmed Unsplash photo of Netherlands canal landscape -->
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80&fit=crop" alt="Dutch windmills and water canals" loading="lazy" onerror="this.style.background='var(--earth-mid)';this.style.height='100%'">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80&fit=crop" alt="Dutch windmills and polder canals" loading="lazy" onerror="this.style.background='var(--earth-mid)'">
         <div class="img-pullout-photo-overlay"></div>
       </div>
       <div class="img-pullout-text">
         <h3>Geography in Action: The Netherlands</h3>
-        <p>Over 17% of the Netherlands sits below sea level — land that was once ocean. Through centuries of building dikes, operating windmills, and engineering polders (enclosed reclaimed wetlands), the Dutch literally manufactured their own territory.</p>
-        <p style="margin-top:1rem">This is Human–Environment Interaction at its most dramatic: an entire nation reshaped by geographic thinking. Rising sea levels now threaten what centuries of engineering created — the same geographic forces, reversed.</p>
-        <div class="photo-credit">Photo: Unsplash · Kinderdijk windmills, UNESCO World Heritage Site, Netherlands</div>
+        <p>Over 17% of the Netherlands sits below sea level — land that was once ocean floor. Through centuries of engineering ingenuity, the Dutch built an elaborate system of dikes, pumping stations, and polders (enclosed parcels of drained wetland), literally manufacturing their own territory from the sea.</p>
+        <p style="margin-top:1rem">This is Human–Environment Interaction at its most dramatic scale: an entire nation reshaped by geographic thinking and collective will. Yet the story has a second act. Rising global sea levels now threaten everything centuries of engineering created — the same geographic forces, amplified and reversed. The Netherlands spends billions per year maintaining and upgrading its defenses, making it the world's foremost laboratory for climate adaptation geography.</p>
+        <div class="photo-credit">Photo: Unsplash · Kinderdijk windmill complex, UNESCO World Heritage Site, South Holland</div>
       </div>
     </div>
   </div>
@@ -323,13 +298,13 @@ footer strong{color:rgba(255,255,255,0.8);}
   <div class="container">
     <p class="section-eyebrow">Framework</p>
     <h2 class="section-title">The Five Themes of Geography</h2>
-    <p class="section-intro">In 1984, the National Council for Geographic Education established five organizing themes that remain central to geographic thinking today. Click each theme to explore it.</p>
+    <p class="section-intro">In 1984, the National Council for Geographic Education and the Association of American Geographers established five organizing themes that give geographic inquiry a consistent structure. These themes are not separate topics — they are lenses that can be applied simultaneously to any geographic question, from why a city grew to how a cultural practice spread across continents. Click each theme to explore it in depth.</p>
     <div class="themes-grid">
-      <div class="theme-card active" data-theme="0" style="--card-color:#2d5a3d"><span class="theme-icon">📍</span><div class="theme-name">Location</div><div class="theme-brief">Absolute & relative positions on Earth</div></div>
-      <div class="theme-card" data-theme="1" style="--card-color:#c4622d"><span class="theme-icon">🏔</span><div class="theme-name">Place</div><div class="theme-brief">Physical & human characteristics</div></div>
-      <div class="theme-card" data-theme="2" style="--card-color:#2c5f8a"><span class="theme-icon">🌊</span><div class="theme-name">Human–Environment</div><div class="theme-brief">How people shape & are shaped by nature</div></div>
-      <div class="theme-card" data-theme="3" style="--card-color:#6b4e9a"><span class="theme-icon">🗺</span><div class="theme-name">Movement</div><div class="theme-brief">Migration, trade, & spread of ideas</div></div>
-      <div class="theme-card" data-theme="4" style="--card-color:#8b6914"><span class="theme-icon">🔗</span><div class="theme-name">Region</div><div class="theme-brief">Areas defined by shared traits</div></div>
+      <div class="theme-card active" data-theme="0" style="--card-color:#2d5a3d"><span class="theme-icon">📍</span><div class="theme-name">Location</div><div class="theme-brief">Absolute &amp; relative positions on Earth's surface</div></div>
+      <div class="theme-card" data-theme="1" style="--card-color:#c4622d"><span class="theme-icon">🏔</span><div class="theme-name">Place</div><div class="theme-brief">Physical &amp; human characteristics of locations</div></div>
+      <div class="theme-card" data-theme="2" style="--card-color:#2c5f8a"><span class="theme-icon">🌊</span><div class="theme-name">Human–Environment</div><div class="theme-brief">How people shape and are shaped by nature</div></div>
+      <div class="theme-card" data-theme="3" style="--card-color:#6b4e9a"><span class="theme-icon">🗺</span><div class="theme-name">Movement</div><div class="theme-brief">Migration, trade, and the spread of ideas</div></div>
+      <div class="theme-card" data-theme="4" style="--card-color:#8b6914"><span class="theme-icon">🔗</span><div class="theme-name">Region</div><div class="theme-brief">Areas defined by shared characteristics</div></div>
     </div>
     <div id="themeDetail" class="theme-detail visible"></div>
   </div>
@@ -340,62 +315,56 @@ footer strong{color:rgba(255,255,255,0.8);}
   <div class="container">
     <p class="section-eyebrow">Live Data · ArcGIS REST Services</p>
     <h2 class="section-title">The World in Real Geographic Data</h2>
-    <p class="section-intro">These maps pull live data from public ArcGIS REST services — the same infrastructure used by professional geographers, urban planners, and scientists. Click any feature to read its real attributes.</p>
-
+    <p class="section-intro">These three maps pull live operational data directly from public ArcGIS REST services — the same data infrastructure used by professional geographers, urban planners, disaster managers, and scientists worldwide. Each map is connected to a different geographic concept from this chapter. Toggle the layer controls and click any feature to read its real attributes from the source database.</p>
     <div class="leaflet-maps-grid">
-
-      <!-- MAP 1: World Cities -->
       <div class="lmap-block">
         <div class="lmap-header">
-          <h3>🏙 World Cities — Population &amp; Distribution</h3>
-          <p>Illustrates <strong>spatial distribution</strong> and <strong>agglomeration</strong> — cities cluster along coasts, rivers, and fertile plains. Toggle basemaps and filter by city size. Click any marker for real population data from Esri's public World Cities service.</p>
+          <h3>🏙 World Cities — Population &amp; Spatial Distribution</h3>
+          <p>Explores <strong>spatial distribution</strong> and <strong>agglomeration</strong> — notice how cities cluster along coastlines, navigable rivers, and fertile lowlands rather than distributing evenly across the landscape. This pattern reflects centuries of geographic decision-making about where to settle. Toggle basemaps to see cities in different geographic contexts. Click any dot for live population data.</p>
         </div>
         <div class="lmap-controls">
-          <button class="lmap-btn active" id="c-base-dark" onclick="setCitiesBase('dark')">🌑 Dark</button>
-          <button class="lmap-btn" id="c-base-topo" onclick="setCitiesBase('topo')">🏔 Topo</button>
-          <button class="lmap-btn" id="c-base-img" onclick="setCitiesBase('imagery')">🛰 Satellite</button>
-          <span style="color:rgba(255,255,255,0.2);padding:0 4px">|</span>
-          <button class="lmap-btn active" id="c-f-all" onclick="filterCities('all')">All Cities</button>
-          <button class="lmap-btn" id="c-f-mega" onclick="filterCities('mega')">Megacities 10M+</button>
-          <button class="lmap-btn" id="c-f-port" onclick="filterCities('port')">Port Cities</button>
+          <button class="lmap-btn active" id="c-dark" onclick="setCitiesBase('dark')">🌑 Dark</button>
+          <button class="lmap-btn" id="c-topo" onclick="setCitiesBase('topo')">🏔 Topographic</button>
+          <button class="lmap-btn" id="c-img" onclick="setCitiesBase('imagery')">🛰 Satellite</button>
+          <span style="color:rgba(255,255,255,0.2);padding:0 6px">|</span>
+          <button class="lmap-btn active" id="cf-all" onclick="filterCities('all')">All Cities</button>
+          <button class="lmap-btn" id="cf-mega" onclick="filterCities('mega')">Megacities 10M+</button>
+          <button class="lmap-btn" id="cf-port" onclick="filterCities('port')">Port Cities</button>
         </div>
-        <div class="lmap-status" id="s1">⏳ Loading world cities from ArcGIS…</div>
+        <div class="lmap-status" id="s1">⏳ Connecting to ArcGIS World Cities service…</div>
         <div id="map1" class="lmap-canvas"></div>
-        <div class="lmap-footer">Source: Esri World Cities Feature Service · services.arcgis.com/P3ePLMYs2RVChkJx</div>
+        <div class="lmap-footer">Source: Esri SampleServer6 &amp; World Cities Feature Service · Public ArcGIS REST API · No authentication required</div>
       </div>
 
-      <!-- MAP 2: Tectonic Plates & Volcanoes -->
       <div class="lmap-block">
         <div class="lmap-header">
-          <h3>🌋 Tectonic Plates &amp; Volcanoes</h3>
-          <p>Illustrates <strong>Human–Environment Interaction</strong> — tectonic activity defines where earthquakes, volcanoes, and tsunamis occur, profoundly shaping where and how humans settle. Toggle between plate boundaries and active volcanoes from USGS data.</p>
+          <h3>🌋 Tectonic Plates &amp; Active Volcanoes</h3>
+          <p>Illustrates <strong>Human–Environment Interaction</strong> at a global scale — the movement of tectonic plates over millions of years has created the mountain ranges, ocean basins, earthquake zones, and volcanic belts that define the physical stage on which human civilization has developed. Where plates meet, human risk concentrates. Toggle between plate boundaries and the world's catalogued active volcanoes.</p>
         </div>
         <div class="lmap-controls">
           <button class="lmap-btn active" id="p-plates" onclick="setPlatesLayer('plates')">🗺 Tectonic Plates</button>
           <button class="lmap-btn" id="p-volc" onclick="setPlatesLayer('volcanoes')">🌋 Volcanoes</button>
           <button class="lmap-btn" id="p-both" onclick="setPlatesLayer('both')">🔥 Both Layers</button>
         </div>
-        <div class="lmap-status" id="s2">⏳ Loading tectonic data…</div>
+        <div class="lmap-status" id="s2">⏳ Connecting to Esri Living Atlas tectonic data…</div>
         <div id="map2" class="lmap-canvas"></div>
-        <div class="lmap-footer">Source: Esri Living Atlas Tectonic Plates · USGS Volcano data · Public domain</div>
+        <div class="lmap-footer">Source: Esri Living Atlas Tectonic Plates · USGS / Smithsonian Global Volcanism Program · Public domain data</div>
       </div>
 
-      <!-- MAP 3: US Population & Networks -->
       <div class="lmap-block">
         <div class="lmap-header">
-          <h3>📊 United States — Population &amp; Urban Patterns</h3>
-          <p>Applies <strong>scale of analysis</strong> — examining the US at the national scale reveals Sun Belt growth, coastal concentration, and vast interior low-density zones invisible at smaller scales. Toggle between state population, major cities, and the Interstate network.</p>
+          <h3>📊 United States — Population, Cities &amp; Infrastructure</h3>
+          <p>Applies <strong>scale of analysis</strong> — examining the United States at the national scale reveals dramatic geographic patterns: the Sun Belt population shift, intense coastal concentration, the vast low-density interior, and the Interstate highway network as a <em>functional region</em> that defines how commerce flows across the country. Each layer reveals a different dimension of US human geography.</p>
         </div>
         <div class="lmap-controls">
           <button class="lmap-btn active" id="u-states" onclick="setUSLayer('states')">🗺 State Population</button>
           <button class="lmap-btn" id="u-cities" onclick="setUSLayer('cities')">🏙 Major Cities</button>
-          <button class="lmap-btn" id="u-hw" onclick="setUSLayer('highways')">🛣 Interstates</button>
+          <button class="lmap-btn" id="u-hw" onclick="setUSLayer('highways')">🛣 Interstate Network</button>
         </div>
-        <div class="lmap-status" id="s3">⏳ Loading US data…</div>
+        <div class="lmap-status" id="s3">⏳ Connecting to Esri USA States service…</div>
         <div id="map3" class="lmap-canvas"></div>
-        <div class="lmap-footer">Source: Esri USA States, Cities &amp; Highways Feature Services · US Census Bureau data</div>
+        <div class="lmap-footer">Source: Esri USA States, Cities &amp; Freeway System Feature Services · US Census Bureau data</div>
       </div>
-
     </div>
   </div>
 </section>
@@ -405,29 +374,29 @@ footer strong{color:rgba(255,255,255,0.8);}
   <div class="container">
     <p class="section-eyebrow">Spatial Analysis</p>
     <h2 class="section-title">Core Spatial Concepts</h2>
-    <p class="section-intro">Geographic thinking relies on a toolkit of spatial concepts that help describe patterns, relationships, and processes across Earth's surface.</p>
+    <p class="section-intro">Geographic thinking relies on a toolkit of spatial concepts that help describe, measure, and explain the patterns, relationships, and processes at work across Earth's surface. These are the analytical lenses that geographers apply when reading the human landscape — from a neighborhood block to the global economy.</p>
 
     <div class="img-pullout" style="margin-bottom:3rem">
       <div class="img-pullout-text" style="background:var(--sky)">
-        <h3>Agglomeration in Silicon Valley</h3>
-        <p>Silicon Valley didn't happen by accident. Stanford University produced engineers, venture capitalists clustered nearby, tech firms hired from each other's talent pools, and suppliers co-located. Each new arrival made the cluster more attractive for the next.</p>
-        <p style="margin-top:1rem">This self-reinforcing geographic logic appears in Hollywood (film), Detroit (automotive), Wall Street (finance), and Music Row in Nashville. Geography concentrates economic activity.</p>
+        <h3>Agglomeration: Why Silicon Valley Exists</h3>
+        <p>Silicon Valley didn't become the world's premier technology hub by accident or by design — it emerged through the self-reinforcing geographic logic of agglomeration. Stanford University trained engineers who started companies nearby. Venture capitalists moved close to monitor investments. Semiconductor firms hired from each other's talent pools. Suppliers located near their clients. Each new arrival made the cluster more attractive for the next one.</p>
+        <p style="margin-top:1rem">This self-reinforcing spatial logic — called agglomeration economies — explains why similar industries concentrate geographically rather than distributing evenly. Hollywood and film production, Wall Street and finance, Nashville's Music Row, Detroit's century-long automotive dominance: each is a geographic story about how proximity creates competitive advantage, and how that advantage compounds over time.</p>
+        <p style="margin-top:1rem">Understanding agglomeration is essential to understanding why economic opportunity is not evenly distributed across space — which is one of geography's most consequential insights.</p>
         <div class="photo-credit">Concept: Clustering &amp; Agglomeration — Spatial Analysis Core Concept 3</div>
       </div>
       <div class="img-pullout-photo">
-        <!-- Night city lights aerial - confirmed Unsplash ID -->
-        <img src="https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=800&q=80&fit=crop" alt="City lights aerial at night" loading="lazy" onerror="this.style.background='var(--sky)';this.style.height='100%'">
+        <img src="https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=800&q=80&fit=crop" alt="City lights aerial at night" loading="lazy" onerror="this.style.background='var(--sky)'">
         <div class="img-pullout-photo-overlay"></div>
       </div>
     </div>
 
     <div class="concepts-grid">
-      <div class="concept-card"><div class="concept-img"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="180" fill="#0d2518"/><circle cx="80" cy="90" r="50" fill="none" stroke="rgba(74,140,98,0.35)" stroke-width="1"/><circle cx="80" cy="90" r="35" fill="none" stroke="rgba(74,140,98,0.5)" stroke-width="1"/><circle cx="80" cy="90" r="22" fill="none" stroke="rgba(74,140,98,0.65)" stroke-width="1"/><circle cx="80" cy="90" r="10" fill="rgba(74,140,98,0.9)"/><text x="80" y="93" font-family="IBM Plex Sans" font-size="7" fill="white" text-anchor="middle">City</text><circle cx="108" cy="90" r="6" fill="rgba(212,168,83,0.85)"/><circle cx="128" cy="75" r="5" fill="rgba(212,168,83,0.7)"/><circle cx="140" cy="100" r="4" fill="rgba(212,168,83,0.55)"/><circle cx="160" cy="82" r="3.5" fill="rgba(212,168,83,0.4)"/><circle cx="175" cy="110" r="3" fill="rgba(212,168,83,0.28)"/><circle cx="200" cy="92" r="2.5" fill="rgba(212,168,83,0.16)"/><text x="255" y="80" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.55)" text-anchor="middle">Interaction</text><text x="255" y="93" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.55)" text-anchor="middle">decreases</text><text x="255" y="106" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.55)" text-anchor="middle">with distance</text></svg></div><div class="concept-body"><span class="concept-tag">Concept 1</span><h3>Distance Decay</h3><p>Interaction between two places decreases as the distance between them increases. A farmer's market draws mostly local shoppers; a national park attracts visitors from farther away but in smaller numbers.</p></div></div>
-      <div class="concept-card"><div class="concept-img"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="180" fill="#0d2518"/><circle cx="160" cy="90" r="68" fill="none" stroke="rgba(44,95,138,0.28)" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="160" cy="90" r="48" fill="none" stroke="rgba(44,95,138,0.48)" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="160" cy="90" r="28" fill="none" stroke="rgba(44,95,138,0.68)" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="160" cy="90" r="12" fill="rgba(44,95,138,0.9)"/><circle cx="192" cy="90" r="4" fill="#5b9bc8" opacity="0.9"/><circle cx="175" cy="115" r="4" fill="#5b9bc8" opacity="0.82"/><circle cx="140" cy="118" r="4" fill="#5b9bc8" opacity="0.75"/><circle cx="210" cy="70" r="3.5" fill="#5b9bc8" opacity="0.65"/><circle cx="230" cy="95" r="3" fill="#5b9bc8" opacity="0.52"/><circle cx="218" cy="120" r="3" fill="#5b9bc8" opacity="0.45"/><circle cx="115" cy="78" r="3.5" fill="#5b9bc8" opacity="0.6"/><circle cx="248" cy="80" r="2.5" fill="#5b9bc8" opacity="0.32"/><text x="160" y="93" font-family="IBM Plex Sans" font-size="7" fill="white" text-anchor="middle">Origin</text></svg></div><div class="concept-body"><span class="concept-tag">Concept 2</span><h3>Spatial Diffusion</h3><p>The process by which a characteristic, idea, or phenomenon spreads across space and through time. Innovations like smartphones and fast-food chains diffused outward from their origins at varying rates.</p></div></div>
-      <div class="concept-card"><div class="concept-img"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="180" fill="#0d2518"/><ellipse cx="95" cy="95" rx="42" ry="38" fill="rgba(196,98,45,0.08)" stroke="rgba(196,98,45,0.3)" stroke-width="1"/><circle cx="88" cy="88" r="5" fill="rgba(196,98,45,0.85)"/><circle cx="100" cy="100" r="5" fill="rgba(196,98,45,0.85)"/><circle cx="82" cy="104" r="5" fill="rgba(196,98,45,0.85)"/><circle cx="108" cy="88" r="5" fill="rgba(196,98,45,0.85)"/><circle cx="95" cy="82" r="4" fill="rgba(196,98,45,0.75)"/><text x="95" y="145" font-family="IBM Plex Sans" font-size="8" fill="rgba(255,255,255,0.4)" text-anchor="middle">Tech Hub</text><ellipse cx="225" cy="78" rx="36" ry="30" fill="rgba(74,140,98,0.08)" stroke="rgba(74,140,98,0.3)" stroke-width="1"/><circle cx="218" cy="72" r="5" fill="rgba(74,140,98,0.85)"/><circle cx="232" cy="80" r="5" fill="rgba(74,140,98,0.85)"/><circle cx="220" cy="86" r="4.5" fill="rgba(74,140,98,0.78)"/><circle cx="235" cy="68" r="4" fill="rgba(74,140,98,0.72)"/><text x="225" y="123" font-family="IBM Plex Sans" font-size="8" fill="rgba(255,255,255,0.4)" text-anchor="middle">Port City</text><circle cx="168" cy="140" r="3" fill="rgba(255,255,255,0.25)"/><circle cx="40" cy="48" r="3" fill="rgba(255,255,255,0.25)"/></svg></div><div class="concept-body"><span class="concept-tag">Concept 3</span><h3>Clustering &amp; Agglomeration</h3><p>Similar activities concentrate in one area due to shared benefits. Silicon Valley's tech industry, Detroit's automotive past, and immigrant ethnic neighborhoods all reflect the economic and social logic of spatial clustering.</p></div></div>
-      <div class="concept-card"><div class="concept-img"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="180" fill="#0d2518"/><circle cx="160" cy="90" r="14" fill="rgba(74,140,98,0.9)"/><circle cx="60" cy="50" r="10" fill="rgba(44,95,138,0.8)"/><circle cx="270" cy="55" r="9" fill="rgba(44,95,138,0.8)"/><circle cx="70" cy="150" r="9" fill="rgba(44,95,138,0.8)"/><circle cx="260" cy="145" r="9" fill="rgba(44,95,138,0.8)"/><circle cx="160" cy="165" r="8" fill="rgba(196,98,45,0.7)"/><circle cx="160" cy="25" r="8" fill="rgba(196,98,45,0.7)"/><line x1="160" y1="90" x2="60" y2="50" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/><line x1="160" y1="90" x2="270" y2="55" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/><line x1="160" y1="90" x2="70" y2="150" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/><line x1="160" y1="90" x2="260" y2="145" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/><line x1="160" y1="90" x2="160" y2="165" stroke="rgba(255,255,255,0.12)" stroke-width="1"/><line x1="160" y1="90" x2="160" y2="25" stroke="rgba(255,255,255,0.12)" stroke-width="1"/><text x="160" y="93" font-family="IBM Plex Sans" font-size="7" fill="white" text-anchor="middle">Hub</text></svg></div><div class="concept-body"><span class="concept-tag">Concept 4</span><h3>Connectivity &amp; Networks</h3><p>The degree to which places are linked by transportation, communication, and social ties. A well-connected city like Singapore is a global hub; a remote village with no roads has low connectivity and limited access to outside resources.</p></div></div>
-      <div class="concept-card"><div class="concept-img"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="180" fill="#0d2518"/><rect x="20" y="30" width="80" height="60" rx="3" fill="rgba(196,98,45,0.14)" stroke="rgba(196,98,45,0.45)" stroke-width="1"/><text x="60" y="65" font-family="IBM Plex Sans" font-size="8" fill="rgba(255,255,255,0.45)" text-anchor="middle">Neighborhood</text><rect x="118" y="20" width="100" height="78" rx="3" fill="rgba(44,95,138,0.1)" stroke="rgba(44,95,138,0.4)" stroke-width="1"/><text x="168" y="63" font-family="IBM Plex Sans" font-size="8" fill="rgba(255,255,255,0.45)" text-anchor="middle">Region</text><rect x="232" y="10" width="72" height="98" rx="3" fill="rgba(74,140,98,0.09)" stroke="rgba(74,140,98,0.35)" stroke-width="1"/><text x="268" y="63" font-family="IBM Plex Sans" font-size="8" fill="rgba(255,255,255,0.45)" text-anchor="middle">Global</text><defs><marker id="arr" markerWidth="4" markerHeight="4" refX="2" refY="2" orient="auto"><path d="M0,0 L0,4 L4,2 Z" fill="rgba(255,255,255,0.35)"/></marker></defs><path d="M100,60 Q110,60 118,60" stroke="rgba(255,255,255,0.28)" stroke-width="1" fill="none" marker-end="url(#arr)"/><path d="M218,60 Q226,60 232,60" stroke="rgba(255,255,255,0.28)" stroke-width="1" fill="none" marker-end="url(#arr)"/><text x="60" y="108" font-family="IBM Plex Sans" font-size="7" fill="rgba(196,98,45,0.65)" text-anchor="middle">Local</text><text x="168" y="118" font-family="IBM Plex Sans" font-size="7" fill="rgba(44,95,138,0.65)" text-anchor="middle">Regional</text><text x="268" y="125" font-family="IBM Plex Sans" font-size="7" fill="rgba(74,140,98,0.65)" text-anchor="middle">Global</text></svg></div><div class="concept-body"><span class="concept-tag">Concept 5</span><h3>Scale of Analysis</h3><p>Zooming in or out changes what geographic patterns are visible. Poverty looks different at the neighborhood level vs. the national level vs. globally. Changing scale is one of geography's most powerful analytical tools.</p></div></div>
-      <div class="concept-card"><div class="concept-img"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="180" fill="#0d2518"/><rect x="10" y="20" width="145" height="145" rx="4" fill="rgba(74,140,98,0.1)"/><rect x="165" y="20" width="145" height="145" rx="4" fill="rgba(44,95,138,0.1)"/><line x1="157" y1="15" x2="157" y2="170" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" stroke-dasharray="5 3"/><g fill="rgba(74,140,98,0.72)"><circle cx="40" cy="55" r="4"/><circle cx="70" cy="48" r="4"/><circle cx="100" cy="60" r="4"/><circle cx="50" cy="85" r="4"/><circle cx="85" cy="78" r="4"/><circle cx="115" cy="90" r="4"/><circle cx="40" cy="120" r="4"/><circle cx="75" cy="115" r="4"/><circle cx="105" cy="125" r="4"/></g><g fill="rgba(44,95,138,0.72)"><circle cx="190" cy="55" r="4"/><circle cx="220" cy="50" r="4"/><circle cx="250" cy="62" r="4"/><circle cx="180" cy="90" r="4"/><circle cx="215" cy="82" r="4"/><circle cx="248" cy="95" r="4"/><circle cx="195" cy="120" r="4"/><circle cx="228" cy="118" r="4"/><circle cx="260" cy="128" r="4"/></g><text x="83" y="168" font-family="IBM Plex Sans" font-size="8" fill="rgba(74,140,98,0.65)" text-anchor="middle">Zone A</text><text x="237" y="168" font-family="IBM Plex Sans" font-size="8" fill="rgba(44,95,138,0.65)" text-anchor="middle">Zone B</text></svg></div><div class="concept-body"><span class="concept-tag">Concept 6</span><h3>Spatial Pattern &amp; Distribution</h3><p>How phenomena are arranged across space — clustered, dispersed, or random. Mapping disease outbreaks, crop yields, or languages reveals spatial patterns that tell stories about human and physical systems.</p></div></div>
+      <div class="concept-card"><div class="concept-img"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="180" fill="#0d2518"/><circle cx="80" cy="90" r="50" fill="none" stroke="rgba(74,140,98,0.35)" stroke-width="1"/><circle cx="80" cy="90" r="35" fill="none" stroke="rgba(74,140,98,0.5)" stroke-width="1"/><circle cx="80" cy="90" r="22" fill="none" stroke="rgba(74,140,98,0.65)" stroke-width="1"/><circle cx="80" cy="90" r="10" fill="rgba(74,140,98,0.9)"/><text x="80" y="93" font-family="IBM Plex Sans" font-size="7" fill="white" text-anchor="middle">City</text><circle cx="108" cy="90" r="6" fill="rgba(212,168,83,0.85)"/><circle cx="128" cy="75" r="5" fill="rgba(212,168,83,0.7)"/><circle cx="140" cy="100" r="4" fill="rgba(212,168,83,0.55)"/><circle cx="160" cy="82" r="3.5" fill="rgba(212,168,83,0.38)"/><circle cx="175" cy="110" r="3" fill="rgba(212,168,83,0.24)"/><circle cx="200" cy="92" r="2.5" fill="rgba(212,168,83,0.14)"/><text x="255" y="80" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.5)" text-anchor="middle">Interaction</text><text x="255" y="93" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.5)" text-anchor="middle">decreases</text><text x="255" y="106" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.5)" text-anchor="middle">with distance</text></svg></div><div class="concept-body"><span class="concept-tag">Concept 1</span><h3>Distance Decay</h3><p>The principle that the intensity of geographic interaction between two places decreases as the distance between them increases. A farmer's market draws mostly local shoppers; a world-class museum draws visitors from much further away, but in smaller proportions per capita as distance grows.</p></div></div>
+      <div class="concept-card"><div class="concept-img"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="180" fill="#0d2518"/><circle cx="160" cy="90" r="68" fill="none" stroke="rgba(44,95,138,0.28)" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="160" cy="90" r="48" fill="none" stroke="rgba(44,95,138,0.48)" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="160" cy="90" r="28" fill="none" stroke="rgba(44,95,138,0.68)" stroke-width="1.5" stroke-dasharray="4 3"/><circle cx="160" cy="90" r="12" fill="rgba(44,95,138,0.9)"/><circle cx="192" cy="90" r="4" fill="#5b9bc8" opacity="0.9"/><circle cx="175" cy="115" r="4" fill="#5b9bc8" opacity="0.82"/><circle cx="140" cy="118" r="4" fill="#5b9bc8" opacity="0.75"/><circle cx="210" cy="70" r="3.5" fill="#5b9bc8" opacity="0.65"/><circle cx="230" cy="95" r="3" fill="#5b9bc8" opacity="0.52"/><circle cx="218" cy="120" r="3" fill="#5b9bc8" opacity="0.45"/><circle cx="115" cy="78" r="3.5" fill="#5b9bc8" opacity="0.6"/><circle cx="248" cy="80" r="2.5" fill="#5b9bc8" opacity="0.32"/><text x="160" y="93" font-family="IBM Plex Sans" font-size="7" fill="white" text-anchor="middle">Origin</text></svg></div><div class="concept-body"><span class="concept-tag">Concept 2</span><h3>Spatial Diffusion</h3><p>The process by which a characteristic, idea, disease, or innovation spreads across space and through time from a point of origin. Diffusion can be contagious (spreading outward like a wave), hierarchical (jumping from large cities to small ones), or stimulus-driven (spreading an idea that then adapts locally).</p></div></div>
+      <div class="concept-card"><div class="concept-img"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="180" fill="#0d2518"/><ellipse cx="95" cy="95" rx="42" ry="38" fill="rgba(196,98,45,0.08)" stroke="rgba(196,98,45,0.3)" stroke-width="1"/><circle cx="88" cy="88" r="5" fill="rgba(196,98,45,0.85)"/><circle cx="100" cy="100" r="5" fill="rgba(196,98,45,0.85)"/><circle cx="82" cy="104" r="5" fill="rgba(196,98,45,0.85)"/><circle cx="108" cy="88" r="5" fill="rgba(196,98,45,0.85)"/><circle cx="95" cy="82" r="4" fill="rgba(196,98,45,0.75)"/><text x="95" y="145" font-family="IBM Plex Sans" font-size="8" fill="rgba(255,255,255,0.38)" text-anchor="middle">Tech Hub</text><ellipse cx="225" cy="78" rx="36" ry="30" fill="rgba(74,140,98,0.08)" stroke="rgba(74,140,98,0.3)" stroke-width="1"/><circle cx="218" cy="72" r="5" fill="rgba(74,140,98,0.85)"/><circle cx="232" cy="80" r="5" fill="rgba(74,140,98,0.85)"/><circle cx="220" cy="86" r="4.5" fill="rgba(74,140,98,0.78)"/><circle cx="235" cy="68" r="4" fill="rgba(74,140,98,0.72)"/><text x="225" y="122" font-family="IBM Plex Sans" font-size="8" fill="rgba(255,255,255,0.38)" text-anchor="middle">Port Cluster</text></svg></div><div class="concept-body"><span class="concept-tag">Concept 3</span><h3>Clustering &amp; Agglomeration</h3><p>The tendency for similar activities, industries, or populations to concentrate in one area for mutual benefit. Silicon Valley's tech industry, Detroit's century-long automotive past, immigrant cultural neighborhoods, and hospital districts all reflect the economic and social power of spatial clustering.</p></div></div>
+      <div class="concept-card"><div class="concept-img"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="180" fill="#0d2518"/><circle cx="160" cy="90" r="14" fill="rgba(74,140,98,0.9)"/><circle cx="60" cy="50" r="10" fill="rgba(44,95,138,0.8)"/><circle cx="270" cy="55" r="9" fill="rgba(44,95,138,0.8)"/><circle cx="70" cy="150" r="9" fill="rgba(44,95,138,0.8)"/><circle cx="260" cy="145" r="9" fill="rgba(44,95,138,0.8)"/><circle cx="160" cy="165" r="8" fill="rgba(196,98,45,0.7)"/><circle cx="160" cy="25" r="8" fill="rgba(196,98,45,0.7)"/><line x1="160" y1="90" x2="60" y2="50" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/><line x1="160" y1="90" x2="270" y2="55" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/><line x1="160" y1="90" x2="70" y2="150" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/><line x1="160" y1="90" x2="260" y2="145" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/><line x1="160" y1="90" x2="160" y2="165" stroke="rgba(255,255,255,0.12)" stroke-width="1"/><line x1="160" y1="90" x2="160" y2="25" stroke="rgba(255,255,255,0.12)" stroke-width="1"/><text x="160" y="93" font-family="IBM Plex Sans" font-size="7" fill="white" text-anchor="middle">Hub</text></svg></div><div class="concept-body"><span class="concept-tag">Concept 4</span><h3>Connectivity &amp; Networks</h3><p>The degree to which places are linked by transportation, communication, trade, and social ties. A well-connected city like Singapore functions as a global hub precisely because of its geographic position. A village without roads or internet has low connectivity — and low access to the opportunities that flow through geographic networks.</p></div></div>
+      <div class="concept-card"><div class="concept-img"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="180" fill="#0d2518"/><rect x="20" y="30" width="80" height="60" rx="3" fill="rgba(196,98,45,0.14)" stroke="rgba(196,98,45,0.45)" stroke-width="1"/><text x="60" y="65" font-family="IBM Plex Sans" font-size="8" fill="rgba(255,255,255,0.45)" text-anchor="middle">Block</text><rect x="118" y="20" width="100" height="78" rx="3" fill="rgba(44,95,138,0.1)" stroke="rgba(44,95,138,0.4)" stroke-width="1"/><text x="168" y="63" font-family="IBM Plex Sans" font-size="8" fill="rgba(255,255,255,0.45)" text-anchor="middle">Region</text><rect x="232" y="10" width="72" height="98" rx="3" fill="rgba(74,140,98,0.09)" stroke="rgba(74,140,98,0.35)" stroke-width="1"/><text x="268" y="63" font-family="IBM Plex Sans" font-size="8" fill="rgba(255,255,255,0.45)" text-anchor="middle">Global</text><defs><marker id="arr" markerWidth="4" markerHeight="4" refX="2" refY="2" orient="auto"><path d="M0,0 L0,4 L4,2 Z" fill="rgba(255,255,255,0.35)"/></marker></defs><path d="M100,60 Q110,60 118,60" stroke="rgba(255,255,255,0.28)" stroke-width="1" fill="none" marker-end="url(#arr)"/><path d="M218,60 Q226,60 232,60" stroke="rgba(255,255,255,0.28)" stroke-width="1" fill="none" marker-end="url(#arr)"/><text x="60" y="108" font-family="IBM Plex Sans" font-size="7" fill="rgba(196,98,45,0.65)" text-anchor="middle">Local</text><text x="168" y="118" font-family="IBM Plex Sans" font-size="7" fill="rgba(44,95,138,0.65)" text-anchor="middle">Regional</text><text x="268" y="128" font-family="IBM Plex Sans" font-size="7" fill="rgba(74,140,98,0.65)" text-anchor="middle">Global</text></svg></div><div class="concept-body"><span class="concept-tag">Concept 5</span><h3>Scale of Analysis</h3><p>Zooming in or out fundamentally changes what geographic patterns are visible — and what explanations make sense. Poverty looks different at the census-tract level than at the state level than at the global level. Changing scale is one of geography's most powerful and frequently misunderstood analytical tools.</p></div></div>
+      <div class="concept-card"><div class="concept-img"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="180" fill="#0d2518"/><rect x="10" y="20" width="145" height="145" rx="4" fill="rgba(74,140,98,0.1)"/><rect x="165" y="20" width="145" height="145" rx="4" fill="rgba(44,95,138,0.1)"/><line x1="157" y1="15" x2="157" y2="170" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" stroke-dasharray="5 3"/><g fill="rgba(74,140,98,0.72)"><circle cx="40" cy="55" r="4"/><circle cx="70" cy="48" r="4"/><circle cx="100" cy="60" r="4"/><circle cx="50" cy="85" r="4"/><circle cx="85" cy="78" r="4"/><circle cx="115" cy="90" r="4"/><circle cx="40" cy="120" r="4"/><circle cx="75" cy="115" r="4"/><circle cx="105" cy="125" r="4"/></g><g fill="rgba(44,95,138,0.72)"><circle cx="190" cy="55" r="4"/><circle cx="220" cy="50" r="4"/><circle cx="250" cy="62" r="4"/><circle cx="180" cy="90" r="4"/><circle cx="215" cy="82" r="4"/><circle cx="248" cy="95" r="4"/><circle cx="195" cy="120" r="4"/><circle cx="228" cy="118" r="4"/><circle cx="260" cy="128" r="4"/></g><text x="83" y="168" font-family="IBM Plex Sans" font-size="8" fill="rgba(74,140,98,0.65)" text-anchor="middle">Zone A</text><text x="237" y="168" font-family="IBM Plex Sans" font-size="8" fill="rgba(44,95,138,0.65)" text-anchor="middle">Zone B</text></svg></div><div class="concept-body"><span class="concept-tag">Concept 6</span><h3>Spatial Pattern &amp; Distribution</h3><p>How phenomena are arranged across space — clustered, dispersed, linear, or random. Mapping disease outbreaks, crop yields, dialect boundaries, or income levels reveals spatial patterns that carry explanatory weight: a cluster demands a geographic explanation, just as surely as an anomaly does.</p></div></div>
     </div>
   </div>
 </section>
@@ -437,32 +406,14 @@ footer strong{color:rgba(255,255,255,0.8);}
   <div class="container">
     <p class="section-eyebrow">Interactive Tool</p>
     <h2 class="section-title">Exploring Geographic Scale</h2>
-    <p class="section-intro">Scale matters in geography. The same question looks completely different depending on the level of analysis. Drag the slider to explore how changing scale shifts our geographic perspective.</p>
-
-    <!-- Scale photo strip — all verified Unsplash IDs -->
+    <p class="section-intro">One of geography's most important and counterintuitive insights is that <em>scale matters fundamentally</em>. The same phenomenon — poverty, migration, land use, disease — looks entirely different depending on the level of analysis you choose. A pattern visible at the national scale may completely disappear when examined at the local scale, and vice versa. Drag the slider below to explore how changing scale shifts both the map and the geographic questions worth asking.</p>
     <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-bottom:2.5rem;border-radius:8px;overflow:hidden;">
-      <div style="position:relative;height:120px;overflow:hidden;background:var(--earth-mid)">
-        <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=300&q=70&fit=crop" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.7)" alt="Street neighborhood" loading="lazy" onerror="this.style.display='none'">
-        <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.6);padding:0.35rem 0.5rem;font-size:0.68rem;color:rgba(255,255,255,0.8);font-family:'IBM Plex Sans',sans-serif">Local</div>
-      </div>
-      <div style="position:relative;height:120px;overflow:hidden;background:var(--earth-mid)">
-        <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=300&q=70&fit=crop" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.7)" alt="City skyline" loading="lazy" onerror="this.style.display='none'">
-        <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.6);padding:0.35rem 0.5rem;font-size:0.68rem;color:rgba(255,255,255,0.8);font-family:'IBM Plex Sans',sans-serif">Urban</div>
-      </div>
-      <div style="position:relative;height:120px;overflow:hidden;background:var(--earth-mid)">
-        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=70&fit=crop" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.7)" alt="Aerial countryside" loading="lazy" onerror="this.style.display='none'">
-        <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.6);padding:0.35rem 0.5rem;font-size:0.68rem;color:rgba(255,255,255,0.8);font-family:'IBM Plex Sans',sans-serif">Regional</div>
-      </div>
-      <div style="position:relative;height:120px;overflow:hidden;background:var(--earth-mid)">
-        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=300&q=70&fit=crop" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.7)" alt="Wide landscape" loading="lazy" onerror="this.style.display='none'">
-        <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.6);padding:0.35rem 0.5rem;font-size:0.68rem;color:rgba(255,255,255,0.8);font-family:'IBM Plex Sans',sans-serif">National</div>
-      </div>
-      <div style="position:relative;height:120px;overflow:hidden;background:var(--earth-mid)">
-        <img src="https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?w=300&q=70&fit=crop" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.7)" alt="Earth from orbit" loading="lazy" onerror="this.style.display='none'">
-        <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.6);padding:0.35rem 0.5rem;font-size:0.68rem;color:rgba(255,255,255,0.8);font-family:'IBM Plex Sans',sans-serif">Global</div>
-      </div>
+      <div style="position:relative;height:120px;overflow:hidden;background:var(--earth-mid)"><img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=300&q=70&fit=crop" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.7)" alt="Street" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.6);padding:0.35rem 0.5rem;font-size:0.68rem;color:rgba(255,255,255,0.8);font-family:'IBM Plex Sans',sans-serif">Local</div></div>
+      <div style="position:relative;height:120px;overflow:hidden;background:var(--earth-mid)"><img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=300&q=70&fit=crop" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.7)" alt="City skyline" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.6);padding:0.35rem 0.5rem;font-size:0.68rem;color:rgba(255,255,255,0.8);font-family:'IBM Plex Sans',sans-serif">Urban</div></div>
+      <div style="position:relative;height:120px;overflow:hidden;background:var(--earth-mid)"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=300&q=70&fit=crop" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.7)" alt="Countryside" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.6);padding:0.35rem 0.5rem;font-size:0.68rem;color:rgba(255,255,255,0.8);font-family:'IBM Plex Sans',sans-serif">Regional</div></div>
+      <div style="position:relative;height:120px;overflow:hidden;background:var(--earth-mid)"><img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=300&q=70&fit=crop" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.7)" alt="National landscape" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.6);padding:0.35rem 0.5rem;font-size:0.68rem;color:rgba(255,255,255,0.8);font-family:'IBM Plex Sans',sans-serif">National</div></div>
+      <div style="position:relative;height:120px;overflow:hidden;background:var(--earth-mid)"><img src="https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?w=300&q=70&fit=crop" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.7)" alt="Earth from orbit" loading="lazy" onerror="this.style.display='none'"><div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.6);padding:0.35rem 0.5rem;font-size:0.68rem;color:rgba(255,255,255,0.8);font-family:'IBM Plex Sans',sans-serif">Global</div></div>
     </div>
-
     <div class="scale-explorer">
       <div class="scale-slider-wrap">
         <label>Local</label>
@@ -483,7 +434,7 @@ footer strong{color:rgba(255,255,255,0.8);}
   <div class="container">
     <p class="section-eyebrow">Check Understanding</p>
     <h2 class="section-title">Test Your Geographic Thinking</h2>
-    <p class="section-intro">Apply what you've learned. Each question tests a concept from this chapter. Read carefully — geographic thinking is about analysis, not just memorization.</p>
+    <p class="section-intro">Apply what you have learned. Each question tests a concept from this chapter — but notice that the right answer often requires actual geographic reasoning, not just recall of a definition. Geographic thinking is a skill built through practice.</p>
     <div class="quiz-card">
       <div class="quiz-q" id="quizQ"></div>
       <div class="quiz-options" id="quizOptions"></div>
@@ -493,75 +444,72 @@ footer strong{color:rgba(255,255,255,0.8);}
   </div>
 </section>
 
-<!-- TERMS -->
+<!-- KEY TERMS -->
 <section class="terms-section" id="terms">
   <div class="container">
     <p class="section-eyebrow">Vocabulary</p>
     <h2 class="section-title">Key Terms to Know</h2>
-    <p class="section-intro">Essential vocabulary for Chapter 1. Click any term to reveal a real-world example.</p>
+    <p class="section-intro">These are the essential vocabulary terms for Chapter 1 of AP Human Geography. Mastering these terms means more than memorizing definitions — it means being able to recognize each concept in action when you encounter it in the real world. Click any card to reveal a real-world example showing the concept at work.</p>
     <div class="terms-grid" id="termsGrid"></div>
   </div>
 </section>
 
 <footer>
   <strong>AP Human Geography — Chapter 1: Geographic Thinking</strong><br>
-  For educational use · Aligned with College Board AP Human Geography curriculum framework<br>
-  Live map data: Esri ArcGIS REST Services (public) · Imagery: Unsplash (royalty-free) · Leaflet.js<br>
-  <span style="font-size:0.75rem">Boundaries on maps are approximate and for educational purposes only</span>
+  For educational use · Content aligned with the College Board AP Human Geography curriculum framework<br>
+  Live map data: Esri ArcGIS REST Services (public, unauthenticated) · Photography: Unsplash (royalty-free) · Maps: Leaflet.js<br>
+  <span style="font-size:0.75rem">All map boundaries are approximate and for educational illustration only</span>
 </footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-// ============================================================
-// FIVE THEMES
-// ============================================================
+// ── FIVE THEMES ────────────────────────────────────────────────
 const themes = [
   { name:"Location", icon:"📍",
-    desc:"Location answers the most basic geographic question: <em>Where is it?</em> Geographers distinguish between two types of location.",
-    c1:"<h4>Absolute Location</h4><p>A precise, fixed point on Earth described using coordinates (latitude/longitude) or a street address. New York City sits at approximately 40.7° N, 74.0° W — that never changes regardless of context.</p>",
-    c2:"<div class='example-box'><h4>Relative Location</h4><p>A location described in relation to other places — it tells us about accessibility, connections, and context. 'The pharmacy is two blocks east of the park' is relative location. It changes meaning as the surroundings change.</p></div>",
-    c3:"<div class='theme-photo-box'><img src='https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=400&q=75&fit=crop' alt='Navigation map and compass' loading='lazy' onerror=\"this.parentNode.style.background='var(--earth-light)';this.style.display='none'\"><div class='tp-caption'>Navigation tools translate geographic thinking into practice — where am I, and where am I going relative to here?</div></div>",
-    ex:"The Nile flows north, so ancient Egyptian cities' relative location — downstream toward the Mediterranean — shaped their trade networks and cultural exchanges for millennia."
+    desc:"Location answers the most basic geographic question: <em>Where is it?</em> It is the foundation of all geographic analysis, because every other geographic concept — region, diffusion, interaction — depends on knowing where things are relative to each other.",
+    c1:"<h4>Absolute Location</h4><p>A precise, fixed point on Earth's surface described using a coordinate system (latitude and longitude) or a specific address. New York City sits at approximately 40.7° N, 74.0° W — a designation that never changes regardless of what surrounds it, who governs it, or what language people speak there.</p>",
+    c2:"<div class='example-box'><h4>Relative Location</h4><p>A location described in relation to other places — it emphasizes <em>relationships</em>, accessibility, and context rather than fixed coordinates. 'Chicago lies between the East Coast cities and the Great Plains' or 'the clinic is two blocks north of the school.' Relative location changes meaning as surrounding places change, and it is far more useful for understanding human geographic patterns.</p></div>",
+    c3:"<div class='theme-photo-box'><img src='https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=400&q=75&fit=crop' alt='Navigation compass and topographic map' loading='lazy' onerror=\"this.parentNode.style.background='var(--earth-light)';this.style.display='none'\"><div class='tp-caption'>Navigation tools translate geographic thinking into practice — determining where you are, and where you are going relative to everything else.</div></div>",
+    ex:"The Nile River flows north, so ancient Egyptian cities' relative location — downstream toward the Mediterranean Sea — shaped their trade networks, military strategies, and cultural exchanges for thousands of years. Location was destiny."
   },
   { name:"Place", icon:"🏔",
-    desc:"Place asks <em>What is it like there?</em> Every location has both physical and human characteristics that give it a unique identity.",
-    c1:"<h4>Physical Characteristics</h4><p>The natural features of a place: climate, landforms, soils, vegetation, bodies of water. These set the stage on which human activity occurs. A humid coastal plain invites different settlement patterns than an alpine valley.</p>",
-    c2:"<div class='example-box'><h4>Human Characteristics</h4><p>The cultural imprints people leave: language, religion, architecture, food, economic activities, and political systems. Tokyo and Los Angeles both have bustling ports and large populations, yet <em>feel</em> entirely different — that difference is place.</p></div>",
-    c3:"<div class='theme-photo-box'><img src='https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400&q=75&fit=crop' alt='Tokyo street at night with neon signs' loading='lazy' onerror=\"this.parentNode.style.background='var(--earth-light)';this.style.display='none'\"><div class='tp-caption'>Tokyo's dense neon streetscape is place made visible — physical and human characteristics creating a sense of somewhere utterly specific.</div></div>",
-    ex:"New Orleans is shaped by its physical place (low elevation, subtropical climate, Mississippi Delta) and its human place (French colonial history, African American culture, jazz heritage)."
+    desc:"Place asks <em>What is it like there?</em> Every location on Earth has both physical and human characteristics that combine to give it a unique identity — a <em>sense of place</em> — that makes it distinct from everywhere else.",
+    c1:"<h4>Physical Characteristics</h4><p>The natural features of a place: its climate, landforms, soils, vegetation, rivers, and coastlines. These physical attributes set the stage on which human activity occurs and profoundly constrain and enable the choices people make. A humid coastal lowland will develop differently than a high alpine valley, even if both have the same political system or similar populations.</p>",
+    c2:"<div class='example-box'><h4>Human Characteristics</h4><p>The cultural, economic, and political imprints that people leave on a place: language, religion, architecture, cuisine, economic activities, and governance systems. Tokyo and Los Angeles both have massive ports and tens of millions of residents — yet they <em>feel</em> entirely different. That difference is place, and it matters for everything from economic decisions to daily social life.</p></div>",
+    c3:"<div class='theme-photo-box'><img src='https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400&q=75&fit=crop' alt='Tokyo illuminated street with neon signs at night' loading='lazy' onerror=\"this.parentNode.style.background='var(--earth-light)';this.style.display='none'\"><div class='tp-caption'>Tokyo's layered neon streetscape embodies sense of place — the physical and human characteristics of a location creating something utterly specific and irreproducible.</div></div>",
+    ex:"New Orleans is simultaneously shaped by its physical place (below sea-level elevation, subtropical climate, position at the Mississippi Delta mouth) and its human place (French and Spanish colonial architecture, African American cultural foundations, jazz tradition, Creole cuisine). Remove either dimension and it is no longer recognizably New Orleans."
   },
   { name:"Human–Environment Interaction", icon:"🌊",
-    desc:"People and environment shape each other continuously. This theme asks: <em>How do humans and their environment affect each other?</em>",
-    c1:"<h4>Humans Adapting</h4><p>People build homes on stilts in flood-prone areas, wear heavy clothing in cold climates, and plant drought-resistant crops in arid regions. Adaptation is geography in daily life.</p>",
-    c2:"<div class='example-box'><h4>Humans Modifying</h4><p>We drain wetlands, dam rivers, terrace hillsides, and pave over prairies. Deforestation in the Amazon affects rainfall patterns thousands of miles away. Every modification has geographic ripple effects across connected systems.</p></div>",
-    c3:"<div class='theme-photo-box'><img src='https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75&fit=crop' alt='Aerial view of forest clearing' loading='lazy' onerror=\"this.parentNode.style.background='var(--earth-light)';this.style.display='none'\"><div class='tp-caption'>From above, the boundary between forest and cleared land makes Human–Environment Interaction starkly visible — a geographic fact with global consequences.</div></div>",
-    ex:"The Netherlands reclaimed 17% of its territory from the sea through dikes and polders — a dramatic case of humans modifying their physical environment over centuries."
+    desc:"People and their environments shape each other continuously and reciprocally. This theme asks three related questions: How do humans <em>depend on</em> the environment? How do humans <em>adapt to</em> the environment? And how do humans <em>modify</em> the environment — sometimes with unintended consequences?",
+    c1:"<h4>Adaptation &amp; Dependence</h4><p>People adapt to environmental conditions through technology, culture, and behavioral choices: homes on stilts in flood plains, thick-walled adobe in the desert, cold-weather clothing traditions in Arctic regions, drought-resistant crop varieties in semi-arid zones. These adaptations are visible in the built environment and reveal the geographic logic embedded in local culture.</p>",
+    c2:"<div class='example-box'><h4>Modification &amp; Consequence</h4><p>Humans also modify environments dramatically: draining wetlands, damming rivers, terracing hillsides, paving prairies, and deforesting mountain slopes. These modifications often produce geographic consequences far beyond their origin — deforestation in the upper Amazon measurably reduces rainfall patterns hundreds of miles downstream, a geographic feedback loop with major implications for agriculture and settlement.</p></div>",
+    c3:"<div class='theme-photo-box'><img src='https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75&fit=crop' alt='Aerial view of forest and cleared land boundary' loading='lazy' onerror=\"this.parentNode.style.background='var(--earth-light)';this.style.display='none'\"><div class='tp-caption'>From altitude, the sharp boundary between intact forest and cleared agricultural land makes Human–Environment Interaction starkly legible — a geographic fact with global climate consequences.</div></div>",
+    ex:"The Netherlands has reclaimed over 17% of its national territory from the sea through an elaborate system of dikes, pumping stations, and polders built over four centuries. It is the most sustained example of human geographic modification in history — and today faces the ironic challenge that climate change and sea-level rise threaten to undo that work."
   },
   { name:"Movement", icon:"🗺",
-    desc:"Nothing in geography stays put. Movement asks <em>How and why do people, goods, and ideas move from place to place?</em>",
-    c1:"<h4>Migration &amp; Trade</h4><p>From ancient trade routes to modern container shipping, movement connects economies. Push factors (famine, conflict) and pull factors (jobs, safety) explain why people migrate from one place to another.</p>",
-    c2:"<div class='example-box'><h4>Cultural Diffusion</h4><p>Ideas, music, food, and technology spread across space. The diffusion of Islam along Silk Road trade routes, hip-hop culture from the South Bronx to Tokyo, or a pandemic from one city globally — all are geographic stories of movement through space.</p></div>",
-    c3:"<div class='theme-photo-box'><img src='https://images.unsplash.com/photo-1494522855154-9297ac14b55f?w=400&q=75&fit=crop' alt='Container shipping port with cranes' loading='lazy' onerror=\"this.parentNode.style.background='var(--earth-light)';this.style.display='none'\"><div class='tp-caption'>A container port makes Movement literal — billions of goods crossing geographic boundaries daily, connecting manufacturers to consumers across continents.</div></div>",
-    ex:"The Columbian Exchange (post-1492): potatoes and corn moved from the Americas to Europe, while horses, wheat, and diseases traveled the other way — permanently reshaping both hemispheres."
+    desc:"Nothing in the human geographic system stays still for long. Movement examines how and why <em>people</em>, <em>goods</em>, <em>information</em>, and <em>ideas</em> flow from place to place — and how those flows create geographic patterns of connection and inequality.",
+    c1:"<h4>Migration &amp; Trade Routes</h4><p>From ancient Silk Road caravans to modern container ship networks, movement connects economies and cultures across geographic space. Push factors (conflict, famine, environmental disaster, economic collapse) and pull factors (employment opportunities, safety, family reunification, favorable climate) together explain the geographic direction and intensity of human migration flows throughout history.</p>",
+    c2:"<div class='example-box'><h4>Cultural &amp; Idea Diffusion</h4><p>Ideas, religious practices, music, food traditions, diseases, and technologies spread through geographic space over time — a process called <strong>cultural diffusion</strong>. The spread of Islam along Silk Road trade routes, the global diffusion of hip-hop culture outward from the South Bronx, the geographic spread of the Black Death across 14th-century Europe — all are stories about movement through geographic space.</p></div>",
+    c3:"<div class='theme-photo-box'><img src='https://images.unsplash.com/photo-1494522855154-9297ac14b55f?w=400&q=75&fit=crop' alt='Container shipping port with massive cranes' loading='lazy' onerror=\"this.parentNode.style.background='var(--earth-light)';this.style.display='none'\"><div class='tp-caption'>A container port embodies Movement made physical — billions of manufactured goods crossing ocean and continental boundaries daily, connecting distant producers to distant consumers.</div></div>",
+    ex:"The Columbian Exchange following 1492 represents perhaps history's most consequential Movement event: potatoes, corn, tomatoes, and cacao diffused from the Americas to Europe and beyond, fundamentally reshaping Old World agriculture and diet; while horses, wheat, cattle, and smallpox traveled in the opposite direction, reshaping the Americas permanently."
   },
   { name:"Region", icon:"🔗",
-    desc:"A region is any area of Earth's surface defined by one or more shared characteristics. Regions are geographic tools — they help us organize, compare, and analyze.",
-    c1:"<h4>Types of Regions</h4><p><strong>Formal regions</strong> have agreed-upon boundaries (countries, states). <strong>Functional regions</strong> are organized around a central node (a city's commuter zone). <strong>Perceptual regions</strong> exist in the mind ('the South,' 'the Bible Belt').</p>",
-    c2:"<div class='example-box'><h4>Why Regions Matter</h4><p>Regions help geographers compare places and identify patterns. But regions shift as conditions change. The 'Rust Belt' didn't exist until manufacturing declined — it emerged as a geographic concept from a social process, not a line on a map.</p></div>",
-    c3:"<div class='theme-photo-box'><img src='https://images.unsplash.com/photo-1446329813274-7c9036bd9a1f?w=400&q=75&fit=crop' alt='Dry savanna landscape Sahel Africa' loading='lazy' onerror=\"this.parentNode.style.background='var(--earth-light)';this.style.display='none'\"><div class='tp-caption'>The Sahel region is defined by its climate transition between Sahara desert and wetter savanna — its shifting borders shape conflict over land and water.</div></div>",
-    ex:"The Sahel region of Africa is defined by its position between the Sahara Desert and the wetter savanna — a climate transition zone whose boundaries shift with drought cycles."
+    desc:"A region is any area of Earth's surface that shares one or more distinguishing characteristics — physical, cultural, economic, or perceptual. Regions are geographic tools for organizing observations, making comparisons, and identifying patterns across space.",
+    c1:"<h4>Three Types of Regions</h4><p><strong>Formal regions</strong> have clearly defined, commonly agreed-upon boundaries — countries, states, climate zones, and language areas are formal regions. <strong>Functional regions</strong> are organized around a central node or hub and defined by the flows connecting that hub to its surrounding area — a metropolitan commuter zone, a newspaper circulation area, or a river's drainage basin. <strong>Perceptual (vernacular) regions</strong> exist primarily in the cultural imagination — 'the South,' 'the Bible Belt,' 'the Rust Belt.'</p>",
+    c2:"<div class='example-box'><h4>Why Regions Are Contested</h4><p>Regions are not fixed objective facts — they are constructed through geographic analysis and cultural perception. Their boundaries shift as conditions change. The 'Rust Belt' did not exist as a concept until manufacturing declined in the 1970s and 1980s; it emerged as a regional label attached to a social and economic process. Mapping a region is always an analytical and sometimes a political act.</p></div>",
+    c3:"<div class='theme-photo-box'><img src='https://images.unsplash.com/photo-1446329813274-7c9036bd9a1f?w=400&q=75&fit=crop' alt='Dry savanna scrubland in the Sahel region of Africa' loading='lazy' onerror=\"this.parentNode.style.background='var(--earth-light)';this.style.display='none'\"><div class='tp-caption'>The Sahel region is defined by its transitional climate — positioned between Sahara desert and wetter savanna. Its borders shift with drought cycles, directly influencing food security and conflict patterns.</div></div>",
+    ex:"The Sahel region of Africa — stretching from Senegal to Sudan — is a functional climate transition zone defined not by political boundaries but by the annual rainfall gradient between the Sahara Desert to the north and the wetter savanna to the south. As climate change intensifies drought, the Sahel's boundaries shift southward, displacing millions and fueling conflict over shrinking arable land."
   }
 ];
 
 function renderTheme(idx) {
   const t = themes[idx];
-  document.getElementById('themeDetail').innerHTML = `
-    <h3>${t.icon} ${t.name}</h3><p>${t.desc}</p>
-    <div class="theme-detail-grid"><div>${t.c1}</div><div>${t.c2}</div><div>${t.c3}</div></div>
-    <div style="margin-top:1.5rem;padding:1.25rem 1.5rem;background:rgba(212,168,83,0.1);border-radius:6px;border-left:3px solid var(--accent)">
-      <p style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent);margin-bottom:0.5rem;font-weight:600">Real-World Example</p>
-      <p style="color:rgba(255,255,255,0.82);font-size:0.92rem">${t.ex}</p>
-    </div>`;
+  document.getElementById('themeDetail').innerHTML =
+    '<h3>' + t.icon + ' ' + t.name + '</h3><p>' + t.desc + '</p>' +
+    '<div class="theme-detail-grid"><div>' + t.c1 + '</div><div>' + t.c2 + '</div><div>' + t.c3 + '</div></div>' +
+    '<div style="margin-top:1.5rem;padding:1.3rem 1.5rem;background:rgba(212,168,83,0.1);border-radius:6px;border-left:3px solid var(--accent)">' +
+    '<p style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent);margin-bottom:0.6rem;font-weight:600">Real-World Example</p>' +
+    '<p style="color:rgba(255,255,255,0.84);font-size:0.95rem;line-height:1.85">' + t.ex + '</p></div>';
   document.getElementById('themeDetail').classList.add('visible');
 }
 document.querySelectorAll('.theme-card').forEach(c => {
@@ -573,35 +521,30 @@ document.querySelectorAll('.theme-card').forEach(c => {
 });
 renderTheme(0);
 
-// ============================================================
-// HELPERS
-// ============================================================
-function setStatus(id, msg, type) {
-  const el = document.getElementById(id);
+// ── HELPERS ────────────────────────────────────────────────────
+function setStatus(id, msg, cls) {
+  var el = document.getElementById(id);
   el.textContent = msg;
-  el.className = 'lmap-status' + (type ? ' ' + type : '');
+  el.className = 'lmap-status' + (cls ? ' ' + cls : '');
+}
+function setActive(ids, activeId) {
+  ids.forEach(function(id) { var el = document.getElementById(id); if (el) el.classList.remove('active'); });
+  var a = document.getElementById(activeId);
+  if (a) a.classList.add('active');
 }
 
-function setActiveBtn(ids, activeId) {
-  ids.forEach(id => { const el = document.getElementById(id); if(el) el.classList.remove('active'); });
-  const a = document.getElementById(activeId);
-  if(a) a.classList.add('active');
-}
+// ── MAP 1 — World Cities ───────────────────────────────────────
+var map1 = L.map('map1', {center:[20,0], zoom:2, minZoom:1, maxZoom:12});
 
-// ============================================================
-// MAP 1 — World Cities
-// ============================================================
-const map1 = L.map('map1', {center:[20,0], zoom:2, minZoom:1, maxZoom:12});
-
-const baseTiles = {
-  dark:    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',    {attribution:'Esri Dark Gray', maxZoom:16}),
-  topo:    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',                 {attribution:'Esri World Topo', maxZoom:18}),
-  imagery: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',                 {attribution:'Esri World Imagery', maxZoom:19})
+var baseTiles = {
+  dark:    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',  {attribution:'© Esri Dark Gray', maxZoom:16}),
+  topo:    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',               {attribution:'© Esri World Topo', maxZoom:18}),
+  imagery: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',               {attribution:'© Esri World Imagery', maxZoom:19})
 };
 baseTiles.dark.addTo(map1);
 
-let citiesLayerGroup = null;
-let allCitiesData = [];
+var citiesGroup = null;
+var allCities = [];
 
 function cityColor(pop) {
   if (pop >= 10000000) return '#e85d28';
@@ -610,7 +553,7 @@ function cityColor(pop) {
   if (pop >= 500000)   return '#4a8c62';
   return '#5b9bc8';
 }
-function cityRadius(pop) {
+function cityR(pop) {
   if (pop >= 10000000) return 9;
   if (pop >= 5000000)  return 7;
   if (pop >= 1000000)  return 5;
@@ -618,384 +561,422 @@ function cityRadius(pop) {
   return 3;
 }
 
-function renderCities(data) {
-  if (citiesLayerGroup) { map1.removeLayer(citiesLayerGroup); citiesLayerGroup = null; }
-  const markers = [];
-  data.forEach(f => {
+function drawCities(data) {
+  if (citiesGroup) { map1.removeLayer(citiesGroup); citiesGroup = null; }
+  var markers = [];
+  data.forEach(function(f) {
     if (!f.geometry) return;
-    const p   = f.attributes;
-    const pop = p.POP || p.pop || p.POPULATION || p.population || 0;
-    const nm  = p.CITY_NAME || p.city_name || p.NAME || p.name || 'Unknown';
-    const cty = p.CNTRY_NAME || p.cntry_name || p.COUNTRY || p.country || '';
-    const prt = p.PORT || p.port || '';
-    const lat = f.geometry.y, lng = f.geometry.x;
+    var p   = f.attributes;
+    var pop = p.POP || p.pop || p.POPULATION || p.population || 0;
+    var nm  = p.CITY_NAME || p.city_name || p.NAME || p.name || 'City';
+    var cty = p.CNTRY_NAME || p.cntry_name || p.COUNTRY || p.country || '';
+    var prt = p.PORT || p.port || '';
+    var lat = f.geometry.y, lng = f.geometry.x;
     if (isNaN(lat) || isNaN(lng)) return;
-    const m = L.circleMarker([lat, lng], {
-      radius: cityRadius(pop), fillColor: cityColor(pop),
-      color: 'rgba(255,255,255,0.35)', weight: 1, fillOpacity: 0.85
-    });
-    const popStr = pop > 0 ? pop.toLocaleString() : 'N/A';
-    const portStr = (prt && prt !== 'N' && prt !== 'No' && prt !== '0') ? '<br>⚓ Port city' : '';
-    m.bindPopup(`<strong>${nm}</strong>Country: ${cty}<br>Population: ${popStr}${portStr}<br><small style="color:rgba(255,255,255,0.4)">Esri World Cities</small>`);
+    var m = L.circleMarker([lat, lng], {radius:cityR(pop), fillColor:cityColor(pop), color:'rgba(255,255,255,0.3)', weight:1, fillOpacity:0.88});
+    var popTxt = pop > 0 ? pop.toLocaleString() : 'N/A';
+    var portTxt = (prt === 'Y' || prt === 'Yes' || prt === 1 || prt === '1') ? '<br>⚓ Port city' : '';
+    m.bindPopup('<strong>' + nm + '</strong>Country: ' + cty + '<br>Population: ' + popTxt + portTxt + '<br><small style="color:rgba(255,255,255,0.4)">Source: Esri World Cities</small>');
     markers.push(m);
   });
-  citiesLayerGroup = L.layerGroup(markers).addTo(map1);
-  setStatus('s1', `✓ ${data.length} cities loaded — click any dot for details`, 'ok');
+  citiesGroup = L.layerGroup(markers).addTo(map1);
+  setStatus('s1', '✓ ' + data.length + ' cities loaded — click any dot for live data', 'ok');
 }
 
 function filterCities(type) {
-  setActiveBtn(['c-f-all','c-f-mega','c-f-port'], {all:'c-f-all', mega:'c-f-mega', port:'c-f-port'}[type]);
-  if (allCitiesData.length === 0) return;
-  let filtered = allCitiesData;
-  if (type === 'mega') filtered = allCitiesData.filter(f => (f.attributes.POP || f.attributes.POPULATION || 0) >= 10000000);
-  if (type === 'port') filtered = allCitiesData.filter(f => {
-    const v = f.attributes.PORT || f.attributes.port || '';
-    return v === 'Y' || v === 'Yes' || v === 1 || v === '1';
-  });
-  renderCities(filtered.length > 0 ? filtered : allCitiesData);
+  setActive(['cf-all','cf-mega','cf-port'], {all:'cf-all', mega:'cf-mega', port:'cf-port'}[type]);
+  if (allCities.length === 0) return;
+  var filtered = allCities;
+  if (type === 'mega') filtered = allCities.filter(function(f) { return (f.attributes.POP || f.attributes.POPULATION || 0) >= 10000000; });
+  if (type === 'port') filtered = allCities.filter(function(f) { var v = f.attributes.PORT || f.attributes.port || ''; return v==='Y'||v==='Yes'||v===1||v==='1'; });
+  drawCities(filtered.length > 0 ? filtered : allCities);
 }
 
 function setCitiesBase(type) {
-  setActiveBtn(['c-base-dark','c-base-topo','c-base-img'], {dark:'c-base-dark', topo:'c-base-topo', imagery:'c-base-img'}[type]);
-  Object.values(baseTiles).forEach(t => { if (map1.hasLayer(t)) map1.removeLayer(t); });
+  setActive(['c-dark','c-topo','c-img'], {dark:'c-dark', topo:'c-topo', imagery:'c-img'}[type]);
+  Object.values(baseTiles).forEach(function(t) { if (map1.hasLayer(t)) map1.removeLayer(t); });
   baseTiles[type].addTo(map1);
 }
 
-// Fetch from Esri SampleServer6 — a publicly accessible, CORS-enabled sample service
-(async function loadCities() {
-  // Primary: Esri SampleServer6 SampleWorldCities (always public, no auth, CORS enabled)
-  const urls = [
+(async function() {
+  var urls = [
     'https://sampleserver6.arcgisonline.com/arcgis/rest/services/SampleWorldCities/MapServer/0/query?where=1%3D1&outFields=CITY_NAME,CNTRY_NAME,POP,PORT&returnGeometry=true&geometryPrecision=4&f=json&resultRecordCount=600',
     'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/World_Cities/FeatureServer/0/query?where=1%3D1&outFields=CITY_NAME,CNTRY_NAME,POP,PORT&returnGeometry=true&f=json&resultRecordCount=500'
   ];
-  for (const url of urls) {
+  for (var i = 0; i < urls.length; i++) {
     try {
-      const r = await fetch(url);
+      var r = await fetch(urls[i]);
       if (!r.ok) continue;
-      const d = await r.json();
-      if (d.features && d.features.length > 0) {
-        allCitiesData = d.features;
-        renderCities(allCitiesData);
-        return;
-      }
-    } catch(e) { /* try next */ }
+      var d = await r.json();
+      if (d.features && d.features.length > 0) { allCities = d.features; drawCities(allCities); return; }
+    } catch(e) {}
   }
-  setStatus('s1', '⚠ Could not load city data — basemap still active', 'err');
+  setStatus('s1', '⚠ City data unavailable — basemap is active. Esri services may be temporarily down.', 'err');
 })();
 
-// ============================================================
-// MAP 2 — Tectonic Plates + Volcanoes
-// ============================================================
-const map2 = L.map('map2', {center:[20,0], zoom:2, minZoom:1});
-L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}', {attribution:'Esri Ocean Basemap', maxZoom:16}).addTo(map2);
+// ── MAP 2 — Tectonic Plates + Volcanoes ───────────────────────
+var map2 = L.map('map2', {center:[20,0], zoom:2, minZoom:1});
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}', {attribution:'© Esri Ocean Basemap', maxZoom:16}).addTo(map2);
 
-let platesLayer   = null;
-let volcanoesLayer = null;
-let currentPlateMode = 'plates';
+var platesLyr = null, volcsLyr = null, plateMode = 'plates';
 
-const plateColorMap = {
-  'Pacific':'#e85d28','North American':'#f0a844','Eurasian':'#4a8c62','African':'#d4a853',
-  'Antarctic':'#5b9bc8','Indo-Australian':'#b06bdc','South American':'#e74c3c',
-  'Nazca':'#1abc9c','Philippine':'#e67e22','Caribbean':'#3498db',
-  'Juan de Fuca':'#2ecc71','Arabian':'#e91e63','Scotia':'#00bcd4','Cocos':'#ff9800'
-};
-function getPlateColor(name) {
-  if (!name) return '#95a5a6';
-  for (const k in plateColorMap) { if (name.includes(k)) return plateColorMap[k]; }
-  return '#95a5a6';
-}
+var plateColors = {'Pacific':'#e85d28','North American':'#f0a844','Eurasian':'#4a8c62','African':'#d4a853','Antarctic':'#5b9bc8','Indo-Australian':'#b06bdc','South American':'#e74c3c','Nazca':'#1abc9c','Philippine':'#e67e22','Caribbean':'#3498db','Juan de Fuca':'#2ecc71','Arabian':'#e91e63','Scotia':'#00bcd4','Cocos':'#ff9800'};
+function plateClr(nm) { if (!nm) return '#95a5a6'; for (var k in plateColors) { if (nm.includes(k)) return plateColors[k]; } return '#95a5a6'; }
 
-
-Layer = L.geoJSON(d, {
-        style: feat => {
-          const nm = feat.properties.PlateName || feat.properties.Name || feat.properties.PLATE_NAME || '';
-          return { color: getPlateColor(nm), weight: 2, fillOpacity: 0.07, fillColor: getPlateColor(nm) };
-        },
-        onEachFeature: (feat, layer) => {
-          const nm = feat.properties.PlateName || feat.properties.Name || feat.properties.PLATE_NAME || 'Tectonic Plate';
-          layer.bindPopup(`<strong>${nm} Plate</strong>Tectonic plates move 2-10 cm/year, shaping mountains, earthquakes, and volcanic zones.<br><small style="color:rgba(255,255,255,0.4)">Esri Living Atlas</small>`);
+async function loadPlates() {
+  if (platesLyr) return;
+  setStatus('s2', '⏳ Fetching tectonic plate boundaries from Esri Living Atlas…');
+  var urls = [
+    'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/World_Tectonic_Plates_and_Boundaries/FeatureServer/1/query?where=1%3D1&outFields=PlateName&returnGeometry=true&f=geojson',
+    'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/World_Tectonic_Plates_and_Boundaries/FeatureServer/0/query?where=1%3D1&outFields=PlateName,Name&returnGeometry=true&f=geojson'
+  ];
+  for (var i = 0; i < urls.length; i++) {
+    try {
+      var r = await fetch(urls[i]);
+      if (!r.ok) continue;
+      var d = await r.json();
+      if (!d.features || d.features.length === 0) continue;
+      platesLyr = L.geoJSON(d, {
+        style: function(feat) { var nm = feat.properties.PlateName || feat.properties.Name || ''; return {color:plateClr(nm), weight:2, fillOpacity:0.07, fillColor:plateClr(nm)}; },
+        onEachFeature: function(feat, lyr) {
+          var nm = feat.properties.PlateName || feat.properties.Name || 'Tectonic Plate';
+          lyr.bindPopup('<strong>' + nm + ' Plate</strong>Tectonic plates move 2–10 cm/year. Their boundaries define the world\'s earthquake and volcanic zones.<br><small style="color:rgba(255,255,255,0.4)">Source: Esri Living Atlas</small>');
         }
       });
-      setStatus('s2', `Plate boundaries loaded (${d.features.length} features)`, 'ok');
+      setStatus('s2', '✓ Tectonic plates loaded (' + d.features.length + ' plate boundaries)', 'ok');
       return;
-    } catch(e) { /* try next */ }
+    } catch(e) {}
   }
-  // If all failed, still mark as attempted so we don't loop
-  platesLayer = L.layerGroup([]);
-  setStatus('s2', 'Plate boundary data unavailable - try the Volcanoes layer', 'err');
+  platesLyr = L.layerGroup([]);
+  setStatus('s2', '⚠ Plate boundary data unavailable — try the Volcanoes layer', 'err');
 }
 
-async function fetchVolcanoes() {
-  if (volcanoesLayer) return;
-  setStatus('s2', 'Fetching USGS volcano data...');
-  const urls = [
+async function loadVolcs() {
+  if (volcsLyr) return;
+  setStatus('s2', '⏳ Fetching USGS / Smithsonian volcano catalogue…');
+  var urls = [
     'https://services.arcgis.com/BG6nSlhZSAWtExvp/arcgis/rest/services/World_Volcanoes/FeatureServer/0/query?where=1%3D1&outFields=Volcano_Name,Country,Elevation,Primary_Volcano_Type,Last_Known_Eruption&returnGeometry=true&f=json&resultRecordCount=600',
     'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/Volcanoes_of_the_World/FeatureServer/0/query?where=1%3D1&outFields=Volcano_Name,Country,Elevation,Primary_Volcano_Type&returnGeometry=true&f=json&resultRecordCount=500'
   ];
-  for (const url of urls) {
+  for (var i = 0; i < urls.length; i++) {
     try {
-      const r = await fetch(url);
+      var r = await fetch(urls[i]);
       if (!r.ok) continue;
-      const d = await r.json();
+      var d = await r.json();
       if (!d.features || d.features.length === 0) continue;
-      const markers = d.features.map(f => {
+      var markers = d.features.map(function(f) {
         if (!f.geometry) return null;
-        const p = f.attributes;
-        const nm  = p.Volcano_Name || p.NAME || 'Volcano';
-        const typ = p.Primary_Volcano_Type || p.TYPE || 'Unknown';
-        const elev = p.Elevation || p.ELEV;
-        const m = L.circleMarker([f.geometry.y, f.geometry.x], {
-          radius: 5, fillColor: '#ff4500', color: 'rgba(255,80,0,0.45)', weight: 1.5, fillOpacity: 0.82
-        });
-        m.bindPopup(`<strong>🌋 ${nm}</strong>Type: ${typ}${elev != null ? '<br>Elevation: ' + Number(elev).toLocaleString() + ' m' : ''}<br><small style="color:rgba(255,255,255,0.4)">USGS via Esri</small>`);
+        var p = f.attributes;
+        var nm  = p.Volcano_Name || p.NAME || 'Volcano';
+        var typ = p.Primary_Volcano_Type || 'Unknown type';
+        var elev = p.Elevation || p.ELEV;
+        var erup = p.Last_Known_Eruption ? '<br>Last eruption: ' + p.Last_Known_Eruption : '';
+        var m = L.circleMarker([f.geometry.y, f.geometry.x], {radius:5, fillColor:'#ff4500', color:'rgba(255,80,0,0.4)', weight:1.5, fillOpacity:0.85});
+        m.bindPopup('<strong>🌋 ' + nm + '</strong>Type: ' + typ + (elev != null ? '<br>Elevation: ' + Number(elev).toLocaleString() + ' m' : '') + erup + '<br><small style="color:rgba(255,255,255,0.4)">Source: USGS / Smithsonian GVP via Esri</small>');
         return m;
       }).filter(Boolean);
-      volcanoesLayer = L.layerGroup(markers);
-      setStatus('s2', `${markers.length} volcanoes loaded`, 'ok');
+      volcsLyr = L.layerGroup(markers);
+      setStatus('s2', '✓ ' + markers.length + ' volcanoes loaded from USGS catalogue', 'ok');
       return;
-    } catch(e) { /* try next */ }
+    } catch(e) {}
   }
-  volcanoesLayer = L.layerGroup([]);
-  setStatus('s2', 'Volcano data unavailable - try the Plates layer', 'err');
+  volcsLyr = L.layerGroup([]);
+  setStatus('s2', '⚠ Volcano data unavailable — try the Plates layer', 'err');
 }
 
 function applyPlateMode() {
-  if (platesLayer)    { if (map2.hasLayer(platesLayer))    map2.removeLayer(platesLayer); }
-  if (volcanoesLayer) { if (map2.hasLayer(volcanoesLayer)) map2.removeLayer(volcanoesLayer); }
-  if ((currentPlateMode === 'plates'   || currentPlateMode === 'both') && platesLayer)    platesLayer.addTo(map2);
-  if ((currentPlateMode === 'volcanoes'|| currentPlateMode === 'both') && volcanoesLayer) volcanoesLayer.addTo(map2);
+  if (platesLyr) { if (map2.hasLayer(platesLyr)) map2.removeLayer(platesLyr); }
+  if (volcsLyr)  { if (map2.hasLayer(volcsLyr))  map2.removeLayer(volcsLyr); }
+  if ((plateMode === 'plates'   || plateMode === 'both') && platesLyr) platesLyr.addTo(map2);
+  if ((plateMode === 'volcanoes'|| plateMode === 'both') && volcsLyr)  volcsLyr.addTo(map2);
 }
 
 async function setPlatesLayer(type) {
-  currentPlateMode = type;
-  setActiveBtn(['p-plates','p-volc','p-both'], {plates:'p-plates', volcanoes:'p-volc', both:'p-both'}[type]);
-  if (type === 'plates'   || type === 'both') await fetchPlates();
-  if (type === 'volcanoes'|| type === 'both') await fetchVolcanoes();
+  plateMode = type;
+  setActive(['p-plates','p-volc','p-both'], {plates:'p-plates', volcanoes:'p-volc', both:'p-both'}[type]);
+  if (type === 'plates'    || type === 'both') await loadPlates();
+  if (type === 'volcanoes' || type === 'both') await loadVolcs();
   applyPlateMode();
 }
-
 setPlatesLayer('plates');
 
-// ============================================================
-// MAP 3 — US Population, Cities, Highways
-// ============================================================
-const map3 = L.map('map3', {center:[38,-96], zoom:4, minZoom:2});
-L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {attribution:'Esri Dark Gray', maxZoom:16}).addTo(map3);
+// ── MAP 3 — US Data ────────────────────────────────────────────
+var map3 = L.map('map3', {center:[38,-96], zoom:4, minZoom:2});
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {attribution:'© Esri Dark Gray', maxZoom:16}).addTo(map3);
 
-let usStatesLayer   = null;
-let usCitiesLayer   = null;
-let usHighwaysLayer = null;
-let currentUSMode   = 'states';
+var usStates = null, usCities = null, usHwy = null, usMode = 'states';
 
-function stateColor(pop) {
-  if (pop >= 20000000) return {fill:'#e85d28', opacity:0.72};
-  if (pop >= 10000000) return {fill:'#f0a844', opacity:0.65};
-  if (pop >= 5000000)  return {fill:'#d4a853', opacity:0.55};
-  if (pop >= 2000000)  return {fill:'#4a8c62', opacity:0.5};
-  return {fill:'#2c5f8a', opacity:0.42};
+function stateClr(pop) {
+  if (pop >= 20000000) return {fill:'#e85d28', op:0.72};
+  if (pop >= 10000000) return {fill:'#f0a844', op:0.65};
+  if (pop >= 5000000)  return {fill:'#d4a853', op:0.55};
+  if (pop >= 2000000)  return {fill:'#4a8c62', op:0.5};
+  return {fill:'#2c5f8a', op:0.42};
 }
 
 function applyUSMode() {
-  [usStatesLayer, usCitiesLayer, usHighwaysLayer].forEach(lyr => {
-    if (lyr && map3.hasLayer(lyr)) map3.removeLayer(lyr);
-  });
-  if (currentUSMode === 'states'   && usStatesLayer)   usStatesLayer.addTo(map3);
-  if (currentUSMode === 'cities'   && usCitiesLayer)   usCitiesLayer.addTo(map3);
-  if (currentUSMode === 'highways' && usHighwaysLayer) usHighwaysLayer.addTo(map3);
+  [usStates, usCities, usHwy].forEach(function(lyr) { if (lyr && map3.hasLayer(lyr)) map3.removeLayer(lyr); });
+  if (usMode === 'states'   && usStates) usStates.addTo(map3);
+  if (usMode === 'cities'   && usCities) usCities.addTo(map3);
+  if (usMode === 'highways' && usHwy)    usHwy.addTo(map3);
 }
 
-async function fetchUSStates() {
-  if (usStatesLayer) return;
-  setStatus('s3', 'Loading US state population data...');
-  const urls = [
+async function loadUSStates() {
+  if (usStates) return;
+  setStatus('s3', '⏳ Fetching US state population data from Esri…');
+  var urls = [
     'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_States_Generalized_Boundaries/FeatureServer/0/query?where=1%3D1&outFields=STATE_NAME,POPULATION,POP_SQMI&returnGeometry=true&f=geojson',
     'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_States_Generalized/FeatureServer/0/query?where=1%3D1&outFields=STATE_NAME,POPULATION,POP_SQMI&returnGeometry=true&f=geojson'
   ];
-  for (const url of urls) {
+  for (var i = 0; i < urls.length; i++) {
     try {
-      const r = await fetch(url);
+      var r = await fetch(urls[i]);
       if (!r.ok) continue;
-      const d = await r.json();
+      var d = await r.json();
       if (!d.features || d.features.length === 0) continue;
-      usStatesLayer = L.geoJSON(d, {
-        style: feat => {
-          const pop = feat.properties.POPULATION || feat.properties.population || 0;
-          const c = stateColor(pop);
-          return { fillColor: c.fill, fillOpacity: c.opacity, color: 'rgba(255,255,255,0.18)', weight: 0.8 };
-        },
-        onEachFeature: (feat, layer) => {
-          const p   = feat.properties;
-          const nm  = p.STATE_NAME || p.state_name || 'State';
-          const pop = (p.POPULATION || p.population || 0).toLocaleString();
-          const den = p.POP_SQMI != null ? Number(p.POP_SQMI).toFixed(1) : 'N/A';
-          layer.bindPopup(`<strong>${nm}</strong>Population: ${pop}<br>Density: ${den} /sq mi<br><small style="color:rgba(255,255,255,0.4)">Esri USA States / US Census</small>`);
-          layer.on('mouseover', function() { this.setStyle({fillOpacity:0.92, weight:2}); });
-          layer.on('mouseout',  function() { usStatesLayer.resetStyle(this); });
+      var self = null;
+      self = usStates = L.geoJSON(d, {
+        style: function(feat) { var pop = feat.properties.POPULATION || feat.properties.population || 0; var c = stateClr(pop); return {fillColor:c.fill, fillOpacity:c.op, color:'rgba(255,255,255,0.18)', weight:0.8}; },
+        onEachFeature: function(feat, lyr) {
+          var p   = feat.properties;
+          var nm  = p.STATE_NAME || p.state_name || 'State';
+          var pop = (p.POPULATION || p.population || 0).toLocaleString();
+          var den = p.POP_SQMI != null ? Number(p.POP_SQMI).toFixed(1) : 'N/A';
+          lyr.bindPopup('<strong>' + nm + '</strong>Population: ' + pop + '<br>Density: ' + den + ' per sq mi<br><small style="color:rgba(255,255,255,0.4)">Source: Esri USA States / US Census</small>');
+          lyr.on('mouseover', function() { this.setStyle({fillOpacity:0.92, weight:2}); });
+          lyr.on('mouseout',  function() { if (self) self.resetStyle(this); });
         }
       });
-      setStatus('s3', `${d.features.length} states loaded - darker = higher population`, 'ok');
+      setStatus('s3', '✓ 50 states loaded — darker shading = higher population', 'ok');
       return;
-    } catch(e) { /* next */ }
+    } catch(e) {}
   }
-  usStatesLayer = L.layerGroup([]);
-  setStatus('s3', 'State data unavailable - try the Cities layer', 'err');
+  usStates = L.layerGroup([]);
+  setStatus('s3', '⚠ State data unavailable — try the Cities layer', 'err');
 }
 
-async function fetchUSCities() {
-  if (usCitiesLayer) return;
-  setStatus('s3', 'Loading major US cities...');
-  const urls = [
+async function loadUSCities() {
+  if (usCities) return;
+  setStatus('s3', '⏳ Fetching major US cities…');
+  var urls = [
     'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Major_Cities_/FeatureServer/0/query?where=POP_CLASS+%3E%3D+7&outFields=NAME,ST,POP2010,CAPITAL&returnGeometry=true&f=json&resultRecordCount=250',
     'https://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer/0/query?where=areaname+IS+NOT+NULL&outFields=areaname,st,pop2000&returnGeometry=true&f=json&resultRecordCount=300'
   ];
-  for (const url of urls) {
+  for (var i = 0; i < urls.length; i++) {
     try {
-      const r = await fetch(url);
+      var r = await fetch(urls[i]);
       if (!r.ok) continue;
-      const d = await r.json();
+      var d = await r.json();
       if (!d.features || d.features.length === 0) continue;
-      const markers = d.features.map(f => {
+      var markers = d.features.map(function(f) {
         if (!f.geometry) return null;
-        const p   = f.attributes;
-        const nm  = p.NAME || p.areaname || p.name || 'City';
-        const st  = p.ST || p.st || '';
-        const pop = p.POP2010 || p.pop2000 || p.POPULATION || 0;
-        const radius = pop > 2000000 ? 10 : pop > 1000000 ? 7 : 5;
-        const m = L.circleMarker([f.geometry.y, f.geometry.x], {
-          radius, fillColor: '#d4a853', color: 'rgba(255,255,255,0.35)', weight: 1.5, fillOpacity: 0.9
-        });
-        const cap = (p.CAPITAL === 'Y' || p.CAPITAL === 1) ? '<br>★ State Capital' : '';
-        m.bindPopup(`<strong>${nm}${st ? ', ' + st : ''}</strong>${pop > 0 ? 'Population: ' + pop.toLocaleString() : ''}${cap}<br><small style="color:rgba(255,255,255,0.4)">Esri USA Cities</small>`);
+        var p   = f.attributes;
+        var nm  = p.NAME || p.areaname || 'City';
+        var st  = p.ST || p.st || '';
+        var pop = p.POP2010 || p.pop2000 || 0;
+        var rad = pop > 2000000 ? 10 : pop > 1000000 ? 7 : 5;
+        var m = L.circleMarker([f.geometry.y, f.geometry.x], {radius:rad, fillColor:'#d4a853', color:'rgba(255,255,255,0.3)', weight:1.5, fillOpacity:0.9});
+        var cap = (p.CAPITAL === 'Y' || p.CAPITAL === 1) ? '<br>★ State Capital' : '';
+        m.bindPopup('<strong>' + nm + (st ? ', ' + st : '') + '</strong>' + (pop > 0 ? 'Population: ' + pop.toLocaleString() : '') + cap + '<br><small style="color:rgba(255,255,255,0.4)">Source: Esri USA Cities</small>');
         return m;
       }).filter(Boolean);
-      usCitiesLayer = L.layerGroup(markers);
-      setStatus('s3', `${markers.length} cities loaded`, 'ok');
+      usCities = L.layerGroup(markers);
+      setStatus('s3', '✓ ' + markers.length + ' major US cities loaded', 'ok');
       return;
-    } catch(e) { /* next */ }
+    } catch(e) {}
   }
-  usCitiesLayer = L.layerGroup([]);
-  setStatus('s3', 'City data unavailable - try the States layer', 'err');
+  usCities = L.layerGroup([]);
+  setStatus('s3', '⚠ City data unavailable — try the States layer', 'err');
 }
 
-async function fetchUSHighways() {
-  if (usHighwaysLayer) return;
-  setStatus('s3', 'Loading US Interstate network...');
-  const urls = [
-    'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Freeway_System/FeatureServer/0/query?where=1%3D1&outFields=ROUTE_NUM,SIGND_ROUTE&returnGeometry=true&f=geojson&resultRecordCount=800',
+async function loadUSHighways() {
+  if (usHwy) return;
+  setStatus('s3', '⏳ Fetching US Interstate highway network…');
+  var urls = [
+    'https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Freeway_System/FeatureServer/0/query?where=1%3D1&outFields=ROUTE_NUM&returnGeometry=true&f=geojson&resultRecordCount=800',
     'https://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer/1/query?where=1%3D1&outFields=NAME&returnGeometry=true&f=geojson&resultRecordCount=500'
   ];
-  for (const url of urls) {
+  for (var i = 0; i < urls.length; i++) {
     try {
-      const r = await fetch(url);
+      var r = await fetch(urls[i]);
       if (!r.ok) continue;
-      const d = await r.json();
+      var d = await r.json();
       if (!d.features || d.features.length === 0) continue;
-      usHighwaysLayer = L.geoJSON(d, {
-        style: () => ({ color: '#e88a60', weight: 1.5, opacity: 0.75 }),
-        onEachFeature: (feat, layer) => {
-          const rn = feat.properties.ROUTE_NUM || feat.properties.NAME || 'Interstate';
-          layer.bindPopup(`<strong>I-${rn}</strong>The US Interstate system is a functional region - a network defined by connecting cities and commerce nationwide.<br><small style="color:rgba(255,255,255,0.4)">Esri USA Highways</small>`);
+      usHwy = L.geoJSON(d, {
+        style: function() { return {color:'#e88a60', weight:1.5, opacity:0.78}; },
+        onEachFeature: function(feat, lyr) {
+          var rn = feat.properties.ROUTE_NUM || feat.properties.NAME || 'Interstate';
+          lyr.bindPopup('<strong>I-' + rn + '</strong>The US Interstate Highway System is a functional region — a network defined entirely by the economic and movement flows it enables across the country.<br><small style="color:rgba(255,255,255,0.4)">Source: Esri USA Freeway System</small>');
         }
       });
-      setStatus('s3', 'Interstate network loaded - a functional region in action', 'ok');
+      setStatus('s3', '✓ Interstate network loaded — a functional region made visible', 'ok');
       return;
-    } catch(e) { /* next */ }
+    } catch(e) {}
   }
-  usHighwaysLayer = L.layerGroup([]);
-  setStatus('s3', 'Highway data unavailable - try the States or Cities layer', 'err');
+  usHwy = L.layerGroup([]);
+  setStatus('s3', '⚠ Highway data unavailable — try the States or Cities layer', 'err');
 }
 
 async function setUSLayer(type) {
-  currentUSMode = type;
-  setActiveBtn(['u-states','u-cities','u-hw'], {states:'u-states', cities:'u-cities', highways:'u-hw'}[type]);
-  if (type === 'states'   && !usStatesLayer)   await fetchUSStates();
-  if (type === 'cities'   && !usCitiesLayer)   await fetchUSCities();
-  if (type === 'highways' && !usHighwaysLayer) await fetchUSHighways();
+  usMode = type;
+  setActive(['u-states','u-cities','u-hw'], {states:'u-states', cities:'u-cities', highways:'u-hw'}[type]);
+  if (type === 'states'   && !usStates) await loadUSStates();
+  if (type === 'cities'   && !usCities) await loadUSCities();
+  if (type === 'highways' && !usHwy)    await loadUSHighways();
   applyUSMode();
 }
+loadUSStates().then(function() { applyUSMode(); });
 
-fetchUSStates().then(applyUSMode);
-
-// ============================================================
-// SCALE EXPLORER
-// ============================================================
-const scales = [
-  { label:"Local Scale", level:"Local", title:"Your Neighborhood", desc:"At the local scale, we examine individual streets, neighborhoods, and communities. Geographic questions include: Why is this neighborhood segregated by income? Where are the food deserts? How does proximity to a park affect property values?", examples:["Zoning laws divide land uses block by block","A corner store serves a 5-block radius","A school catchment area defines who attends"], svg:()=>`<svg viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%"><rect width="320" height="280" fill="#0d2518"/><g stroke="rgba(255,255,255,0.15)" stroke-width="1">${[1,2,3,4].map(i=>`<line x1="${i*60}" y1="0" x2="${i*60}" y2="280"/>`).join('')}${[1,2,3,4].map(i=>`<line x1="0" y1="${i*55}" x2="320" y2="${i*55}"/>`).join('')}</g><rect x="18" y="18" width="32" height="32" rx="2" fill="rgba(74,140,98,0.7)"/><rect x="78" y="18" width="32" height="32" rx="2" fill="rgba(44,95,138,0.7)"/><rect x="78" y="73" width="52" height="32" rx="2" fill="rgba(150,90,40,0.7)"/><text x="104" y="93" font-family="IBM Plex Sans" font-size="7" fill="rgba(255,255,255,0.7)" text-anchor="middle">School</text><rect x="78" y="128" width="72" height="52" rx="3" fill="rgba(30,90,40,0.8)"/><text x="114" y="158" font-family="IBM Plex Sans" font-size="8" fill="rgba(255,255,255,0.6)" text-anchor="middle">Park</text><text x="160" y="258" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.4)" text-anchor="middle">Scale: 1 km x 1 km</text></svg>`},
-  { label:"Urban Scale", level:"Urban", title:"The City", desc:"At the urban scale, we see patterns across a full metropolitan area — neighborhood income differences, industrial clustering, transportation network effects on growth, and where sprawl is occurring.", examples:["The CBD concentrates offices and commerce","Highway interchanges attract big-box retail","Deindustrialized zones often become arts districts"], svg:()=>`<svg viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%"><rect width="320" height="280" fill="#0d2518"/><ellipse cx="160" cy="120" rx="35" ry="30" fill="rgba(212,168,83,0.22)" stroke="rgba(212,168,83,0.4)" stroke-width="1"/><text x="160" y="123" font-family="IBM Plex Sans" font-size="8" fill="rgba(212,168,83,0.9)" text-anchor="middle">CBD</text><ellipse cx="160" cy="120" rx="80" ry="70" fill="none" stroke="rgba(74,140,98,0.28)" stroke-width="1" stroke-dasharray="4 3"/><ellipse cx="160" cy="120" rx="130" ry="110" fill="none" stroke="rgba(44,95,138,0.22)" stroke-width="1" stroke-dasharray="4 3"/><line x1="160" y1="0" x2="160" y2="280" stroke="rgba(255,255,255,0.14)" stroke-width="2"/><line x1="0" y1="120" x2="320" y2="120" stroke="rgba(255,255,255,0.14)" stroke-width="2"/><text x="100" y="72" font-family="IBM Plex Sans" font-size="7.5" fill="rgba(255,255,255,0.38)">Inner suburbs</text><text x="160" y="258" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.4)" text-anchor="middle">Scale: 30 km x 30 km</text></svg>`},
-  { label:"Regional Scale", level:"Regional", title:"A Region", desc:"Regions reveal patterns too big to see at city level: agricultural land use, river basins, economic corridors, and language regions. The US Corn Belt, European Megalopolis, and Sahel are all meaningful at this scale.", examples:["The Great Plains defined by terrain and wheat farming","The Rhine-Ruhr corridor shaped European industrial history","The Sun Belt grew due to air conditioning and internal migration"], svg:()=>`<svg viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%"><rect width="320" height="280" fill="#0a1d10"/><path d="M40,50 Q120,30 220,45 Q290,55 300,100 Q308,145 290,190 Q268,235 210,250 Q150,262 100,248 Q50,232 32,190 Q15,145 25,100 Z" fill="rgba(74,140,98,0.16)" stroke="rgba(255,255,255,0.14)" stroke-width="1"/><circle cx="120" cy="120" r="12" fill="rgba(212,168,83,0.8)"/><circle cx="200" cy="150" r="9" fill="rgba(212,168,83,0.65)"/><circle cx="160" cy="80" r="7" fill="rgba(212,168,83,0.55)"/><line x1="120" y1="120" x2="200" y2="150" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/><path d="M40,60 Q100,90 120,120 Q140,150 170,200 Q190,230 210,250" fill="none" stroke="rgba(44,95,138,0.45)" stroke-width="2"/><text x="160" y="262" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.4)" text-anchor="middle">Scale: 500 km x 500 km</text></svg>`},
-  { label:"National Scale", level:"National", title:"A Country", desc:"At the national scale, geographers compare internal regions: wealth gaps between north and south, urban-rural divides, migration patterns between states, and the geographic distribution of industries.", examples:["Brazil's economic core vs. the Amazon periphery","China's coastal-interior development gap","US Rust Belt to Sun Belt population shift"], svg:()=>`<svg viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%"><rect width="320" height="280" fill="#0a1d10"/><path d="M30,60 Q100,40 210,50 Q280,56 295,80 Q305,105 300,130 Q295,155 270,165 Q250,172 235,168 Q220,163 200,175 Q185,185 145,185 Q130,178 115,185 Q100,192 85,188 Q60,180 40,165 Q20,148 22,115 Z" fill="rgba(74,140,98,0.2)" stroke="rgba(255,255,255,0.18)" stroke-width="1"/><circle cx="270" cy="100" r="8" fill="rgba(232,93,40,0.85)"/><circle cx="80" cy="115" r="7" fill="rgba(232,93,40,0.7)"/><circle cx="165" cy="105" r="7" fill="rgba(232,93,40,0.7)"/><text x="160" y="262" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.4)" text-anchor="middle">Scale: 4,000 km x 2,500 km</text></svg>`},
-  { label:"Global Scale", level:"Global", title:"The Whole World", desc:"At the global scale, human geography reveals the North-South economic divide, global migration flows, trade networks, and climate change effects. This broadest lens shows systemic forces but obscures local detail.", examples:["Core-periphery relationships between wealthy and developing nations","Global supply chains connect manufacturers to consumers across continents","International climate agreements require global geographic thinking"], svg:()=>`<svg viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%"><rect width="320" height="280" fill="#0a1520"/><line x1="0" y1="140" x2="320" y2="140" stroke="rgba(212,168,83,0.2)" stroke-width="1"/><path d="M20,65 Q45,55 70,58 Q92,62 98,80 Q103,98 90,112 Q76,125 58,120 Q36,112 25,96 Q15,80 20,65Z" fill="rgba(74,140,98,0.6)"/><path d="M60,145 Q80,138 100,145 Q118,155 119,175 Q120,198 106,215 Q90,228 72,220 Q52,208 48,188 Q44,165 60,145Z" fill="rgba(74,140,98,0.6)"/><path d="M115,62 Q132,55 150,58 Q165,62 167,74 Q169,86 160,93 Q150,100 138,96 Q125,90 118,80 Q112,70 115,62Z" fill="rgba(74,140,98,0.6)"/><path d="M118,115 Q138,107 156,114 Q172,122 174,140 Q176,160 162,172 Q146,183 130,175 Q112,164 110,145 Q108,127 118,115Z" fill="rgba(74,140,98,0.6)"/><path d="M180,60 Q210,50 250,54 Q280,58 285,76 Q290,94 278,108 Q264,120 248,118 Q230,116 215,108 Q198,98 190,82 Q182,68 180,60Z" fill="rgba(74,140,98,0.6)"/><path d="M252,155 Q272,147 286,158 Q296,168 293,182 Q288,195 274,198 Q258,200 250,190 Q242,178 252,155Z" fill="rgba(74,140,98,0.6)"/><text x="160" y="264" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.4)" text-anchor="middle">Scale: Global (510M km2)</text></svg>`}
+// ── SCALE EXPLORER ─────────────────────────────────────────────
+var scales = [
+  { label:'Local Scale', level:'Local', title:'Your Neighborhood',
+    desc:'At the local scale, geographers examine individual streets, blocks, neighborhoods, and communities. This is the scale of lived daily experience — where geographic questions become intensely personal and immediately consequential. Which blocks have the best access to parks and fresh food? How does the location of a highway shape property values two decades later? Where exactly does one neighborhood end and another begin, and why does that boundary matter?',
+    examples:['Zoning laws and land-use codes operate at the parcel level','Food deserts and pharmacy deserts are neighborhood-scale phenomena','School attendance zones are local-scale political and geographic decisions'],
+    svg: '<svg viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%"><rect width="320" height="280" fill="#0d2518"/><g stroke="rgba(255,255,255,0.14)" stroke-width="1"><line x1="60" y1="0" x2="60" y2="280"/><line x1="120" y1="0" x2="120" y2="280"/><line x1="180" y1="0" x2="180" y2="280"/><line x1="240" y1="0" x2="240" y2="280"/><line x1="0" y1="55" x2="320" y2="55"/><line x1="0" y1="110" x2="320" y2="110"/><line x1="0" y1="165" x2="320" y2="165"/><line x1="0" y1="220" x2="320" y2="220"/></g><rect x="8" y="8" width="44" height="40" rx="2" fill="rgba(74,140,98,0.7)"/><rect x="68" y="8" width="44" height="40" rx="2" fill="rgba(44,95,138,0.7)"/><rect x="128" y="8" width="44" height="40" rx="2" fill="rgba(196,98,45,0.7)"/><rect x="188" y="8" width="44" height="40" rx="2" fill="rgba(74,140,98,0.65)"/><rect x="248" y="8" width="62" height="40" rx="2" fill="rgba(44,95,138,0.65)"/><rect x="68" y="63" width="64" height="40" rx="2" fill="rgba(150,90,40,0.75)"/><text x="100" y="87" font-family="IBM Plex Sans" font-size="7.5" fill="rgba(255,255,255,0.75)" text-anchor="middle">School</text><rect x="8" y="63" width="52" height="40" rx="2" fill="rgba(74,140,98,0.6)"/><rect x="188" y="63" width="44" height="40" rx="2" fill="rgba(74,140,98,0.6)"/><rect x="68" y="118" width="84" height="60" rx="3" fill="rgba(30,95,40,0.85)"/><text x="110" y="152" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.65)" text-anchor="middle">Park</text><text x="160" y="262" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.38)" text-anchor="middle">Scale: approximately 1 km × 1 km</text></svg>'
+  },
+  { label:'Urban Scale', level:'Urban', title:'The City',
+    desc:'The urban scale reveals patterns across an entire metropolitan area — patterns invisible at the local scale. Here geographers can map how neighborhoods differ systematically by income, race, and access to services; how industrial districts cluster along rail lines or highway interchanges; how the central business district concentrates office employment; and how transportation infrastructure shapes the geography of growth over decades.',
+    examples:['The CBD concentrates offices, finance, and retail in a dense core','Highway interchanges attract big-box retail and distribution warehouses','Gentrification reshapes neighborhood boundaries and displaces existing residents'],
+    svg: '<svg viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%"><rect width="320" height="280" fill="#0d2518"/><ellipse cx="160" cy="118" rx="35" ry="28" fill="rgba(212,168,83,0.22)" stroke="rgba(212,168,83,0.4)" stroke-width="1"/><text x="160" y="122" font-family="IBM Plex Sans" font-size="8.5" fill="rgba(212,168,83,0.9)" text-anchor="middle">CBD</text><ellipse cx="160" cy="118" rx="78" ry="68" fill="none" stroke="rgba(74,140,98,0.28)" stroke-width="1.2" stroke-dasharray="4 3"/><ellipse cx="160" cy="118" rx="128" ry="108" fill="none" stroke="rgba(44,95,138,0.22)" stroke-width="1.2" stroke-dasharray="4 3"/><line x1="160" y1="0" x2="160" y2="280" stroke="rgba(255,255,255,0.13)" stroke-width="2"/><line x1="0" y1="118" x2="320" y2="118" stroke="rgba(255,255,255,0.13)" stroke-width="2"/><line x1="40" y1="18" x2="290" y2="218" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/><line x1="40" y1="218" x2="290" y2="18" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/><text x="98" y="70" font-family="IBM Plex Sans" font-size="7.5" fill="rgba(255,255,255,0.38)">Inner suburbs</text><text x="52" y="162" font-family="IBM Plex Sans" font-size="7.5" fill="rgba(255,255,255,0.38)">Industrial</text><text x="228" y="70" font-family="IBM Plex Sans" font-size="7.5" fill="rgba(255,255,255,0.38)">Affluent zone</text><text x="240" y="170" font-family="IBM Plex Sans" font-size="7.5" fill="rgba(255,255,255,0.38)">Outer suburb</text><text x="160" y="260" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.38)" text-anchor="middle">Scale: approximately 30 km × 30 km</text></svg>'
+  },
+  { label:'Regional Scale', level:'Regional', title:'A Geographic Region',
+    desc:'The regional scale reveals patterns too broad to see from within a single city: agricultural land-use zones stretching across hundreds of kilometers, river basins defining natural economic corridors, mountain barriers channeling settlement and trade, language and cultural transition zones, and multi-city economic networks. Regions help geographers group places for comparison and see forces that operate across political boundaries.',
+    examples:['The US Corn Belt stretches across seven states, defined by soil, climate, and crop patterns','The European Manufacturing Core — the Blue Banana — was shaped by coal deposits and canal networks','The Sun Belt emerged as a distinctive economic region through air conditioning and post-WWII migration'],
+    svg: '<svg viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%"><rect width="320" height="280" fill="#0a1d10"/><path d="M38,48 Q118,28 218,44 Q288,54 298,100 Q307,145 288,188 Q266,234 208,248 Q148,260 98,246 Q48,230 30,188 Q12,144 22,98 Z" fill="rgba(74,140,98,0.16)" stroke="rgba(255,255,255,0.14)" stroke-width="1"/><circle cx="118" cy="118" r="13" fill="rgba(212,168,83,0.82)"/><text x="118" y="122" font-family="IBM Plex Sans" font-size="7" fill="#0d2518" text-anchor="middle" font-weight="700">Hub A</text><circle cx="198" cy="148" r="9" fill="rgba(212,168,83,0.65)"/><circle cx="158" cy="78" r="7" fill="rgba(212,168,83,0.55)"/><circle cx="98" cy="193" r="6" fill="rgba(212,168,83,0.52)"/><circle cx="238" cy="104" r="7" fill="rgba(212,168,83,0.55)"/><line x1="118" y1="118" x2="198" y2="148" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/><line x1="118" y1="118" x2="158" y2="78" stroke="rgba(255,255,255,0.15)" stroke-width="1"/><line x1="118" y1="118" x2="98" y2="193" stroke="rgba(255,255,255,0.15)" stroke-width="1"/><line x1="198" y1="148" x2="238" y2="104" stroke="rgba(255,255,255,0.15)" stroke-width="1"/><path d="M38,58 Q98,88 118,118 Q138,148 168,198 Q188,228 208,248" fill="none" stroke="rgba(44,95,138,0.48)" stroke-width="2"/><text x="160" y="264" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.38)" text-anchor="middle">Scale: approximately 500 km × 500 km</text></svg>'
+  },
+  { label:'National Scale', level:'National', title:'A Country',
+    desc:'At the national scale, geographers can compare entire regions within a country and identify systemic patterns: the geographic distribution of economic development, persistent north-south or coastal-interior disparities, patterns of internal migration, and the spatial organization of infrastructure networks. This scale reveals how national policies translate into geographic outcomes — or fail to.',
+    examples:['China\'s coastal-interior economic development gap is a national-scale geographic pattern','Brazil\'s southeast economic core versus the Amazon periphery reflects national-scale inequality','The US Interstate Highway System created a functional region connecting all 48 contiguous states'],
+    svg: '<svg viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%"><rect width="320" height="280" fill="#0a1d10"/><path d="M28,58 Q98,38 208,48 Q278,54 293,78 Q303,104 298,128 Q293,154 268,163 Q248,170 233,167 Q218,162 198,173 Q183,183 143,183 Q128,177 113,183 Q98,190 83,186 Q58,178 38,163 Q18,146 20,113 Z" fill="rgba(74,140,98,0.2)" stroke="rgba(255,255,255,0.18)" stroke-width="1"/><circle cx="268" cy="98" r="9" fill="rgba(232,93,40,0.88)"/><text x="268" y="116" font-family="IBM Plex Sans" font-size="7.5" fill="rgba(255,255,255,0.58)" text-anchor="middle">NY</text><circle cx="78" cy="113" r="7.5" fill="rgba(232,93,40,0.75)"/><text x="78" y="131" font-family="IBM Plex Sans" font-size="7.5" fill="rgba(255,255,255,0.58)" text-anchor="middle">LA</text><circle cx="163" cy="103" r="7.5" fill="rgba(232,93,40,0.75)"/><text x="163" y="121" font-family="IBM Plex Sans" font-size="7.5" fill="rgba(255,255,255,0.58)" text-anchor="middle">CHI</text><circle cx="223" cy="146" r="6" fill="rgba(232,93,40,0.65)"/><text x="223" y="162" font-family="IBM Plex Sans" font-size="7.5" fill="rgba(255,255,255,0.5)" text-anchor="middle">ATL</text><ellipse cx="220" cy="108" rx="83" ry="52" fill="rgba(212,168,83,0.06)"/><text x="222" y="167" font-family="IBM Plex Sans" font-size="7.5" fill="rgba(212,168,83,0.38)" text-anchor="middle">BosWash Megalopolis</text><text x="160" y="264" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.38)" text-anchor="middle">Scale: approximately 4,000 km × 2,500 km</text></svg>'
+  },
+  { label:'Global Scale', level:'Global', title:'The Whole World',
+    desc:'At the global scale, human geography reveals the most sweeping patterns: the persistent North-South divide between wealthy core nations and poorer peripheral ones, global migration corridors connecting labor-surplus and labor-deficit regions, international trade networks and the supply chains embedded within them, the geographic distribution of carbon emissions and climate vulnerability, and the uneven spread of globalization across the world\'s regions. This broadest lens is essential for understanding systemic forces — though it necessarily obscures the local and regional variation that shapes daily lives.',
+    examples:['Core-periphery theory explains the geographic structure of global economic inequality','Global commodity chains connect cotton farms in West Africa to garment factories in Bangladesh to consumers in the US','Sea-level rise from climate change threatens low-lying areas across every ocean basin'],
+    svg: '<svg viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%"><rect width="320" height="280" fill="#0a1520"/><g stroke="rgba(255,255,255,0.04)" stroke-width="0.5"><line x1="53" y1="0" x2="53" y2="280"/><line x1="106" y1="0" x2="106" y2="280"/><line x1="159" y1="0" x2="159" y2="280"/><line x1="212" y1="0" x2="212" y2="280"/><line x1="265" y1="0" x2="265" y2="280"/><line x1="0" y1="70" x2="320" y2="70"/><line x1="0" y1="140" x2="320" y2="140"/><line x1="0" y1="210" x2="320" y2="210"/></g><line x1="0" y1="140" x2="320" y2="140" stroke="rgba(212,168,83,0.2)" stroke-width="1"/><path d="M20,65 Q45,55 70,58 Q92,62 98,80 Q103,98 90,112 Q76,125 58,120 Q36,112 25,96 Q15,80 20,65Z" fill="rgba(74,140,98,0.62)"/><path d="M60,145 Q80,138 100,145 Q118,155 119,175 Q120,198 106,215 Q90,228 72,220 Q52,208 48,188 Q44,165 60,145Z" fill="rgba(74,140,98,0.62)"/><path d="M115,62 Q132,55 150,58 Q165,62 167,74 Q169,86 160,93 Q150,100 138,96 Q125,90 118,80 Q112,70 115,62Z" fill="rgba(74,140,98,0.62)"/><path d="M118,115 Q138,107 156,114 Q172,122 174,140 Q176,160 162,172 Q146,183 130,175 Q112,164 110,145 Q108,127 118,115Z" fill="rgba(74,140,98,0.62)"/><path d="M180,60 Q210,50 250,54 Q280,58 285,76 Q290,94 278,108 Q264,120 248,118 Q230,116 215,108 Q198,98 190,82 Q182,68 180,60Z" fill="rgba(74,140,98,0.62)"/><path d="M208,128 Q224,122 238,130 Q250,140 250,158 Q250,175 238,183 Q222,190 208,182 Q194,172 192,154 Q190,136 208,128Z" fill="rgba(74,140,98,0.62)"/><path d="M252,155 Q272,147 286,158 Q296,168 293,182 Q288,195 274,198 Q258,200 250,190 Q242,178 252,155Z" fill="rgba(74,140,98,0.62)"/><defs><marker id="arw" markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" orient="auto"><path d="M0,0 L0,5 L5,2.5 Z" fill="rgba(212,168,83,0.55)"/></marker></defs><path d="M68,82 Q110,65 118,70" fill="none" stroke="rgba(212,168,83,0.42)" stroke-width="1.2" marker-end="url(#arw)"/><path d="M50,100 Q50,130 65,145" fill="none" stroke="rgba(44,95,138,0.42)" stroke-width="1.2" marker-end="url(#arw)"/><path d="M180,90 Q160,105 155,115" fill="none" stroke="rgba(212,168,83,0.32)" stroke-width="1" marker-end="url(#arw)"/><line x1="0" y1="100" x2="320" y2="100" stroke="rgba(196,98,45,0.14)" stroke-width="1" stroke-dasharray="5 3"/><text x="308" y="97" font-family="IBM Plex Sans" font-size="7" fill="rgba(196,98,45,0.45)" text-anchor="end">Global North</text><text x="308" y="113" font-family="IBM Plex Sans" font-size="7" fill="rgba(196,98,45,0.3)" text-anchor="end">Global South</text><text x="160" y="268" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.38)" text-anchor="middle">Scale: Global surface area — 510 million km²</text></svg>'
+  }
 ];
 
 function renderScale(idx) {
-  const s = scales[idx];
+  var s = scales[idx];
   document.getElementById('scaleLabel').textContent = s.label;
-  document.getElementById('scaleMapCanvas').innerHTML = s.svg();
+  document.getElementById('scaleMapCanvas').innerHTML = s.svg;
   document.getElementById('scaleInfo').innerHTML =
-    `<span class="scale-level-tag">${s.level}</span><h3>${s.title}</h3><p>${s.desc}</p><ul class="scale-examples">${s.examples.map(e=>`<li>${e}</li>`).join('')}</ul>`;
+    '<span class="scale-level-tag">' + s.level + '</span><h3>' + s.title + '</h3><p>' + s.desc + '</p>' +
+    '<ul class="scale-examples">' + s.examples.map(function(e){return '<li>' + e + '</li>';}).join('') + '</ul>';
 }
 document.getElementById('scaleSlider').addEventListener('input', function() { renderScale(parseInt(this.value)); });
 renderScale(0);
 
-// ============================================================
-// QUIZ
-// ============================================================
-const questions = [
-  { q:"A geographer studies why coffee shops cluster near university campuses rather than spreading evenly across a city. Which geographic concept best explains this?", opts:["Distance decay","Agglomeration and clustering","Spatial diffusion","Absolute location"], correct:1, fb:"Agglomeration describes clustering of similar activities for shared benefits. Coffee shops near campuses benefit from foot traffic, student demand, and proximity to each other. This self-reinforcing spatial logic explains why similar businesses concentrate." },
-  { q:"Which is the BEST example of relative location?", opts:["Cairo, Egypt is at 30.0 N, 31.2 E","The library is two blocks east of the fire station","The Amazon River is 6,400 km long","Mount Everest is 8,849 meters above sea level"], correct:1, fb:"Relative location describes a place in relation to other places. 'Two blocks east of the fire station' is relative - it emphasizes relationships and context. The coordinate is absolute location; length and elevation are measurements, not locations." },
-  { q:"Geographers studying how social media spread from major U.S. cities to smaller towns between 2005 and 2015 would be analyzing:", opts:["Formal region classification","Spatial diffusion","Human-environment interaction","Scale of analysis"], correct:1, fb:"Spatial diffusion describes how ideas spread across space and time from an origin. Social media spreading from urban to rural areas is hierarchical diffusion - moving through larger cities first, then outward to smaller places." },
-  { q:"The Netherlands has reclaimed 17% of its land from the sea through dikes and polders. This is best understood through which of the Five Themes?", opts:["Movement","Place","Human-Environment Interaction","Region"], correct:2, fb:"Human-Environment Interaction examines how people adapt to, modify, and depend on their environment. The Netherlands polders are the classic case - humans dramatically modifying their physical environment by creating land where ocean existed." },
-  { q:"As distance from a city center increases, the number of daily commuter trips into the city decreases sharply. This illustrates:", opts:["Agglomeration","Distance decay","Regional analysis","Absolute location"], correct:1, fb:"Distance decay is the principle that interaction decreases as distance increases. The further people live from the center, the less likely they are to commute there. This shapes urban planning, transit design, and retail location." },
-  { q:"A geographer notices a very different poverty pattern when examining data county-by-county vs. state-by-state. This observation illustrates:", opts:["Spatial diffusion","Distance decay","Scale of analysis","Agglomeration"], correct:2, fb:"Scale of analysis - geographic patterns look different at different levels of zoom. State-level aggregation hides within-state variation. This is the ecological fallacy: assuming patterns at one scale apply at another." }
+// ── QUIZ ───────────────────────────────────────────────────────
+var questions = [
+  { q:"A geographer studies why coffee shops cluster near university campuses rather than distributing evenly across a city. Which geographic concept best explains this pattern?",
+    opts:["Distance decay","Agglomeration and clustering","Spatial diffusion","Absolute location"],
+    correct:1,
+    fb:"Agglomeration describes the clustering of similar activities in one area for mutual economic benefit. Coffee shops near campuses benefit from concentrated foot traffic, an established student customer base, and proximity to each other — which actually draws more customers to the entire cluster. This self-reinforcing spatial logic is exactly why similar businesses concentrate geographically." },
+  { q:"Which of the following is the BEST example of relative location?",
+    opts:["Cairo, Egypt is located at 30.0° N, 31.2° E","The library is two blocks east of the fire station","The Amazon River is approximately 6,400 km long","Mount Everest rises 8,849 meters above sea level"],
+    correct:1,
+    fb:"Relative location describes a place in relation to other places, emphasizing relationships, accessibility, and context. 'Two blocks east of the fire station' is relative — it tells you about the relationship between places. The coordinate pair is an absolute location; the river length and mountain height are measurements, not locations at all." },
+  { q:"Geographers studying how social media use expanded from major U.S. cities to smaller towns between 2005 and 2015 would most likely analyze this through the concept of:",
+    opts:["Formal region classification","Spatial diffusion","Human–environment interaction","Scale of analysis"],
+    correct:1,
+    fb:"Spatial diffusion describes the process by which ideas, technologies, behaviors, and innovations spread across geographic space over time from an origin point. Social media spreading outward from urban centers to smaller cities and eventually rural areas is a textbook case of hierarchical diffusion — moving from higher-order to lower-order places in the urban system." },
+  { q:"The Netherlands has reclaimed 17% of its national territory from the sea through centuries of dike-building and polder drainage. This is best understood through which of the Five Themes?",
+    opts:["Movement","Place","Human–Environment Interaction","Region"],
+    correct:2,
+    fb:"Human–Environment Interaction encompasses how humans adapt to, modify, and depend on their physical environment. The Netherlands' polders represent a centuries-long example of humans dramatically modifying their physical environment — literally constructing land where ocean water stood. It is one of the most consequential examples of geographic modification in human history." },
+  { q:"Research shows that as distance from a city's downtown core increases, the frequency of daily commuter trips into the downtown decreases steeply. This relationship exemplifies:",
+    opts:["Agglomeration","Distance decay","Regional analysis","Absolute location"],
+    correct:1,
+    fb:"Distance decay is the geographic principle that the intensity of interaction between two locations decreases as the distance between them increases. The further people live from the downtown core, the less likely they are to commute there daily — a pattern with major implications for land use planning, public transit investment, and retail location decisions." },
+  { q:"A researcher notices that US poverty looks geographically concentrated in a few cities when viewed at the county scale, but appears much more diffused when viewed at the state scale. This discrepancy illustrates:",
+    opts:["Spatial diffusion","Distance decay","Scale of analysis","Agglomeration"],
+    correct:2,
+    fb:"Scale of analysis is the insight that geographic patterns look fundamentally different at different levels of spatial aggregation. Aggregating data to the state level masks intense within-state variation — a problem sometimes called the modifiable areal unit problem. This is why geographers are careful to specify scale when reporting findings, and why the same data can support different conclusions at different scales." }
 ];
-let currentQ = 0, answered = false;
+var qIdx = 0, qAnswered = false;
+
 function renderQuiz() {
-  const q = questions[currentQ];
+  var q = questions[qIdx];
   document.getElementById('quizQ').textContent = q.q;
-  document.getElementById('quizProgress').textContent = `Question ${currentQ+1} of ${questions.length}`;
+  document.getElementById('quizProgress').textContent = 'Question ' + (qIdx+1) + ' of ' + questions.length;
   document.getElementById('quizFeedback').className = 'quiz-feedback';
   document.getElementById('quizNext').style.display = 'none';
-  answered = false;
-  const div = document.getElementById('quizOptions'); div.innerHTML = '';
-  q.opts.forEach((opt, i) => {
-    const btn = document.createElement('button');
+  qAnswered = false;
+  var div = document.getElementById('quizOptions'); div.innerHTML = '';
+  q.opts.forEach(function(opt, i) {
+    var btn = document.createElement('button');
     btn.className = 'quiz-opt'; btn.textContent = opt;
-    btn.onclick = () => {
-      if (answered) return; answered = true;
-      document.querySelectorAll('.quiz-opt').forEach((b,j)=>{ if(j===q.correct)b.classList.add('correct'); else if(j===i)b.classList.add('wrong'); b.style.cursor='default'; });
-      const fb = document.getElementById('quizFeedback'); fb.textContent = q.fb; fb.className = 'quiz-feedback visible';
-      const nxt = document.getElementById('quizNext');
-      if (currentQ < questions.length-1) { nxt.textContent='Next Question'; nxt.style.display='inline-block'; nxt.disabled=false; nxt.onclick=nextQuestion; }
-      else { nxt.textContent='Chapter Complete!'; nxt.style.display='inline-block'; nxt.disabled=true; }
+    btn.onclick = function() {
+      if (qAnswered) return; qAnswered = true;
+      document.querySelectorAll('.quiz-opt').forEach(function(b,j) {
+        if (j === q.correct) b.classList.add('correct');
+        else if (j === i) b.classList.add('wrong');
+        b.style.cursor = 'default';
+      });
+      var fb = document.getElementById('quizFeedback'); fb.textContent = q.fb; fb.className = 'quiz-feedback visible';
+      var nxt = document.getElementById('quizNext');
+      if (qIdx < questions.length-1) { nxt.textContent = 'Next Question →'; nxt.style.display = 'inline-block'; nxt.disabled = false; nxt.onclick = nextQuestion; }
+      else { nxt.textContent = '✓ Chapter Complete'; nxt.style.display = 'inline-block'; nxt.disabled = true; }
     };
     div.appendChild(btn);
   });
 }
-function nextQuestion() { if(currentQ<questions.length-1){currentQ++;renderQuiz();} }
+function nextQuestion() { if (qIdx < questions.length-1) { qIdx++; renderQuiz(); } }
 renderQuiz();
 
-// ============================================================
-// KEY TERMS
-// ============================================================
-const terms = [
-  {word:"Absolute Location",def:"An exact position on Earth, expressed as coordinates or an address. It never changes.",ex:"Kansas City, MO sits at 39.1 N, 94.6 W - fixed regardless of surroundings."},
-  {word:"Relative Location",def:"A description of place in relation to surrounding places, emphasizing relationships.",ex:"Kansas City's position at the confluence of two rivers made it a natural trade hub for westward expansion."},
-  {word:"Spatial Diffusion",def:"The process by which phenomena spread across space and time from a point of origin.",ex:"Fast food chains diffused from U.S. cities along routes of economic and cultural influence."},
-  {word:"Distance Decay",def:"Interaction between places tends to decrease as the distance between them increases.",ex:"A regional mall draws most customers from within 30 miles; beyond that, fewer people make the trip."},
-  {word:"Formal Region",def:"An area defined by a uniform characteristic with clearly defined boundaries.",ex:"The Corn Belt is a formal agricultural region defined by dominant crop type."},
-  {word:"Functional Region",def:"An area organized around a central node, defined by connections and flows.",ex:"A city's commuter zone - where people travel daily to the center - is a functional region."},
-  {word:"Perceptual Region",def:"An area defined by people's cultural perceptions and identity rather than hard boundaries.",ex:"'The South' is a perceptual region - its exact boundaries vary by who you ask."},
-  {word:"Agglomeration",def:"The clustering of similar industries or activities for mutual economic or social benefit.",ex:"Hollywood's film industry is a classic agglomeration economy - studios, agents, and talent co-locate."},
-  {word:"Human-Environment Interaction",def:"How humans adapt to, modify, and depend on their physical environment.",ex:"Terraced rice farming modifies steep hillsides to create arable agricultural land."},
-  {word:"Scale of Analysis",def:"The spatial level at which geographic phenomena are examined - local to global.",ex:"Income inequality patterns differ dramatically at the neighborhood vs. national scale."},
-  {word:"Push Factor",def:"A condition that motivates people to leave their current location - conflict, poverty, or hazard.",ex:"Drought was a major push factor driving Dust Bowl migrants from the Great Plains in the 1930s."},
-  {word:"Pull Factor",def:"A condition in a destination that attracts migrants - economic opportunity, safety, or family.",ex:"California agriculture served as a pull factor for Dust Bowl migrants seeking work."}
+// ── KEY TERMS ──────────────────────────────────────────────────
+var terms = [
+  { word:'Absolute Location',
+    def:'A precise, mathematically fixed position on Earth\'s surface described by a coordinate system (latitude and longitude) or a specific street address. Absolute location never changes regardless of context, surrounding development, or political change.',
+    ex:'The White House sits at exactly 38.8977° N, 77.0366° W — coordinates that remain constant whether the building is occupied, demolished, or rebuilt.' },
+  { word:'Relative Location',
+    def:'A description of place that emphasizes its position in relation to other places, highlighting relationships of accessibility, proximity, and connection. Relative location changes meaning as surrounding places and transportation systems change.',
+    ex:'New Orleans\' relative location — at the mouth of the Mississippi River system — made it the natural commercial gateway for an entire continental interior, shaping its growth from a colonial trading post into a major port city.' },
+  { word:'Spatial Diffusion',
+    def:'The process by which a phenomenon — an idea, innovation, cultural practice, disease, or technology — spreads across geographic space and through time, typically from an origin point outward to surrounding areas.',
+    ex:'The diffusion of smartphones from tech-hub cities to global rural markets followed predictable geographic patterns: first adopted in wealthy urban centers, then spreading hierarchically through the settlement system to progressively smaller places.' },
+  { word:'Distance Decay',
+    def:'The geographic principle that the intensity of interaction, influence, or connection between two places decreases as the distance separating them increases. Distance imposes costs — economic, temporal, and social — that reduce the likelihood of interaction.',
+    ex:'Retail trade areas demonstrate distance decay clearly: a regional shopping mall draws customers from 30+ miles away, but foot traffic decreases steeply with distance — most sales come from within a 10-mile radius.' },
+  { word:'Formal Region',
+    def:'An area of Earth\'s surface defined by one or more uniform, measurable characteristics that are consistently present throughout the area and used to draw clear boundaries. Both physical and human criteria can define formal regions.',
+    ex:'The Corn Belt is a formal agricultural region defined by the dominance of corn and soybean cultivation across Iowa, Illinois, Indiana, and neighboring states — a pattern produced by coinciding soil quality, growing season length, and market access.' },
+  { word:'Functional Region',
+    def:'An area organized around and defined by its connection to a central node or hub, rather than by uniform characteristics. The region\'s extent is determined by the reach of the flows — of people, goods, information, or services — linking the periphery to the center.',
+    ex:'A metropolitan area\'s commuter zone is a classic functional region: it extends outward from the city center as far as people are willing to travel daily for work, and contracts or expands as transportation infrastructure changes.' },
+  { word:'Perceptual Region',
+    def:'An area whose existence and boundaries derive primarily from cultural perceptions, shared identity, and collective imagination rather than from objectively measurable characteristics or formal political boundaries. Also called a vernacular region.',
+    ex:'"The South" in the United States is a perceptual region whose geographic extent varies significantly depending on who is asked and what criteria — dialect, cuisine, political culture, or historical memory — they use to define membership.' },
+  { word:'Agglomeration',
+    def:'The geographic clustering of similar or complementary economic activities, firms, or institutions in a single area, driven by the mutual benefits that proximity creates — shared labor markets, knowledge spillovers, supplier networks, and reduced transaction costs.',
+    ex:'The film industry\'s concentration in Los Angeles is a textbook agglomeration: studios, talent agencies, production companies, equipment rental firms, and specialized workforce all cluster together, making LA more competitive for film production than any dispersed alternative.' },
+  { word:'Human–Environment Interaction',
+    def:'The reciprocal relationships through which human societies adapt to, modify, and depend upon their physical environments — and through which environmental conditions in turn constrain, enable, and shape human settlement, culture, and economic activity.',
+    ex:'The construction of rice terraces on steep hillsides throughout Southeast Asia and the Andes represents systematic human modification of the physical landscape to create agricultural land — and a centuries-long adaptation to the geographic constraint of mountainous terrain.' },
+  { word:'Scale of Analysis',
+    def:'The level of spatial aggregation at which a geographic phenomenon is observed and measured — ranging from the local or micro scale (a block, a neighborhood) through regional, national, and global scales. The same phenomenon can yield different insights, and even different apparent patterns, at different scales.',
+    ex:'Income inequality analyzed at the neighborhood scale reveals concentrated pockets of poverty in specific census tracts; at the state scale, those pockets are averaged into state figures that obscure them; at the global scale, what appears as local poverty is reframed as part of global core-periphery structure.' },
+  { word:'Push Factor',
+    def:'A geographic or socioeconomic condition in a person\'s place of origin that motivates or compels them to leave — including armed conflict, political persecution, environmental degradation, famine, economic collapse, or lack of opportunity.',
+    ex:'The severe drought and agricultural collapse of the 1930s Dust Bowl was the primary push factor driving an estimated 3.5 million people out of the Great Plains states, many of whom migrated to California in one of the largest internal migrations in US history.' },
+  { word:'Pull Factor',
+    def:'A geographic or socioeconomic condition in a potential destination that attracts migrants by offering improved circumstances — including economic opportunity, political stability, family reunification, favorable climate, or access to services and education.',
+    ex:'California\'s agricultural labor demand in the 1930s and 1940s served as a major pull factor for Dust Bowl migrants, while its post-WWII defense industry and suburban expansion continued attracting internal migrants from other regions through the late 20th century.' }
 ];
-const tg = document.getElementById('termsGrid');
-terms.forEach(t => {
-  const c = document.createElement('div'); c.className='term-card';
-  c.innerHTML=`<div class="term-word">${t.word}</div><div class="term-def">${t.def}</div><div class="term-example">Example: ${t.ex}</div>`;
-  c.addEventListener('click',()=>c.classList.toggle('open')); tg.appendChild(c);
+
+var tg = document.getElementById('termsGrid');
+terms.forEach(function(t) {
+  var c = document.createElement('div'); c.className = 'term-card';
+  c.innerHTML = '<div class="term-word">' + t.word + '</div>' +
+                '<div class="term-def">' + t.def + '</div>' +
+                '<div class="term-example">📍 ' + t.ex + '</div>' +
+                '<div class="term-toggle">▸ Click for example</div>';
+  c.addEventListener('click', function() {
+    c.classList.toggle('open');
+    c.querySelector('.term-toggle').textContent = c.classList.contains('open') ? '▴ Hide example' : '▸ Click for example';
+  });
+  tg.appendChild(c);
 });
 </script>
 </body>
