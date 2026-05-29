@@ -1,0 +1,1701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AP Human Geography — Chapter 1: Geographic Thinking</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --earth: #1a3a2a;
+    --earth-mid: #2d5a3d;
+    --earth-light: #4a8c62;
+    --sand: #f5f0e8;
+    --sand-dark: #e8e0cc;
+    --rust: #c4622d;
+    --rust-light: #e88a60;
+    --sky: #2c5f8a;
+    --sky-light: #5b9bc8;
+    --ink: #1c1c1e;
+    --ink-mid: #3d3d3f;
+    --ink-light: #6b6b70;
+    --white: #fdfcf9;
+    --accent: #d4a853;
+    --accent-light: #f0d080;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: var(--sand);
+    color: var(--ink);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--earth);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.75rem 2rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  }
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    color: var(--accent-light);
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+  }
+  .nav-links {
+    display: flex; gap: 0.25rem; list-style: none;
+  }
+  .nav-links a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 0.8rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 4px;
+    transition: all 0.2s;
+    letter-spacing: 0.03em;
+  }
+  .nav-links a:hover { background: rgba(255,255,255,0.12); color: white; }
+
+  /* HERO */
+  .hero {
+    background: var(--earth);
+    min-height: 92vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    position: relative;
+  }
+  .hero-text {
+    padding: 5rem 4rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 2;
+  }
+  .hero-eyebrow {
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.8rem;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    color: var(--accent-light);
+    font-style: italic;
+  }
+  .hero-desc {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.7);
+    max-width: 460px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--earth);
+    border: none;
+    padding: 0.85rem 2rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    font-family: 'IBM Plex Sans', sans-serif;
+    letter-spacing: 0.03em;
+  }
+  .btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent;
+    color: rgba(255,255,255,0.8);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 0.85rem 2rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.7); color: white; }
+
+  .hero-map {
+    position: relative;
+    overflow: hidden;
+    background: #0e2a1a;
+  }
+  .hero-globe-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+  }
+  .hero-stats {
+    position: absolute;
+    bottom: 2.5rem; left: 2.5rem;
+    display: flex; gap: 2rem;
+  }
+  .stat-item {
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--accent-light);
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .hero-grid-overlay {
+    position: absolute; inset: 0;
+    opacity: 0.06;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-eyebrow {
+    font-size: 0.78rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--earth-light);
+    font-weight: 600; margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; line-height: 1.2;
+    color: var(--ink); margin-bottom: 1rem;
+  }
+  .section-intro {
+    font-size: 1.05rem; color: var(--ink-light);
+    max-width: 680px; margin-bottom: 3rem;
+    font-weight: 300; line-height: 1.8;
+  }
+
+  /* INTRO SPLIT */
+  .intro-section { background: var(--white); }
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .intro-pull-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    color: var(--earth);
+    border-left: 3px solid var(--accent);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+  }
+  .intro-body p { margin-bottom: 1rem; color: var(--ink-mid); }
+
+  /* FIVE THEMES */
+  .themes-section { background: var(--sand); }
+  .themes-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--sand-dark);
+    border: 1px solid var(--sand-dark);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+  }
+  .theme-card {
+    background: var(--white);
+    padding: 2rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .theme-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--card-color, var(--earth-light));
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+  .theme-card:hover::before, .theme-card.active::before { transform: scaleX(1); }
+  .theme-card:hover, .theme-card.active {
+    background: var(--sand);
+  }
+  .theme-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .theme-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+  .theme-brief {
+    font-size: 0.82rem;
+    color: var(--ink-light);
+    line-height: 1.5;
+  }
+
+  .theme-detail {
+    background: var(--earth);
+    border-radius: 8px;
+    padding: 2.5rem 3rem;
+    display: none;
+    color: white;
+  }
+  .theme-detail.visible { display: block; }
+  .theme-detail h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--accent-light);
+    margin-bottom: 1rem;
+  }
+  .theme-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 1.5rem;
+  }
+  .theme-detail p { color: rgba(255,255,255,0.8); line-height: 1.8; }
+  .example-box {
+    background: rgba(255,255,255,0.08);
+    border-radius: 6px;
+    padding: 1.25rem 1.5rem;
+  }
+  .example-box h4 {
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .example-box p { color: rgba(255,255,255,0.75); font-size: 0.9rem; }
+
+  /* INTERACTIVE MAP SECTION */
+  .map-section { background: var(--earth); color: white; }
+  .map-section .section-title { color: white; }
+  .map-section .section-intro { color: rgba(255,255,255,0.65); }
+  .map-section .section-eyebrow { color: var(--accent); }
+  .map-container {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #0d2518;
+    margin-top: 1rem;
+  }
+  .map-controls {
+    display: flex; gap: 0.5rem; flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+  .map-btn {
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.8);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 0.5rem 1.25rem;
+    border-radius: 100px;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+  .map-btn:hover, .map-btn.active {
+    background: var(--accent);
+    color: var(--earth);
+    border-color: var(--accent);
+    font-weight: 600;
+  }
+  #worldmap {
+    width: 100%;
+    height: 500px;
+    border-radius: 8px;
+  }
+  .map-legend {
+    margin-top: 1rem;
+    display: flex; gap: 2rem; flex-wrap: wrap;
+    align-items: center;
+  }
+  .legend-title {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.5);
+    font-weight: 500;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.7);
+  }
+  .legend-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+  }
+  .map-tooltip {
+    position: absolute;
+    background: rgba(15,35,25,0.95);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    font-size: 0.82rem;
+    color: white;
+    pointer-events: none;
+    display: none;
+    max-width: 220px;
+    z-index: 10;
+  }
+  .map-tooltip strong { color: var(--accent-light); display: block; margin-bottom: 0.25rem; }
+
+  /* SPATIAL CONCEPTS */
+  .concepts-section { background: var(--sand); }
+  .concepts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .concept-card {
+    background: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s;
+  }
+  .concept-card:hover { transform: translateY(-3px); }
+  .concept-img {
+    height: 180px;
+    overflow: hidden;
+    position: relative;
+  }
+  .concept-img svg { width: 100%; height: 100%; }
+  .concept-body { padding: 1.5rem; }
+  .concept-tag {
+    display: inline-block;
+    background: var(--earth);
+    color: var(--accent-light);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+    margin-bottom: 0.75rem;
+  }
+  .concept-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+  .concept-card p { font-size: 0.9rem; color: var(--ink-light); line-height: 1.7; }
+
+  /* SCALE SLIDER */
+  .scale-section { background: var(--white); }
+  .scale-explorer {
+    background: var(--sand);
+    border-radius: 12px;
+    padding: 2.5rem;
+  }
+  .scale-slider-wrap {
+    margin: 1.5rem 0 2rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .scale-slider-wrap label { font-size: 0.85rem; color: var(--ink-light); white-space: nowrap; }
+  #scaleSlider {
+    flex: 1;
+    accent-color: var(--earth-mid);
+  }
+  #scaleLabel {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--earth);
+    min-width: 140px;
+    text-align: right;
+    font-weight: 600;
+  }
+  .scale-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+  .scale-map-canvas {
+    background: var(--earth);
+    border-radius: 8px;
+    height: 280px;
+    position: relative;
+    overflow: hidden;
+  }
+  .scale-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+  .scale-info .scale-level-tag {
+    display: inline-block;
+    background: var(--earth-light);
+    color: white;
+    font-size: 0.72rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+  .scale-info p { font-size: 0.95rem; color: var(--ink-mid); margin-bottom: 1rem; line-height: 1.8; }
+  .scale-examples { list-style: none; }
+  .scale-examples li {
+    font-size: 0.88rem;
+    color: var(--ink-mid);
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--sand-dark);
+    display: flex; align-items: baseline; gap: 0.5rem;
+  }
+  .scale-examples li::before {
+    content: '→';
+    color: var(--rust);
+    font-size: 0.8rem;
+    flex-shrink: 0;
+  }
+
+  /* QUIZ */
+  .quiz-section { background: var(--earth); color: white; }
+  .quiz-section .section-title { color: white; }
+  .quiz-section .section-eyebrow { color: var(--accent); }
+  .quiz-section .section-intro { color: rgba(255,255,255,0.65); }
+  .quiz-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    padding: 2rem 2.5rem;
+    max-width: 720px;
+  }
+  .quiz-q {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: white;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+  .quiz-options { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem; }
+  .quiz-opt {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.85);
+    padding: 0.9rem 1.25rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.92rem;
+    text-align: left;
+  }
+  .quiz-opt:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); }
+  .quiz-opt.correct { background: rgba(74,140,98,0.3); border-color: var(--earth-light); color: white; }
+  .quiz-opt.wrong { background: rgba(196,98,45,0.3); border-color: var(--rust-light); color: white; }
+  .quiz-feedback {
+    min-height: 3rem;
+    font-size: 0.92rem;
+    color: rgba(255,255,255,0.75);
+    display: none;
+    padding: 1rem 1.25rem;
+    background: rgba(255,255,255,0.05);
+    border-radius: 6px;
+    border-left: 3px solid var(--accent);
+    line-height: 1.7;
+  }
+  .quiz-feedback.visible { display: block; }
+  .quiz-nav {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 1.5rem;
+  }
+  .quiz-progress {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.05em;
+  }
+
+  /* KEY TERMS */
+  .terms-section { background: var(--sand); }
+  .terms-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .term-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    border-left: 3px solid var(--earth-light);
+    transition: border-color 0.2s;
+    cursor: pointer;
+  }
+  .term-card:hover { border-left-color: var(--accent); }
+  .term-word {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--earth-mid);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .term-def {
+    font-size: 0.88rem;
+    color: var(--ink-mid);
+    line-height: 1.65;
+  }
+  .term-example {
+    font-size: 0.8rem;
+    color: var(--ink-light);
+    margin-top: 0.5rem;
+    display: none;
+    font-style: italic;
+  }
+  .term-card.open .term-example { display: block; }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.5);
+    padding: 2.5rem;
+    text-align: center;
+    font-size: 0.82rem;
+    line-height: 2;
+  }
+  footer strong { color: rgba(255,255,255,0.8); }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-map { display: none; }
+    .hero h1 { font-size: 2.6rem; }
+    .intro-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .themes-grid { grid-template-columns: repeat(2, 1fr); }
+    .concepts-grid { grid-template-columns: 1fr 1fr; }
+    .scale-display { grid-template-columns: 1fr; }
+    .terms-grid { grid-template-columns: 1fr; }
+    .theme-detail-grid { grid-template-columns: 1fr; }
+    nav { padding: 0.75rem 1rem; }
+    .nav-links { display: none; }
+    section { padding: 3rem 1.25rem; }
+    .hero-text { padding: 3rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-brand">AP Human Geography — Chapter 1</span>
+  <ul class="nav-links">
+    <li><a href="#intro">Introduction</a></li>
+    <li><a href="#themes">Five Themes</a></li>
+    <li><a href="#map">World Map</a></li>
+    <li><a href="#concepts">Key Concepts</a></li>
+    <li><a href="#scale">Scale</a></li>
+    <li><a href="#quiz">Check Understanding</a></li>
+    <li><a href="#terms">Vocabulary</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">AP Human Geography · Chapter One</p>
+    <h1>The Art of <em>Geographic Thinking</em></h1>
+    <p class="hero-desc">Geography is more than maps and place names. It is a way of asking — and answering — questions about <em>where</em>, <em>why there</em>, and <em>so what?</em></p>
+    <div class="hero-cta">
+      <a href="#intro" class="btn-primary">Begin Reading ↓</a>
+      <a href="#quiz" class="btn-ghost">Test Your Knowledge</a>
+    </div>
+  </div>
+  <div class="hero-map">
+    <div class="hero-grid-overlay"></div>
+    <svg id="heroGlobe" viewBox="0 0 700 600" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+      <!-- Oceans -->
+      <rect width="700" height="600" fill="#0d2518"/>
+      <!-- Lat/lon grid -->
+      <g stroke="rgba(255,255,255,0.06)" stroke-width="0.5">
+        <line x1="0" y1="100" x2="700" y2="100"/>
+        <line x1="0" y1="200" x2="700" y2="200"/>
+        <line x1="0" y1="300" x2="700" y2="300"/>
+        <line x1="0" y1="400" x2="700" y2="400"/>
+        <line x1="0" y1="500" x2="700" y2="500"/>
+        <line x1="100" y1="0" x2="100" y2="600"/>
+        <line x1="200" y1="0" x2="200" y2="600"/>
+        <line x1="300" y1="0" x2="300" y2="600"/>
+        <line x1="400" y1="0" x2="400" y2="600"/>
+        <line x1="500" y1="0" x2="500" y2="600"/>
+        <line x1="600" y1="0" x2="600" y2="600"/>
+      </g>
+      <!-- Equator highlight -->
+      <line x1="0" y1="300" x2="700" y2="300" stroke="rgba(212,168,83,0.25)" stroke-width="1.5"/>
+      <!-- Continents (simplified blobs) -->
+      <!-- North America -->
+      <path d="M70,80 Q90,60 130,65 Q170,70 200,90 Q230,110 220,150 Q210,190 190,220 Q170,250 140,260 Q110,270 90,250 Q60,230 50,200 Q40,160 55,130 Q60,100 70,80Z" fill="#2d5a3d" opacity="0.9"/>
+      <!-- Central America appendage -->
+      <path d="M170,250 Q180,270 175,290 Q165,310 155,295 Q150,280 160,265Z" fill="#2d5a3d" opacity="0.9"/>
+      <!-- South America -->
+      <path d="M160,310 Q195,295 230,310 Q265,325 275,365 Q285,405 270,450 Q255,495 230,520 Q205,535 180,520 Q155,500 145,460 Q135,420 140,380 Q145,340 160,310Z" fill="#2d5a3d" opacity="0.9"/>
+      <!-- Europe -->
+      <path d="M290,80 Q320,70 355,75 Q380,80 385,100 Q390,120 375,135 Q360,150 340,148 Q315,145 300,130 Q285,115 290,80Z" fill="#2d5a3d" opacity="0.9"/>
+      <!-- Africa -->
+      <path d="M295,160 Q330,145 365,155 Q395,165 405,200 Q415,240 410,285 Q405,330 385,370 Q365,410 340,425 Q315,435 295,415 Q270,390 265,350 Q260,305 265,265 Q270,215 285,190 Q290,170 295,160Z" fill="#2d5a3d" opacity="0.9"/>
+      <!-- Asia mainland -->
+      <path d="M385,70 Q430,55 490,60 Q545,65 580,80 Q615,95 620,120 Q625,145 610,165 Q590,185 565,190 Q535,195 505,185 Q480,175 460,185 Q440,195 420,185 Q400,170 390,150 Q378,130 380,105 Q382,85 385,70Z" fill="#2d5a3d" opacity="0.9"/>
+      <!-- South/SE Asia -->
+      <path d="M450,190 Q480,185 510,195 Q535,205 540,230 Q545,255 525,268 Q505,278 485,268 Q462,255 455,235 Q448,215 450,190Z" fill="#2d5a3d" opacity="0.9"/>
+      <!-- India -->
+      <path d="M455,220 Q470,215 480,230 Q488,248 480,265 Q470,280 458,270 Q448,255 450,240Z" fill="#2d5a3d" opacity="0.9"/>
+      <!-- Australia -->
+      <path d="M520,350 Q555,335 590,345 Q620,355 625,385 Q628,415 610,435 Q590,452 565,448 Q538,440 525,418 Q512,392 520,350Z" fill="#2d5a3d" opacity="0.9"/>
+      <!-- Antarctica suggestion -->
+      <path d="M100,570 Q300,545 500,550 Q600,555 640,570 Q620,595 400,600 Q150,600 100,570Z" fill="rgba(200,220,255,0.4)"/>
+
+      <!-- City dots -->
+      <g fill="var(--accent)" opacity="0.9">
+        <circle cx="80" cy="160" r="3.5" title="New York"/>
+        <circle cx="68" cy="155" r="3" title="Chicago"/>
+        <circle cx="55" cy="170" r="2.5" title="Los Angeles"/>
+        <circle cx="330" cy="105" r="3.5" title="London"/>
+        <circle cx="345" cy="103" r="3" title="Paris"/>
+        <circle cx="390" cy="108" r="3" title="Moscow"/>
+        <circle cx="475" cy="185" r="3" title="Beijing"/>
+        <circle cx="490" cy="200" r="3.5" title="Shanghai"/>
+        <circle cx="494" cy="210" r="3" title="Tokyo adj"/>
+        <circle cx="365" cy="195" r="3" title="Cairo"/>
+        <circle cx="320" cy="265" r="3" title="Lagos"/>
+        <circle cx="185" cy="380" r="3" title="São Paulo"/>
+        <circle cx="560" cy="390" r="3" title="Sydney"/>
+        <circle cx="467" cy="235" r="3" title="Mumbai"/>
+      </g>
+
+      <!-- Labels -->
+      <g font-family="'IBM Plex Sans',sans-serif" fill="rgba(255,255,255,0.5)" font-size="10" letter-spacing="0.08em">
+        <text x="85" y="175" text-anchor="middle" font-size="8.5" fill="rgba(255,255,255,0.35)" letter-spacing="0.15em">NORTH</text>
+        <text x="85" y="186" text-anchor="middle" font-size="8.5" fill="rgba(255,255,255,0.35)" letter-spacing="0.15em">AMERICA</text>
+        <text x="200" y="430" text-anchor="middle" font-size="8.5" fill="rgba(255,255,255,0.35)" letter-spacing="0.15em">SOUTH</text>
+        <text x="200" y="442" text-anchor="middle" font-size="8.5" fill="rgba(255,255,255,0.35)" letter-spacing="0.15em">AMERICA</text>
+        <text x="335" y="110" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.35)" letter-spacing="0.1em">EUROPE</text>
+        <text x="340" y="295" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.35)" letter-spacing="0.15em">AFRICA</text>
+        <text x="500" y="125" text-anchor="middle" font-size="9.5" fill="rgba(255,255,255,0.35)" letter-spacing="0.15em">ASIA</text>
+        <text x="570" y="405" text-anchor="middle" font-size="8.5" fill="rgba(255,255,255,0.35)" letter-spacing="0.1em">AUSTRALIA</text>
+        <!-- Equator label -->
+        <text x="650" y="297" font-size="7.5" fill="rgba(212,168,83,0.55)" letter-spacing="0.05em">Equator</text>
+      </g>
+
+      <!-- Pulse rings on a few cities -->
+      <circle cx="330" cy="105" r="8" fill="none" stroke="var(--accent)" stroke-width="1" opacity="0.3">
+        <animate attributeName="r" from="5" to="18" dur="2.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" from="0.5" to="0" dur="2.5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="475" cy="185" r="8" fill="none" stroke="var(--accent)" stroke-width="1" opacity="0.3">
+        <animate attributeName="r" from="5" to="18" dur="2.5s" begin="0.8s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" from="0.5" to="0" dur="2.5s" begin="0.8s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="185" cy="380" r="8" fill="none" stroke="var(--accent)" stroke-width="1" opacity="0.3">
+        <animate attributeName="r" from="5" to="18" dur="2.5s" begin="1.6s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" from="0.5" to="0" dur="2.5s" begin="1.6s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+    <div class="hero-stats">
+      <div class="stat-item"><span class="stat-num">7</span><span class="stat-label">Continents</span></div>
+      <div class="stat-item"><span class="stat-num">8B+</span><span class="stat-label">People</span></div>
+      <div class="stat-item"><span class="stat-num">195</span><span class="stat-label">Countries</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro-section" id="intro">
+  <div class="container">
+    <div class="intro-grid">
+      <div>
+        <p class="section-eyebrow">What Is Geography?</p>
+        <h2 class="section-title">More Than Memorizing Places</h2>
+        <div class="intro-body">
+          <p>Most people think of geography as something you do with a map — find the capital, locate the river, label the country. But <strong>human geography</strong> asks deeper questions: <em>Why</em> do people live where they do? How does location shape culture, economy, and power?</p>
+          <p>Geography comes from the Greek words <em>geo</em> (Earth) and <em>graphia</em> (writing or description). At its core, geography is about describing and explaining the world's surface — both the physical landscape and the human systems layered on top of it.</p>
+          <p>Human geographers are not just map readers; they are <strong>spatial analysts</strong>. They ask questions that connect place, people, and pattern.</p>
+        </div>
+      </div>
+      <div>
+        <div class="intro-pull-quote">"Geography is the study of Earth as the home of people."<br><span style="font-size:0.9rem;font-weight:400;color:var(--ink-light)">— Yi-Fu Tuan, geographer</span></div>
+        <div class="intro-body">
+          <p>The discipline rests on a core geographic question: <strong>Why are things located where they are, and what difference does it make?</strong></p>
+          <p>When geographers see a pattern — a cluster of factories, a sprawling city, a shrinking rural town — they ask: What forces created this? What physical, cultural, economic, or political factors are at work? How does this pattern connect to patterns elsewhere?</p>
+          <p>Thinking geographically means seeing the world as an interconnected set of <em>places</em>, <em>regions</em>, and <em>flows</em> that are always shifting and reshaping each other.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIVE THEMES -->
+<section class="themes-section" id="themes">
+  <div class="container">
+    <p class="section-eyebrow">Framework</p>
+    <h2 class="section-title">The Five Themes of Geography</h2>
+    <p class="section-intro">In 1984, the National Council for Geographic Education established five organizing themes that remain central to geographic thinking today. Click each theme to explore it.</p>
+    <div class="themes-grid" id="themeGrid">
+      <div class="theme-card active" data-theme="0" style="--card-color:#2d5a3d">
+        <span class="theme-icon">📍</span>
+        <div class="theme-name">Location</div>
+        <div class="theme-brief">Absolute & relative positions on Earth</div>
+      </div>
+      <div class="theme-card" data-theme="1" style="--card-color:#c4622d">
+        <span class="theme-icon">🏔</span>
+        <div class="theme-name">Place</div>
+        <div class="theme-brief">Physical & human characteristics of locations</div>
+      </div>
+      <div class="theme-card" data-theme="2" style="--card-color:#2c5f8a">
+        <span class="theme-icon">🌊</span>
+        <div class="theme-name">Human–Environment Interaction</div>
+        <div class="theme-brief">How people shape & are shaped by nature</div>
+      </div>
+      <div class="theme-card" data-theme="3" style="--card-color:#6b4e9a">
+        <span class="theme-icon">🗺</span>
+        <div class="theme-name">Movement</div>
+        <div class="theme-brief">Migration, trade, & the spread of ideas</div>
+      </div>
+      <div class="theme-card" data-theme="4" style="--card-color:#8b6914">
+        <span class="theme-icon">🔗</span>
+        <div class="theme-name">Region</div>
+        <div class="theme-brief">Areas defined by shared characteristics</div>
+      </div>
+    </div>
+    <div id="themeDetail" class="theme-detail visible">
+      <!-- dynamically rendered -->
+    </div>
+  </div>
+</section>
+
+<!-- INTERACTIVE MAP -->
+<section class="map-section" id="map">
+  <div class="container">
+    <p class="section-eyebrow">Interactive Exploration</p>
+    <h2 class="section-title">The World Through Different Lenses</h2>
+    <p class="section-intro">Geography reveals different patterns depending on <em>what</em> you choose to map. Toggle between layers below to see how the same world looks through different geographic lenses.</p>
+    <div class="map-controls">
+      <button class="map-btn active" onclick="setMapLayer('physical')">🏔 Physical</button>
+      <button class="map-btn" onclick="setMapLayer('population')">👥 Population Density</button>
+      <button class="map-btn" onclick="setMapLayer('climate')">🌡 Climate Zones</button>
+      <button class="map-btn" onclick="setMapLayer('development')">💹 Development</button>
+    </div>
+    <div class="map-container">
+      <svg id="worldmap" viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg">
+        <!-- Ocean background -->
+        <rect id="mapOcean" width="900" height="500" fill="#1a3a4e"/>
+        <!-- Will be filled by JS -->
+        <g id="mapContinents"></g>
+        <g id="mapOverlay"></g>
+        <g id="mapCities"></g>
+        <g id="mapLabels"></g>
+      </svg>
+      <div class="map-tooltip" id="mapTooltip"></div>
+    </div>
+    <div class="map-legend" id="mapLegend">
+      <span class="legend-title">Legend</span>
+    </div>
+    <p style="margin-top:1.25rem;font-size:0.82rem;color:rgba(255,255,255,0.4);font-style:italic;">Note: This is a simplified illustrative map for educational purposes. Boundaries are approximate.</p>
+  </div>
+</section>
+
+<!-- KEY CONCEPTS -->
+<section class="concepts-section" id="concepts">
+  <div class="container">
+    <p class="section-eyebrow">Spatial Analysis</p>
+    <h2 class="section-title">Core Spatial Concepts</h2>
+    <p class="section-intro">Geographic thinking relies on a toolkit of spatial concepts that help describe patterns, relationships, and processes across Earth's surface.</p>
+    <div class="concepts-grid">
+
+      <div class="concept-card">
+        <div class="concept-img">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="180" fill="#0d2518"/>
+            <!-- Distance decay illustration -->
+            <circle cx="80" cy="90" r="50" fill="none" stroke="rgba(74,140,98,0.4)" stroke-width="1"/>
+            <circle cx="80" cy="90" r="35" fill="none" stroke="rgba(74,140,98,0.55)" stroke-width="1"/>
+            <circle cx="80" cy="90" r="22" fill="none" stroke="rgba(74,140,98,0.7)" stroke-width="1"/>
+            <circle cx="80" cy="90" r="10" fill="rgba(74,140,98,0.9)"/>
+            <text x="80" y="93" font-family="IBM Plex Sans" font-size="7" fill="white" text-anchor="middle">City</text>
+            <!-- Decay dots -->
+            <circle cx="108" cy="90" r="6" fill="rgba(212,168,83,0.85)"/>
+            <circle cx="128" cy="75" r="5" fill="rgba(212,168,83,0.7)"/>
+            <circle cx="140" cy="100" r="4" fill="rgba(212,168,83,0.55)"/>
+            <circle cx="160" cy="82" r="3.5" fill="rgba(212,168,83,0.4)"/>
+            <circle cx="175" cy="110" r="3" fill="rgba(212,168,83,0.3)"/>
+            <circle cx="195" cy="92" r="2.5" fill="rgba(212,168,83,0.2)"/>
+            <!-- Label -->
+            <text x="240" y="75" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.6)">Interaction</text>
+            <text x="240" y="88" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.6)">decreases</text>
+            <text x="240" y="101" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.6)">with distance</text>
+            <line x1="225" y1="90" x2="200" y2="92" stroke="rgba(255,255,255,0.25)" stroke-width="0.75"/>
+          </svg>
+        </div>
+        <div class="concept-body">
+          <span class="concept-tag">Concept 1</span>
+          <h3>Distance Decay</h3>
+          <p>The principle that interaction between two places decreases as the distance between them increases. A farmer's market draws mostly local shoppers; a national park attracts visitors from farther away but in smaller numbers.</p>
+        </div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-img">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="180" fill="#0d2518"/>
+            <!-- Spatial diffusion waves -->
+            <circle cx="160" cy="90" r="70" fill="none" stroke="rgba(44,95,138,0.3)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <circle cx="160" cy="90" r="50" fill="none" stroke="rgba(44,95,138,0.5)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <circle cx="160" cy="90" r="30" fill="none" stroke="rgba(44,95,138,0.7)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <circle cx="160" cy="90" r="12" fill="rgba(44,95,138,0.9)"/>
+            <!-- Diffusing dots at various stages -->
+            <circle cx="192" cy="90" r="4" fill="#5b9bc8" opacity="0.9"/>
+            <circle cx="175" cy="115" r="4" fill="#5b9bc8" opacity="0.85"/>
+            <circle cx="140" cy="118" r="4" fill="#5b9bc8" opacity="0.8"/>
+            <circle cx="210" cy="70" r="3.5" fill="#5b9bc8" opacity="0.7"/>
+            <circle cx="230" cy="95" r="3" fill="#5b9bc8" opacity="0.55"/>
+            <circle cx="218" cy="120" r="3" fill="#5b9bc8" opacity="0.5"/>
+            <circle cx="115" cy="78" r="3.5" fill="#5b9bc8" opacity="0.65"/>
+            <circle cx="248" cy="80" r="2.5" fill="#5b9bc8" opacity="0.35"/>
+            <text x="160" y="93" font-family="IBM Plex Sans" font-size="7" fill="white" text-anchor="middle">Origin</text>
+          </svg>
+        </div>
+        <div class="concept-body">
+          <span class="concept-tag">Concept 2</span>
+          <h3>Spatial Diffusion</h3>
+          <p>The process by which a characteristic, idea, or phenomenon spreads across space and through time. Innovations like smartphones and fast-food chains diffused outward from their origins, reaching new places at varying rates.</p>
+        </div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-img">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="180" fill="#0d2518"/>
+            <!-- Clustering illustration -->
+            <!-- Cluster 1 -->
+            <ellipse cx="95" cy="95" rx="42" ry="38" fill="rgba(196,98,45,0.1)" stroke="rgba(196,98,45,0.35)" stroke-width="1"/>
+            <circle cx="88" cy="88" r="5" fill="rgba(196,98,45,0.85)"/>
+            <circle cx="100" cy="100" r="5" fill="rgba(196,98,45,0.85)"/>
+            <circle cx="82" cy="104" r="5" fill="rgba(196,98,45,0.85)"/>
+            <circle cx="108" cy="88" r="5" fill="rgba(196,98,45,0.85)"/>
+            <circle cx="95" cy="82" r="4" fill="rgba(196,98,45,0.75)"/>
+            <text x="95" y="145" font-family="IBM Plex Sans" font-size="8" fill="rgba(255,255,255,0.45)" text-anchor="middle">Tech Hub</text>
+            <!-- Cluster 2 -->
+            <ellipse cx="225" cy="80" rx="38" ry="32" fill="rgba(74,140,98,0.1)" stroke="rgba(74,140,98,0.35)" stroke-width="1"/>
+            <circle cx="218" cy="74" r="5" fill="rgba(74,140,98,0.85)"/>
+            <circle cx="232" cy="82" r="5" fill="rgba(74,140,98,0.85)"/>
+            <circle cx="220" cy="88" r="4.5" fill="rgba(74,140,98,0.8)"/>
+            <circle cx="235" cy="70" r="4" fill="rgba(74,140,98,0.75)"/>
+            <text x="225" y="125" font-family="IBM Plex Sans" font-size="8" fill="rgba(255,255,255,0.45)" text-anchor="middle">Port City</text>
+            <!-- Scattered outliers -->
+            <circle cx="170" cy="140" r="3" fill="rgba(255,255,255,0.3)"/>
+            <circle cx="40" cy="50" r="3" fill="rgba(255,255,255,0.3)"/>
+            <circle cx="290" cy="140" r="3" fill="rgba(255,255,255,0.3)"/>
+          </svg>
+        </div>
+        <div class="concept-body">
+          <span class="concept-tag">Concept 3</span>
+          <h3>Clustering & Agglomeration</h3>
+          <p>The tendency for similar activities or people to concentrate in one area. Silicon Valley's tech industry, Detroit's automotive past, and immigrant ethnic neighborhoods all reflect the economic and social benefits of spatial clustering.</p>
+        </div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-img">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="180" fill="#0d2518"/>
+            <!-- Accessibility / network -->
+            <!-- Nodes -->
+            <circle cx="160" cy="90" r="14" fill="rgba(74,140,98,0.9)"/>
+            <circle cx="60" cy="50" r="10" fill="rgba(44,95,138,0.8)"/>
+            <circle cx="270" cy="55" r="9" fill="rgba(44,95,138,0.8)"/>
+            <circle cx="70" cy="150" r="9" fill="rgba(44,95,138,0.8)"/>
+            <circle cx="260" cy="145" r="9" fill="rgba(44,95,138,0.8)"/>
+            <circle cx="160" cy="160" r="8" fill="rgba(196,98,45,0.7)"/>
+            <circle cx="160" cy="28" r="8" fill="rgba(196,98,45,0.7)"/>
+            <!-- Edges -->
+            <line x1="160" y1="90" x2="60" y2="50" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+            <line x1="160" y1="90" x2="270" y2="55" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+            <line x1="160" y1="90" x2="70" y2="150" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+            <line x1="160" y1="90" x2="260" y2="145" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+            <line x1="160" y1="90" x2="160" y2="160" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+            <line x1="160" y1="90" x2="160" y2="28" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+            <line x1="60" y1="50" x2="70" y2="150" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+            <line x1="270" y1="55" x2="260" y2="145" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+            <!-- Labels -->
+            <text x="160" y="93" font-family="IBM Plex Sans" font-size="7" fill="white" text-anchor="middle">Hub</text>
+          </svg>
+        </div>
+        <div class="concept-body">
+          <span class="concept-tag">Concept 4</span>
+          <h3>Connectivity & Networks</h3>
+          <p>The degree to which places are linked by transportation, communication, and social ties. A well-connected city like Singapore is a global hub; a remote village with no roads has low connectivity and limited access to outside resources.</p>
+        </div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-img">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="180" fill="#0d2518"/>
+            <!-- Scale comparison -->
+            <!-- Local box -->
+            <rect x="20" y="30" width="80" height="60" rx="3" fill="rgba(196,98,45,0.15)" stroke="rgba(196,98,45,0.5)" stroke-width="1"/>
+            <text x="60" y="65" font-family="IBM Plex Sans" font-size="8" fill="rgba(255,255,255,0.5)" text-anchor="middle">Neighborhood</text>
+            <!-- Regional box  -->
+            <rect x="120" y="20" width="100" height="80" rx="3" fill="rgba(44,95,138,0.12)" stroke="rgba(44,95,138,0.45)" stroke-width="1"/>
+            <text x="170" y="65" font-family="IBM Plex Sans" font-size="8" fill="rgba(255,255,255,0.5)" text-anchor="middle">Region</text>
+            <!-- Global box -->
+            <rect x="235" y="10" width="70" height="100" rx="3" fill="rgba(74,140,98,0.1)" stroke="rgba(74,140,98,0.4)" stroke-width="1"/>
+            <text x="270" y="65" font-family="IBM Plex Sans" font-size="8" fill="rgba(255,255,255,0.5)" text-anchor="middle">Global</text>
+            <!-- Arrows suggesting nesting -->
+            <path d="M100,60 Q115,60 120,60" stroke="rgba(255,255,255,0.3)" stroke-width="1" fill="none" marker-end="url(#arr)"/>
+            <path d="M220,60 Q228,60 235,60" stroke="rgba(255,255,255,0.3)" stroke-width="1" fill="none" marker-end="url(#arr)"/>
+            <defs><marker id="arr" markerWidth="4" markerHeight="4" refX="2" refY="2" orient="auto"><path d="M0,0 L0,4 L4,2 Z" fill="rgba(255,255,255,0.4)"/></marker></defs>
+            <!-- Scale bar labels -->
+            <text x="60" y="105" font-family="IBM Plex Sans" font-size="7" fill="rgba(196,98,45,0.7)" text-anchor="middle">Local scale</text>
+            <text x="170" y="118" font-family="IBM Plex Sans" font-size="7" fill="rgba(44,95,138,0.7)" text-anchor="middle">Regional scale</text>
+            <text x="270" y="130" font-family="IBM Plex Sans" font-size="7" fill="rgba(74,140,98,0.7)" text-anchor="middle">Global scale</text>
+          </svg>
+        </div>
+        <div class="concept-body">
+          <span class="concept-tag">Concept 5</span>
+          <h3>Scale of Analysis</h3>
+          <p>Zooming in or out changes what geographic patterns are visible. Poverty looks different at the neighborhood level vs. the national level vs. globally. Changing scale is one of geography's most powerful analytical tools.</p>
+        </div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-img">
+          <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="320" height="180" fill="#0d2518"/>
+            <!-- Spatial pattern: formal region boundary -->
+            <!-- Two distinct zones -->
+            <rect x="10" y="20" width="145" height="145" rx="4" fill="rgba(74,140,98,0.12)"/>
+            <rect x="165" y="20" width="145" height="145" rx="4" fill="rgba(44,95,138,0.12)"/>
+            <!-- Boundary line -->
+            <line x1="157" y1="15" x2="157" y2="170" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-dasharray="5 3"/>
+            <!-- Dots in each zone with different patterns -->
+            <g fill="rgba(74,140,98,0.75)">
+              <circle cx="40" cy="55" r="4"/><circle cx="70" cy="48" r="4"/><circle cx="100" cy="60" r="4"/>
+              <circle cx="50" cy="85" r="4"/><circle cx="85" cy="78" r="4"/><circle cx="115" cy="90" r="4"/>
+              <circle cx="40" cy="120" r="4"/><circle cx="75" cy="115" r="4"/><circle cx="105" cy="125" r="4"/>
+            </g>
+            <g fill="rgba(44,95,138,0.75)">
+              <circle cx="190" cy="55" r="4"/><circle cx="220" cy="50" r="4"/><circle cx="250" cy="62" r="4"/>
+              <circle cx="180" cy="90" r="4"/><circle cx="215" cy="82" r="4"/><circle cx="248" cy="95" r="4"/>
+              <circle cx="195" cy="120" r="4"/><circle cx="228" cy="118" r="4"/><circle cx="260" cy="128" r="4"/>
+            </g>
+            <text x="83" y="168" font-family="IBM Plex Sans" font-size="8" fill="rgba(74,140,98,0.7)" text-anchor="middle">Zone A</text>
+            <text x="237" y="168" font-family="IBM Plex Sans" font-size="8" fill="rgba(44,95,138,0.7)" text-anchor="middle">Zone B</text>
+            <text x="157" y="12" font-family="IBM Plex Sans" font-size="7.5" fill="rgba(255,255,255,0.45)" text-anchor="middle">Boundary</text>
+          </svg>
+        </div>
+        <div class="concept-body">
+          <span class="concept-tag">Concept 6</span>
+          <h3>Spatial Pattern & Distribution</h3>
+          <p>How phenomena are arranged across space — clustered, dispersed, or random. Mapping disease outbreaks, crop yields, or languages reveals spatial patterns that tell stories about human and physical systems.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SCALE EXPLORER -->
+<section class="scale-section" id="scale">
+  <div class="container">
+    <p class="section-eyebrow">Interactive Tool</p>
+    <h2 class="section-title">Exploring Geographic Scale</h2>
+    <p class="section-intro">One of geography's most important insights is that <em>scale matters</em>. The same question looks completely different depending on the level of analysis. Use the slider below to explore how changing scale shifts our geographic perspective.</p>
+    <div class="scale-explorer">
+      <div class="scale-slider-wrap">
+        <label>Zoom out</label>
+        <input type="range" id="scaleSlider" min="0" max="4" value="0" step="1">
+        <span id="scaleLabel">Local Scale</span>
+        <label>Zoom in</label>
+      </div>
+      <div class="scale-display">
+        <div class="scale-map-canvas" id="scaleMapCanvas">
+          <!-- SVG injected by JS -->
+        </div>
+        <div class="scale-info" id="scaleInfo">
+          <!-- injected by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHECK UNDERSTANDING QUIZ -->
+<section class="quiz-section" id="quiz">
+  <div class="container">
+    <p class="section-eyebrow">Check Understanding</p>
+    <h2 class="section-title">Test Your Geographic Thinking</h2>
+    <p class="section-intro">Apply what you've learned. Each question tests a concept from this chapter. Read carefully — geographic thinking is about analysis, not just memorization.</p>
+    <div class="quiz-card">
+      <div class="quiz-q" id="quizQ"></div>
+      <div class="quiz-options" id="quizOptions"></div>
+      <div class="quiz-feedback" id="quizFeedback"></div>
+      <div class="quiz-nav">
+        <span class="quiz-progress" id="quizProgress"></span>
+        <button class="btn-primary" id="quizNext" onclick="nextQuestion()" style="display:none;">Next Question →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KEY TERMS -->
+<section class="terms-section" id="terms">
+  <div class="container">
+    <p class="section-eyebrow">Vocabulary</p>
+    <h2 class="section-title">Key Terms to Know</h2>
+    <p class="section-intro">These are the essential vocabulary terms for Chapter 1. Click any term to reveal an example in context.</p>
+    <div class="terms-grid" id="termsGrid">
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>AP Human Geography — Chapter 1: Geographic Thinking</strong><br>
+  For educational use · Content aligned with College Board AP Human Geography curriculum framework<br>
+  <span style="font-size:0.75rem">Interactive chapter · All maps are illustrative and simplified</span>
+</footer>
+
+<script>
+// ========================
+// FIVE THEMES DATA
+// ========================
+const themes = [
+  {
+    name: "Location",
+    icon: "📍",
+    color: "#2d5a3d",
+    description: "Location answers the most basic geographic question: <em>Where is it?</em> Geographers distinguish between two types of location.",
+    left: "<h4>Absolute Location</h4><p>A precise, fixed point on Earth, described using coordinates (latitude and longitude) or a street address. New York City sits at approximately 40.7° N, 74.0° W. This never changes.</p>",
+    right: "<div class='example-box'><h4>Key Concept: Relative Location</h4><p>A location described in relation to other places. 'Chicago is between New York and Los Angeles' or 'the pharmacy is across from the park.' Relative location reveals <em>relationships</em> — it tells us about accessibility, connections, and context.</p></div>",
+    example: "The Nile River flows north, so ancient Egyptian cities' relative location — downstream toward the Mediterranean — shaped their trade networks and cultural exchanges."
+  },
+  {
+    name: "Place",
+    icon: "🏔",
+    color: "#c4622d",
+    description: "Place asks <em>What is it like there?</em> Every location has both physical and human characteristics that give it a unique identity.",
+    left: "<h4>Physical Characteristics</h4><p>The natural features of a place: climate, landforms, soils, vegetation, bodies of water. These set the stage on which human activity occurs and profoundly shape it.</p>",
+    right: "<div class='example-box'><h4>Human Characteristics</h4><p>The cultural imprints people leave: language, religion, architecture, food, economic activities, and political systems. Tokyo and Los Angeles both have bustling ports and large populations, yet <em>feel</em> entirely different — that difference is place.</p></div>",
+    example: "New Orleans is shaped by its physical place (low elevation, subtropical climate, proximity to the Mississippi Delta) and its human place (French colonial history, African American culture, jazz heritage)."
+  },
+  {
+    name: "Human–Environment Interaction",
+    icon: "🌊",
+    color: "#2c5f8a",
+    description: "People and environment shape each other continuously. This theme asks: <em>How do humans and their environment affect each other?</em>",
+    left: "<h4>Humans Adapting to Environment</h4><p>People build homes on stilts in flood-prone areas, wear heavy clothing in cold climates, and plant drought-resistant crops in arid regions. Adaptation is geography in action.</p>",
+    right: "<div class='example-box'><h4>Humans Modifying Environment</h4><p>We drain wetlands, dam rivers, terrace hillsides, and pave over prairies. Sometimes with foresight, sometimes at great cost — deforestation in the Amazon affects rainfall patterns thousands of miles away.</p></div>",
+    example: "The Netherlands has literally remade its geography: over 17% of the country's land was reclaimed from the sea through an elaborate system of dikes, pumps, and polders (reclaimed wetlands)."
+  },
+  {
+    name: "Movement",
+    icon: "🗺",
+    color: "#6b4e9a",
+    description: "Nothing in geography stays put. Movement asks <em>How and why do people, goods, and ideas move from place to place?</em>",
+    left: "<h4>Migration & Trade</h4><p>From ancient trade routes to modern container shipping, movement connects economies. Push factors (famine, conflict) and pull factors (jobs, safety) explain why people migrate.</p>",
+    right: "<div class='example-box'><h4>Cultural Diffusion</h4><p>Ideas, music, food, and technology spread across space. The diffusion of Islam along Silk Road trade routes, hip-hop culture from the South Bronx to Tokyo, or COVID-19 from Wuhan globally — all are geographic stories of movement.</p></div>",
+    example: "The Colombian Exchange (post-1492) illustrates massive movement: plants like potatoes and corn moved from the Americas to Europe, while horses, wheat, and diseases traveled the other way — reshaping both hemispheres."
+  },
+  {
+    name: "Region",
+    icon: "🔗",
+    color: "#8b6914",
+    description: "A region is any area of Earth's surface defined by one or more shared characteristics. Regions are geographic tools — they help us organize, compare, and analyze.",
+    left: "<h4>Types of Regions</h4><p><strong>Formal regions</strong> have clear, agreed-upon boundaries (countries, states). <strong>Functional regions</strong> are organized around a central node (a city's commuter zone). <strong>Perceptual regions</strong> exist in the mind ('the South,' 'the Bible Belt').</p>",
+    right: "<div class='example-box'><h4>Why Regions Matter</h4><p>Regions help geographers compare places and identify patterns. But regions are not fixed — they shift as political, economic, and cultural conditions change. The 'Rust Belt' didn't exist until manufacturing declined; it emerged as a geographic concept from a social process.</p></div>",
+    example: "The Sahel region of Africa is defined functionally by its position between the Sahara Desert and the wetter savanna — a climate transition zone whose boundaries shift with drought cycles, shaping conflict over land and water."
+  }
+];
+
+function renderTheme(idx) {
+  const t = themes[idx];
+  const d = document.getElementById('themeDetail');
+  d.innerHTML = `
+    <h3>${t.icon} ${t.name}</h3>
+    <p>${t.description}</p>
+    <div class="theme-detail-grid">
+      <div>${t.left}</div>
+      <div>${t.right}</div>
+    </div>
+    <div style="margin-top:1.5rem;padding:1.25rem 1.5rem;background:rgba(212,168,83,0.1);border-radius:6px;border-left:3px solid var(--accent)">
+      <p style="font-size:0.82rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent);margin-bottom:0.5rem;font-weight:600">Real-World Example</p>
+      <p style="color:rgba(255,255,255,0.8);font-size:0.92rem;">${t.example}</p>
+    </div>
+  `;
+  d.classList.add('visible');
+}
+
+document.querySelectorAll('.theme-card').forEach(card => {
+  card.addEventListener('click', function() {
+    document.querySelectorAll('.theme-card').forEach(c => c.classList.remove('active'));
+    this.classList.add('active');
+    renderTheme(parseInt(this.dataset.theme));
+  });
+});
+renderTheme(0);
+
+// ========================
+// MAP LAYERS
+// ========================
+const continentPaths = [
+  // North America
+  { d: "M80,75 Q110,55 160,60 Q210,65 240,95 Q270,125 255,175 Q240,225 210,255 Q180,280 148,270 Q110,258 90,230 Q65,200 62,165 Q59,130 70,100 Z", label: "NORTH AMERICA", lx: 165, ly: 175 },
+  // Central America
+  { d: "M208,268 Q220,285 215,305 Q205,320 195,305 Q190,290 200,272 Z", label: "", lx:0,ly:0 },
+  // South America
+  { d: "M195,320 Q235,302 270,320 Q308,340 315,388 Q322,436 305,482 Q285,525 255,540 Q222,548 195,528 Q165,505 158,465 Q150,422 155,378 Q162,338 195,320 Z", label: "SOUTH AMERICA", lx: 235, ly: 440 },
+  // Europe
+  { d: "M355,72 Q395,60 435,68 Q462,74 468,98 Q472,120 455,136 Q435,152 408,148 Q378,142 362,125 Q344,108 355,72 Z", label: "EUROPE", lx: 410, ly: 115 },
+  // Africa
+  { d: "M368,158 Q412,140 452,155 Q488,168 498,210 Q508,255 502,308 Q496,362 470,405 Q443,446 412,460 Q380,470 353,448 Q320,422 314,380 Q308,332 315,288 Q323,238 340,200 Q352,175 368,158 Z", label: "AFRICA", lx: 408, ly: 320 },
+  // Asia
+  { d: "M475,62 Q530,45 610,52 Q680,58 720,80 Q750,100 748,128 Q746,158 725,178 Q700,198 668,200 Q635,202 610,192 Q582,182 558,190 Q535,198 510,188 Q488,175 478,155 Q466,132 468,102 Q470,80 475,62 Z", label: "ASIA", lx: 615, ly: 135 },
+  // Indian subcontinent
+  { d: "M545,200 Q572,192 595,208 Q610,228 604,260 Q596,290 578,300 Q558,306 543,290 Q528,268 530,242 Q532,216 545,200 Z", label: "", lx:0,ly:0 },
+  // Southeast Asia
+  { d: "M622,195 Q660,188 690,200 Q712,214 715,240 Q718,266 695,278 Q672,288 650,276 Q626,260 620,238 Q614,216 622,195 Z", label: "", lx:0,ly:0 },
+  // Japan/Islands
+  { d: "M742,130 Q758,125 768,138 Q775,152 765,164 Q755,172 744,162 Q735,150 742,130 Z", label: "", lx:0,ly:0 },
+  // Australia
+  { d: "M652,340 Q700,320 740,335 Q775,350 778,390 Q781,430 758,458 Q733,482 700,478 Q664,472 646,446 Q628,416 632,376 Q636,350 652,340 Z", label: "AUSTRALIA", lx: 710, ly: 415 },
+  // Antarctica
+  { d: "M120,480 Q400,460 680,468 Q800,474 860,490 Q840,500 500,505 Q160,508 120,480 Z", label: "", lx:0,ly:0, ice: true },
+  // Greenland
+  { d: "M220,28 Q255,18 285,28 Q305,38 302,62 Q298,80 278,86 Q255,90 235,78 Q215,65 220,28 Z", label: "", lx:0,ly:0 },
+];
+
+const mapLayers = {
+  physical: {
+    ocean: "#1a3a4e",
+    fills: (i) => {
+      const naturals = ["#2d5a3d","#3a6b47","#2d5a3d","#3a7045","#2a5238","#2d5a3d","#2d5a3d","#2d5a3d","#2d5a3d","#2d6a40","rgba(210,230,255,0.5)","rgba(210,230,255,0.6)"];
+      return naturals[i % naturals.length];
+    },
+    legend: [
+      {color:"#2d5a3d",label:"Forest & grassland"},
+      {color:"#c8b870",label:"Desert / dryland"},
+      {color:"#1a3a4e",label:"Ocean"},
+      {color:"rgba(210,230,255,0.7)",label:"Ice sheet"}
+    ],
+    overlayTitle: "Physical Geography",
+    extra: () => {
+      // Add desert patches
+      return `
+        <ellipse cx="435" cy="240" rx="55" ry="40" fill="rgba(180,150,70,0.45)" opacity="0.7"/>
+        <ellipse cx="600" cy="150" rx="75" ry="35" fill="rgba(200,170,80,0.35)" opacity="0.6"/>
+        <text x="435" y="244" font-family="IBM Plex Sans" font-size="8" fill="rgba(255,255,255,0.5)" text-anchor="middle">Sahara</text>
+        <text x="600" y="154" font-family="IBM Plex Sans" font-size="8" fill="rgba(255,255,255,0.4)" text-anchor="middle">Arabian Desert</text>
+        <!-- Himalayas -->
+        <path d="M558,168 Q590,160 620,168 Q615,178 590,180 Q565,180 558,168 Z" fill="rgba(240,240,255,0.6)"/>
+        <text x="590" y="195" font-family="IBM Plex Sans" font-size="7.5" fill="rgba(255,255,255,0.5)" text-anchor="middle">Himalayas</text>
+        <!-- Amazon -->
+        <ellipse cx="225" cy="385" rx="35" ry="42" fill="rgba(30,90,40,0.5)" opacity="0.7"/>
+        <text x="225" y="388" font-family="IBM Plex Sans" font-size="7.5" fill="rgba(255,255,255,0.5)" text-anchor="middle">Amazon</text>
+      `;
+    }
+  },
+  population: {
+    ocean: "#0d1f2d",
+    fills: (i) => {
+      const cols = ["#1e3a28","#1e3a28","#153020","#1e3a28","#1e3a28","#1e3a28","#1e3a28","#1e3a28","#1e3a28","#1e3a28","rgba(180,210,230,0.25)","rgba(180,210,230,0.2)"];
+      return cols[i % cols.length];
+    },
+    legend: [
+      {color:"#e85d28",label:"Very high density (>500/km²)"},
+      {color:"#f0a844",label:"High density (100–500/km²)"},
+      {color:"#4a8c62",label:"Medium density (10–100/km²)"},
+      {color:"#1e3a28",label:"Low density (<10/km²)"}
+    ],
+    overlayTitle: "Population Density",
+    extra: () => `
+      <!-- Population hot spots as circles -->
+      <!-- East Asia mega cluster -->
+      <ellipse cx="695" cy="165" rx="50" ry="38" fill="rgba(232,93,40,0.65)" opacity="0.8"/>
+      <text x="695" y="169" font-family="IBM Plex Sans" font-size="7.5" fill="white" text-anchor="middle" font-weight="600">China/Japan</text>
+      <!-- South Asia -->
+      <ellipse cx="570" cy="240" rx="38" ry="32" fill="rgba(232,93,40,0.6)" opacity="0.75"/>
+      <text x="570" y="244" font-family="IBM Plex Sans" font-size="7.5" fill="white" text-anchor="middle" font-weight="600">South Asia</text>
+      <!-- NW Europe -->
+      <ellipse cx="398" cy="100" rx="30" ry="22" fill="rgba(232,93,40,0.45)" opacity="0.7"/>
+      <text x="398" y="104" font-family="IBM Plex Sans" font-size="7" fill="white" text-anchor="middle">Europe</text>
+      <!-- US East Coast -->
+      <ellipse cx="118" cy="148" rx="20" ry="28" fill="rgba(232,93,40,0.4)" opacity="0.65"/>
+      <text x="118" y="152" font-family="IBM Plex Sans" font-size="7" fill="white" text-anchor="middle">E. US</text>
+      <!-- Nigeria/West Africa -->
+      <circle cx="378" cy="275" r="18" fill="rgba(240,168,68,0.5)" opacity="0.7"/>
+      <text x="378" y="279" font-family="IBM Plex Sans" font-size="7" fill="white" text-anchor="middle">W.Africa</text>
+      <!-- Nile Valley -->
+      <ellipse cx="452" cy="195" rx="12" ry="30" fill="rgba(240,168,68,0.5)" opacity="0.65"/>
+    `
+  },
+  climate: {
+    ocean: "#1a3050",
+    fills: (i) => "#1e3828",
+    legend: [
+      {color:"#e05030",label:"Tropical / Hot desert"},
+      {color:"#60b050",label:"Temperate / Mediterranean"},
+      {color:"#4090c8",label:"Continental / Subarctic"},
+      {color:"rgba(220,235,255,0.8)",label:"Polar / Ice"}
+    ],
+    overlayTitle: "Climate Zones",
+    extra: () => `
+      <!-- Tropical belt -->
+      <rect x="50" y="268" width="800" height="90" fill="rgba(220,80,40,0.18)" rx="2"/>
+      <text x="880" y="318" font-family="IBM Plex Sans" font-size="8" fill="rgba(220,80,40,0.6)" text-anchor="end">Tropical</text>
+      <!-- Equator line -->
+      <line x1="40" y1="313" x2="870" y2="313" stroke="rgba(255,200,80,0.35)" stroke-width="1" stroke-dasharray="6 4"/>
+      <text x="52" y="310" font-family="IBM Plex Sans" font-size="7.5" fill="rgba(255,200,80,0.55)">Equator</text>
+      <!-- Temperate zones -->
+      <rect x="50" y="148" width="800" height="118" fill="rgba(70,170,80,0.12)" rx="2"/>
+      <rect x="50" y="355" width="800" height="80" fill="rgba(70,170,80,0.1)" rx="2"/>
+      <!-- Continental/subarctic -->
+      <rect x="50" y="50" width="800" height="98" fill="rgba(50,130,200,0.1)" rx="2"/>
+      <!-- Polar caps -->
+      <rect x="50" y="15" width="800" height="35" fill="rgba(200,220,255,0.25)" rx="2"/>
+      <rect x="50" y="458" width="800" height="40" fill="rgba(200,220,255,0.2)" rx="2"/>
+      <!-- Tropic lines -->
+      <line x1="40" y1="260" x2="870" y2="260" stroke="rgba(220,80,40,0.25)" stroke-width="0.75" stroke-dasharray="4 4"/>
+      <text x="52" y="257" font-family="IBM Plex Sans" font-size="7" fill="rgba(220,80,40,0.45)">Tropic of Cancer</text>
+      <line x1="40" y1="367" x2="870" y2="367" stroke="rgba(220,80,40,0.25)" stroke-width="0.75" stroke-dasharray="4 4"/>
+      <text x="52" y="363" font-family="IBM Plex Sans" font-size="7" fill="rgba(220,80,40,0.45)">Tropic of Capricorn</text>
+    `
+  },
+  development: {
+    ocean: "#0f1e30",
+    fills: (i) => "#1e3828",
+    legend: [
+      {color:"#2d8a5e",label:"High HDI (>0.8)"},
+      {color:"#f0a844",label:"Medium HDI (0.55–0.8)"},
+      {color:"#c44820",label:"Low HDI (<0.55)"},
+      {color:"#888",label:"Limited data"}
+    ],
+    overlayTitle: "Human Development Index (HDI)",
+    extra: () => `
+      <!-- High HDI regions: North America, Europe, Australia, Japan -->
+      <path d="M80,75 Q110,55 160,60 Q210,65 240,95 Q270,125 255,175 Q240,225 210,255 Q180,280 148,270 Q110,258 90,230 Q65,200 62,165 Q59,130 70,100 Z" fill="rgba(45,138,94,0.55)" opacity="0.9"/>
+      <path d="M355,72 Q395,60 435,68 Q462,74 468,98 Q472,120 455,136 Q435,152 408,148 Q378,142 362,125 Q344,108 355,72 Z" fill="rgba(45,138,94,0.55)" opacity="0.9"/>
+      <path d="M652,340 Q700,320 740,335 Q775,350 778,390 Q781,430 758,458 Q733,482 700,478 Q664,472 646,446 Q628,416 632,376 Q636,350 652,340 Z" fill="rgba(45,138,94,0.55)" opacity="0.9"/>
+      <!-- Japan/Korea high HDI -->
+      <ellipse cx="725" cy="150" rx="35" ry="28" fill="rgba(45,138,94,0.5)" opacity="0.8"/>
+      <!-- Medium HDI: China, SE Asia, Latin America, N Africa-->
+      <path d="M475,62 Q530,45 610,52 Q680,58 720,80 Q750,100 748,128 Q746,158 725,178 Q700,198 668,200 Q635,202 610,192 Q582,182 558,190 Q535,198 510,188 Q488,175 478,155 Q466,132 468,102 Q470,80 475,62 Z" fill="rgba(240,168,68,0.45)" opacity="0.85"/>
+      <path d="M195,320 Q235,302 270,320 Q308,340 315,388 Q322,436 305,482 Q285,525 255,540 Q222,548 195,528 Q165,505 158,465 Q150,422 155,378 Q162,338 195,320 Z" fill="rgba(240,168,68,0.4)" opacity="0.8"/>
+      <!-- South Asia medium -->
+      <path d="M545,200 Q572,192 595,208 Q610,228 604,260 Q596,290 578,300 Q558,306 543,290 Q528,268 530,242 Q532,216 545,200 Z" fill="rgba(240,168,68,0.4)" opacity="0.8"/>
+      <!-- Low HDI: Sub-Saharan Africa -->
+      <path d="M368,200 Q412,180 452,195 Q488,210 498,255 Q508,305 502,358 Q496,410 470,450 Q443,480 412,492 Q380,500 353,478 Q320,452 314,408 Q308,360 315,310 Q323,258 340,228 Z" fill="rgba(196,72,32,0.5)" opacity="0.85"/>
+      <!-- Labels -->
+      <text x="165" y="185" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.7)" text-anchor="middle" font-weight="500">High HDI</text>
+      <text x="408" y="105" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.7)" text-anchor="middle" font-weight="500">High HDI</text>
+      <text x="600" y="135" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.65)" text-anchor="middle">Med HDI</text>
+      <text x="408" y="345" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.65)" text-anchor="middle">Low HDI</text>
+      <text x="235" y="430" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.6)" text-anchor="middle">Med HDI</text>
+    `
+  }
+};
+
+let activeLayer = 'physical';
+
+function setMapLayer(layer) {
+  activeLayer = layer;
+  document.querySelectorAll('.map-btn').forEach(b => {
+    b.classList.toggle('active', b.getAttribute('onclick').includes(layer));
+  });
+  renderMap(layer);
+}
+
+function renderMap(layer) {
+  const cfg = mapLayers[layer];
+  const svg = document.getElementById('worldmap');
+  document.getElementById('mapOcean').setAttribute('fill', cfg.ocean);
+
+  // Render continents
+  let cHtml = '';
+  continentPaths.forEach((c, i) => {
+    const fill = c.ice ? 'rgba(210,230,255,0.45)' : cfg.fills(i);
+    cHtml += `<path d="${c.d}" fill="${fill}" stroke="rgba(0,0,0,0.3)" stroke-width="0.5"/>`;
+    if (c.label) {
+      cHtml += `<text x="${c.lx}" y="${c.ly}" font-family="IBM Plex Sans,sans-serif" font-size="9" fill="rgba(255,255,255,0.38)" text-anchor="middle" letter-spacing="0.12em">${c.label}</text>`;
+    }
+  });
+  document.getElementById('mapContinents').innerHTML = cHtml;
+
+  // Overlay
+  document.getElementById('mapOverlay').innerHTML = cfg.extra ? cfg.extra() : '';
+
+  // Grid lines
+  let grid = `<g stroke="rgba(255,255,255,0.05)" stroke-width="0.5">`;
+  for (let x = 0; x <= 900; x += 90) grid += `<line x1="${x}" y1="0" x2="${x}" y2="500"/>`;
+  for (let y = 0; y <= 500; y += 83) grid += `<line x1="0" y1="${y}" x2="900" y2="${y}"/>`;
+  grid += '</g>';
+  document.getElementById('mapLabels').innerHTML = grid;
+
+  // Legend
+  const leg = document.getElementById('mapLegend');
+  leg.innerHTML = `<span class="legend-title">${cfg.overlayTitle}</span>` +
+    cfg.legend.map(l => `<span class="legend-item"><span class="legend-dot" style="background:${l.color}"></span>${l.label}</span>`).join('');
+}
+
+renderMap('physical');
+
+// ========================
+// SCALE EXPLORER
+// ========================
+const scales = [
+  {
+    label: "Local Scale",
+    level: "Local",
+    title: "Your Neighborhood",
+    desc: "At the local scale, we examine individual streets, neighborhoods, and communities. Geographic questions at this scale might include: Why is this neighborhood segregated by income? Where are the food deserts in this city? How does proximity to a park affect property values?",
+    examples: [
+      "Zoning laws divide land uses block by block",
+      "A corner store serves a 5-block radius",
+      "A school catchment area defines who attends"
+    ],
+    svgContent: () => `
+      <rect width="100%" height="280" fill="#0d2518"/>
+      <!-- Street grid -->
+      <g stroke="rgba(255,255,255,0.15)" stroke-width="1">
+        ${[1,2,3,4].map(i=>`<line x1="${i*60}" y1="0" x2="${i*60}" y2="280"/>`).join('')}
+        ${[1,2,3,4].map(i=>`<line x1="0" y1="${i*55}" x2="320" y2="${i*55}"/>`).join('')}
+      </g>
+      <!-- Buildings -->
+      <rect x="18" y="18" width="32" height="32" rx="2" fill="rgba(74,140,98,0.7)"/>
+      <rect x="78" y="18" width="32" height="32" rx="2" fill="rgba(44,95,138,0.7)"/>
+      <rect x="138" y="18" width="32" height="32" rx="2" fill="rgba(196,98,45,0.7)"/>
+      <rect x="198" y="18" width="32" height="32" rx="2" fill="rgba(74,140,98,0.7)"/>
+      <rect x="258" y="18" width="32" height="32" rx="2" fill="rgba(44,95,138,0.7)"/>
+      <rect x="18" y="73" width="32" height="32" rx="2" fill="rgba(74,140,98,0.5)"/>
+      <rect x="78" y="73" width="52" height="32" rx="2" fill="rgba(150,90,40,0.7)"/>
+      <text x="104" y="93" font-family="IBM Plex Sans" font-size="7" fill="rgba(255,255,255,0.7)" text-anchor="middle">School</text>
+      <rect x="138" y="73" width="32" height="32" rx="2" fill="rgba(74,140,98,0.5)"/>
+      <rect x="198" y="73" width="32" height="32" rx="2" fill="rgba(74,140,98,0.5)"/>
+      <rect x="258" y="73" width="32" height="32" rx="2" fill="rgba(74,140,98,0.5)"/>
+      <!-- Park -->
+      <rect x="78" y="128" width="72" height="52" rx="3" fill="rgba(30,90,40,0.8)"/>
+      <text x="114" y="158" font-family="IBM Plex Sans" font-size="8" fill="rgba(255,255,255,0.6)" text-anchor="middle">Park</text>
+      <!-- Labels -->
+      <text x="160" y="258" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.4)" text-anchor="middle">Scale: 1 km × 1 km</text>
+    `
+  },
+  {
+    label: "Urban Scale",
+    level: "Urban",
+    title: "The City",
+    desc: "At the urban scale, we can see patterns across an entire metropolitan area — how neighborhoods differ by income, how industries cluster in certain districts, how transportation networks shape growth, and where urban sprawl is occurring.",
+    examples: [
+      "The Central Business District concentrates offices",
+      "Highway interchanges attract big-box retail",
+      "Deindustrialized zones become art districts"
+    ],
+    svgContent: () => `
+      <rect width="100%" height="280" fill="#0d2518"/>
+      <!-- CBD core -->
+      <ellipse cx="160" cy="120" rx="35" ry="30" fill="rgba(212,168,83,0.25)" stroke="rgba(212,168,83,0.4)" stroke-width="1"/>
+      <text x="160" y="123" font-family="IBM Plex Sans" font-size="8" fill="rgba(212,168,83,0.9)" text-anchor="middle" font-weight="600">CBD</text>
+      <!-- Residential zones -->
+      <ellipse cx="160" cy="120" rx="80" ry="70" fill="none" stroke="rgba(74,140,98,0.3)" stroke-width="1" stroke-dasharray="4 3"/>
+      <ellipse cx="160" cy="120" rx="130" ry="110" fill="none" stroke="rgba(44,95,138,0.25)" stroke-width="1" stroke-dasharray="4 3"/>
+      <!-- Roads -->
+      <line x1="160" y1="0" x2="160" y2="280" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+      <line x1="0" y1="120" x2="320" y2="120" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+      <line x1="40" y1="20" x2="290" y2="220" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+      <line x1="40" y1="220" x2="290" y2="20" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+      <!-- Neighborhoods -->
+      <text x="100" y="75" font-family="IBM Plex Sans" font-size="8" fill="rgba(255,255,255,0.4)">Inner suburbs</text>
+      <text x="55" y="168" font-family="IBM Plex Sans" font-size="8" fill="rgba(255,255,255,0.4)">Industrial</text>
+      <text x="225" y="75" font-family="IBM Plex Sans" font-size="8" fill="rgba(255,255,255,0.4)">Affluent zone</text>
+      <text x="238" y="175" font-family="IBM Plex Sans" font-size="8" fill="rgba(255,255,255,0.4)">Outer suburb</text>
+      <text x="160" y="258" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.4)" text-anchor="middle">Scale: 30 km × 30 km</text>
+    `
+  },
+  {
+    label: "Regional Scale",
+    level: "Regional",
+    title: "A Region",
+    desc: "Regions reveal patterns too big to see at the city level: agricultural land use, river basins, mountain barriers, language regions, and economic corridors. The US Corn Belt, the European Megalopolis, and the Sahel are all meaningful at this scale.",
+    examples: [
+      "The US Great Plains is defined by flat terrain + wheat farming",
+      "The Rhine–Ruhr industrial corridor shaped European history",
+      "The Sun Belt grew due to air conditioning + migration"
+    ],
+    svgContent: () => `
+      <rect width="100%" height="280" fill="#0a1d10"/>
+      <!-- Regional territory -->
+      <path d="M40,50 Q120,30 220,45 Q290,55 300,100 Q308,145 290,190 Q268,235 210,250 Q150,262 100,248 Q50,232 32,190 Q15,145 25,100 Z" fill="rgba(74,140,98,0.18)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+      <!-- Cities within region -->
+      <circle cx="120" cy="120" r="12" fill="rgba(212,168,83,0.8)"/>
+      <text x="120" y="124" font-family="IBM Plex Sans" font-size="7" fill="#0d2518" text-anchor="middle" font-weight="700">A</text>
+      <circle cx="200" cy="150" r="9" fill="rgba(212,168,83,0.65)"/>
+      <text x="200" y="154" font-family="IBM Plex Sans" font-size="6.5" fill="#0d2518" text-anchor="middle">B</text>
+      <circle cx="160" cy="80" r="7" fill="rgba(212,168,83,0.55)"/>
+      <circle cx="100" cy="195" r="6" fill="rgba(212,168,83,0.5)"/>
+      <circle cx="240" cy="105" r="7" fill="rgba(212,168,83,0.55)"/>
+      <!-- Links between cities -->
+      <line x1="120" y1="120" x2="200" y2="150" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+      <line x1="120" y1="120" x2="160" y2="80" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+      <line x1="120" y1="120" x2="100" y2="195" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+      <line x1="200" y1="150" x2="240" y2="105" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+      <!-- Rivers -->
+      <path d="M40,60 Q100,90 120,120 Q140,150 170,200 Q190,230 210,250" fill="none" stroke="rgba(44,95,138,0.5)" stroke-width="2"/>
+      <text x="160" y="260" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.4)" text-anchor="middle">Scale: 500 km × 500 km</text>
+    `
+  },
+  {
+    label: "National Scale",
+    level: "National",
+    title: "A Country",
+    desc: "At the national scale, geographers can compare regions within a country: wealth gaps between north and south, urban-rural divides, patterns of migration between states, or the geographic distribution of industries and resources.",
+    examples: [
+      "Brazil's economic core in the southeast vs. the Amazon periphery",
+      "China's coastal-interior development gap",
+      "US population shift from Rust Belt to Sun Belt"
+    ],
+    svgContent: () => `
+      <rect width="100%" height="280" fill="#0a1d10"/>
+      <!-- Simplified USA-ish shape -->
+      <path d="M30,60 Q100,40 210,50 Q280,56 295,80 Q305,105 300,130 Q295,155 270,165 Q250,172 235,168 Q220,163 200,175 Q185,185 175,185 Q155,190 145,185 Q130,178 115,185 Q100,192 85,188 Q60,180 40,165 Q20,148 22,115 Z" fill="rgba(74,140,98,0.2)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+      <!-- Alaska appendage -->
+      <path d="M22,118 Q10,130 15,148 Q22,158 40,165" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+      <!-- Major cities -->
+      <circle cx="270" cy="100" r="8" fill="rgba(232,93,40,0.85)"/>
+      <text x="270" y="118" font-family="IBM Plex Sans" font-size="7.5" fill="rgba(255,255,255,0.6)" text-anchor="middle">NY</text>
+      <circle cx="80" cy="115" r="7" fill="rgba(232,93,40,0.7)"/>
+      <text x="80" y="133" font-family="IBM Plex Sans" font-size="7.5" fill="rgba(255,255,255,0.6)" text-anchor="middle">LA</text>
+      <circle cx="165" cy="105" r="7" fill="rgba(232,93,40,0.7)"/>
+      <text x="165" y="123" font-family="IBM Plex Sans" font-size="7.5" fill="rgba(255,255,255,0.6)" text-anchor="middle">CHI</text>
+      <circle cx="225" cy="148" r="6" fill="rgba(232,93,40,0.6)"/>
+      <text x="225" y="164" font-family="IBM Plex Sans" font-size="7.5" fill="rgba(255,255,255,0.5)" text-anchor="middle">ATL</text>
+      <circle cx="85" cy="65" r="5" fill="rgba(232,93,40,0.55)"/>
+      <text x="85" y="58" font-family="IBM Plex Sans" font-size="7" fill="rgba(255,255,255,0.5)" text-anchor="middle">SEA</text>
+      <!-- GDP gradient overlay -->
+      <ellipse cx="220" cy="110" rx="85" ry="55" fill="rgba(212,168,83,0.07)"/>
+      <text x="222" y="170" font-family="IBM Plex Sans" font-size="7.5" fill="rgba(212,168,83,0.4)" text-anchor="middle">BosWash Corridor</text>
+      <text x="160" y="260" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.4)" text-anchor="middle">Scale: 4,000 km × 2,500 km</text>
+    `
+  },
+  {
+    label: "Global Scale",
+    level: "Global",
+    title: "The Whole World",
+    desc: "At the global scale, human geography reveals the big patterns: the North-South economic divide, global migration flows, trade networks, climate change effects, and the spread of globalization. This is the broadest lens — useful for seeing systemic forces, but it obscures local details.",
+    examples: [
+      "Core-periphery relationships between wealthy and developing nations",
+      "Global supply chains connecting factories to consumers across continents",
+      "International climate agreements require global geographic perspective"
+    ],
+    svgContent: () => `
+      <rect width="100%" height="280" fill="#0a1520"/>
+      <!-- Grid -->
+      <g stroke="rgba(255,255,255,0.04)" stroke-width="0.5">
+        ${[1,2,3,4,5].map(i=>`<line x1="${i*53}" y1="0" x2="${i*53}" y2="280"/>`).join('')}
+        ${[1,2,3].map(i=>`<line x1="0" y1="${i*70}" x2="320" y2="${i*70}"/>`).join('')}
+      </g>
+      <!-- Equator -->
+      <line x1="0" y1="140" x2="320" y2="140" stroke="rgba(212,168,83,0.2)" stroke-width="1"/>
+      <!-- Continents mini -->
+      <path d="M20,65 Q45,55 70,58 Q92,62 98,80 Q103,98 90,112 Q76,125 58,120 Q36,112 25,96 Q15,80 20,65Z" fill="rgba(74,140,98,0.6)"/>
+      <path d="M60,145 Q80,138 100,145 Q118,155 119,175 Q120,198 106,215 Q90,228 72,220 Q52,208 48,188 Q44,165 60,145Z" fill="rgba(74,140,98,0.6)"/>
+      <path d="M115,62 Q132,55 150,58 Q165,62 167,74 Q169,86 160,93 Q150,100 138,96 Q125,90 118,80 Q112,70 115,62Z" fill="rgba(74,140,98,0.6)"/>
+      <path d="M118,115 Q138,107 156,114 Q172,122 174,140 Q176,160 162,172 Q146,183 130,175 Q112,164 110,145 Q108,127 118,115Z" fill="rgba(74,140,98,0.6)"/>
+      <path d="M180,60 Q210,50 250,54 Q280,58 285,76 Q290,94 278,108 Q264,120 248,118 Q230,116 215,108 Q198,98 190,82 Q182,68 180,60Z" fill="rgba(74,140,98,0.6)"/>
+      <path d="M208,128 Q224,122 238,130 Q250,140 250,158 Q250,175 238,183 Q222,190 208,182 Q194,172 192,154 Q190,136 208,128Z" fill="rgba(74,140,98,0.6)"/>
+      <path d="M252,155 Q272,147 286,158 Q296,168 293,182 Q288,195 274,198 Q258,200 250,190 Q242,178 252,155Z" fill="rgba(74,140,98,0.6)"/>
+      <!-- Migration/trade arrows -->
+      <path d="M68,82 Q110,65 118,70" fill="none" stroke="rgba(212,168,83,0.4)" stroke-width="1.2" marker-end="url(#arw)"/>
+      <path d="M50,100 Q50,130 65,145" fill="none" stroke="rgba(44,95,138,0.4)" stroke-width="1.2" marker-end="url(#arw)"/>
+      <path d="M180,90 Q160,105 155,115" fill="none" stroke="rgba(212,168,83,0.3)" stroke-width="1" marker-end="url(#arw)"/>
+      <path d="M240,90 Q220,105 220,130" fill="none" stroke="rgba(212,168,83,0.3)" stroke-width="1" marker-end="url(#arw)"/>
+      <defs><marker id="arw" markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" orient="auto"><path d="M0,0 L0,5 L5,2.5 Z" fill="rgba(212,168,83,0.6)"/></marker></defs>
+      <!-- North-South divide line -->
+      <line x1="0" y1="100" x2="320" y2="100" stroke="rgba(196,98,45,0.15)" stroke-width="1" stroke-dasharray="5 3"/>
+      <text x="305" y="97" font-family="IBM Plex Sans" font-size="7" fill="rgba(196,98,45,0.45)" text-anchor="end">Global North</text>
+      <text x="305" y="115" font-family="IBM Plex Sans" font-size="7" fill="rgba(196,98,45,0.35)" text-anchor="end">Global South</text>
+      <text x="160" y="262" font-family="IBM Plex Sans" font-size="9" fill="rgba(255,255,255,0.4)" text-anchor="middle">Scale: Global (510 million km²)</text>
+    `
+  }
+];
+
+function renderScale(idx) {
+  const s = scales[idx];
+  document.getElementById('scaleLabel').textContent = s.label;
+
+  const canvas = document.getElementById('scaleMapCanvas');
+  canvas.innerHTML = `<svg viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">${s.svgContent()}</svg>`;
+
+  document.getElementById('scaleInfo').innerHTML = `
+    <span class="scale-level-tag">${s.level}</span>
+    <h3>${s.title}</h3>
+    <p>${s.desc}</p>
+    <ul class="scale-examples">
+      ${s.examples.map(e=>`<li>${e}</li>`).join('')}
+    </ul>
+  `;
+}
+
+document.getElementById('scaleSlider').addEventListener('input', function() {
+  renderScale(parseInt(this.value));
+});
+renderScale(0);
+
+// ========================
+// QUIZ
+// ========================
+const questions = [
+  {
+    q: "A geographer studies why coffee shops tend to cluster near university campuses rather than spreading evenly across a city. Which geographic concept best explains this pattern?",
+    opts: ["Distance decay", "Agglomeration and clustering", "Spatial diffusion", "Absolute location"],
+    correct: 1,
+    feedback: "Agglomeration describes the clustering of similar activities in one area due to shared benefits. Coffee shops near campuses benefit from high foot traffic, a student customer base, and proximity to each other (which draws more customers overall). This is a classic example of economic agglomeration."
+  },
+  {
+    q: "Which of the following is the BEST example of relative location?",
+    opts: [
+      "Cairo, Egypt is located at 30.0° N, 31.2° E",
+      "The library is two blocks east of the fire station",
+      "The Amazon River is 6,400 km long",
+      "Mount Everest is 8,849 meters above sea level"
+    ],
+    correct: 1,
+    feedback: "Relative location describes a place in relation to other places — it tells us about relationships and connections, not a fixed coordinate. 'Two blocks east of the fire station' is relative. The coordinate is an absolute location, and length/height measurements are not location descriptions at all."
+  },
+  {
+    q: "Geographers studying how social media use spread from major U.S. cities outward to smaller towns between 2005 and 2015 would most likely be analyzing:",
+    opts: ["Formal region classification", "Spatial diffusion", "Human–environment interaction", "Scale of analysis"],
+    correct: 1,
+    feedback: "Spatial diffusion describes how ideas, behaviors, or innovations spread across space and time — outward from an origin. Social media spreading from urban centers to smaller cities and rural areas is a textbook example of hierarchical diffusion (from larger to smaller places)."
+  },
+  {
+    q: "The Netherlands has built an extensive system of dikes and polders that have reclaimed land from the sea. This is best understood through which of the Five Themes of Geography?",
+    opts: ["Movement", "Place", "Human–Environment Interaction", "Region"],
+    correct: 2,
+    feedback: "Human–Environment Interaction examines how people adapt to, modify, and depend on their environment. The Netherlands' polders are a powerful example of humans dramatically modifying their physical environment — literally creating land where ocean once was."
+  },
+  {
+    q: "A researcher finds that, as distance from a city center increases, the number of daily trips people make INTO that city's center decreases sharply. This relationship is an example of:",
+    opts: ["Agglomeration", "Distance decay", "Regional analysis", "Absolute location"],
+    correct: 1,
+    feedback: "Distance decay is the principle that interaction between places decreases as distance increases. The further people live from the city center, the less likely they are to commute there daily. This has major implications for urban planning, retail location, and public transit design."
+  },
+  {
+    q: "A geographer is analyzing poverty rates across the United States. She notices a very different pattern when she looks at the data county-by-county vs. state-by-state. This observation illustrates:",
+    opts: ["Spatial diffusion", "Distance decay", "Scale of analysis", "Agglomeration"],
+    correct: 2,
+    feedback: "Scale of analysis is the concept that geographic patterns look different depending on the level — local, regional, national, or global. Aggregating data to the state level masks within-state variation. This is sometimes called the 'ecological fallacy' — assuming patterns at one scale apply at another."
+  }
+];
+
+let currentQ = 0;
+let answered = false;
+
+function renderQuiz() {
+  const q = questions[currentQ];
+  document.getElementById('quizQ').textContent = q.q;
+  document.getElementById('quizProgress').textContent = `Question ${currentQ + 1} of ${questions.length}`;
+  document.getElementById('quizFeedback').classList.remove('visible');
+  document.getElementById('quizFeedback').textContent = '';
+  document.getElementById('quizNext').style.display = 'none';
+  answered = false;
+
+  const optsDiv = document.getElementById('quizOptions');
+  optsDiv.innerHTML = '';
+  q.opts.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-opt';
+    btn.textContent = opt;
+    btn.onclick = () => {
+      if (answered) return;
+      answered = true;
+      document.querySelectorAll('.quiz-opt').forEach((b, j) => {
+        if (j === q.correct) b.classList.add('correct');
+        else if (j === i && i !== q.correct) b.classList.add('wrong');
+        b.style.cursor = 'default';
+      });
+      const fb = document.getElementById('quizFeedback');
+      fb.textContent = q.feedback;
+      fb.classList.add('visible');
+      if (currentQ < questions.length - 1) {
+        document.getElementById('quizNext').style.display = 'inline-block';
+      } else {
+        document.getElementById('quizNext').textContent = '✓ Chapter Complete';
+        document.getElementById('quizNext').style.display = 'inline-block';
+        document.getElementById('quizNext').onclick = () => {
+          document.getElementById('quizNext').textContent = '🎉 All done!';
+          document.getElementById('quizNext').disabled = true;
+        };
+      }
+    };
+    optsDiv.appendChild(btn);
+  });
+}
+
+function nextQuestion() {
+  if (currentQ < questions.length - 1) {
+    currentQ++;
+    renderQuiz();
+  }
+}
+
+renderQuiz();
+
+// ========================
+// KEY TERMS
+// ========================
+const terms = [
+  { word: "Absolute Location", def: "An exact position on Earth, expressed as coordinates (latitude and longitude) or an address. It never changes.", ex: "Kansas City, MO sits at approximately 39.1° N, 94.6° W — that absolute location is fixed regardless of what surrounds it." },
+  { word: "Relative Location", def: "A description of place in relation to surrounding places, emphasizing relationships and connections.", ex: "Kansas City's relative location — at the confluence of the Missouri and Kansas Rivers — made it a natural trade hub for westward expansion." },
+  { word: "Spatial Diffusion", def: "The process by which phenomena spread across space and time from a point of origin.", ex: "The diffusion of fast food chains from U.S. cities to global markets follows routes of economic and cultural influence." },
+  { word: "Distance Decay", def: "The tendency for geographic interaction and influence between places to decrease as distance increases.", ex: "A regional shopping mall draws most customers from within 30 miles; beyond that, fewer people make the trip." },
+  { word: "Formal Region", def: "An area defined by a uniform characteristic — political, cultural, or physical — with clearly defined boundaries.", ex: "France is a formal political region. The Corn Belt is a formal agricultural region defined by dominant crop type." },
+  { word: "Functional Region", def: "An area organized around a central node or hub, defined by connections and flows rather than uniformity.", ex: "A city's commuter zone — the area from which people travel daily to the city center — is a functional region." },
+  { word: "Perceptual Region", def: "An area defined by people's perception, feelings, and cultural identity rather than hard data.", ex: "'The South' in the United States is a perceptual region — its boundaries vary depending on who you ask and what criteria they use." },
+  { word: "Agglomeration", def: "The clustering of similar industries, businesses, or people in a location for mutual economic or social benefit.", ex: "Hollywood's concentration of film studios, talent agencies, and production companies is a classic agglomeration economy." },
+  { word: "Human–Environment Interaction", def: "The study of how humans adapt to, modify, and depend on their physical environment — and how environment affects humans.", ex: "Terraced rice farming in Southeast Asia represents humans modifying steep terrain to create arable land." },
+  { word: "Scale of Analysis", def: "The spatial level at which geographic phenomena are examined — from local to regional to global.", ex: "Income inequality looks different at the neighborhood scale (block-by-block variation) than at the national scale (comparing state averages)." },
+  { word: "Push Factor", def: "A condition in a person's current location that motivates them to leave — such as conflict, poverty, or environmental hazard.", ex: "Drought and crop failure were major push factors that drove millions of Dust Bowl migrants from the Great Plains in the 1930s." },
+  { word: "Pull Factor", def: "A condition in a destination that attracts migrants — such as economic opportunity, safety, or family ties.", ex: "California's agricultural industry in the 1930s served as a pull factor for Dust Bowl migrants seeking farm work." }
+];
+
+const grid = document.getElementById('termsGrid');
+terms.forEach((t, i) => {
+  const card = document.createElement('div');
+  card.className = 'term-card';
+  card.innerHTML = `<div class="term-word">${t.word}</div><div class="term-def">${t.def}</div><div class="term-example">Example: ${t.ex}</div>`;
+  card.addEventListener('click', () => card.classList.toggle('open'));
+  grid.appendChild(card);
+});
+</script>
+</body>
+</html>
